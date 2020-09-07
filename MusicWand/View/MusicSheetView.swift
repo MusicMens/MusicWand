@@ -14,22 +14,24 @@ struct MusicSheetView: View {
     var body: some View {
         let realm: Realm = try! Realm()
         let tracks = realm.objects(musicTrack.self)
-        return VStack {
+        //realm.add(<#T##object: Object##Object#>, update: <#T##Realm.UpdatePolicy#>)
+        return
             NavigationView{
-                List{
-                    ForEach(tracks, id: \.self){ score in
-                        NavigationLink(destination: ScoreDetail(score: score)){
-                            ScoreRow(score: score)
-                        }
-                    }.onDelete(perform: delete)
+                VStack{
+                    List{
+                        ForEach(tracks, id: \.self){ score in
+                            NavigationLink(destination: ScoreDetail(score: score)){
+                                ScoreRow(score: score)
+                            }
+                        }.onDelete(perform: delete)
+                    }
+                    Button(action:{
+                        print("I love chicken")
+                    }, label: {Image(systemName: "goforward.plus").font(.largeTitle)})
+                    Spacer(minLength: 45)
                 }
-                NavigationLink(destination: AboutView(), label: {Image(systemName: "goforward.plus").font(.largeTitle)})
-                Spacer(minLength: 45)
             }
             .navigationBarTitle(Text("Scores"))
-            NavigationLink(destination: AboutView(), label: {Image(systemName: "goforward.plus").font(.largeTitle)})
-            Spacer(minLength: 45)
-        }
     }
     
     func delete(at indexSet: IndexSet){
