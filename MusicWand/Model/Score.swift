@@ -16,8 +16,8 @@ class musicTrack: Object {
     let song = List<note>()
     
     override static func primaryKey() -> String? {
-       return "trackID"
-     }
+        return "trackID"
+    }
 }
 
 
@@ -46,10 +46,10 @@ class musicStore: ObservableObject {
     }
     
     public func makeTrack (_ title :String ) -> musicTrack {
-//        let song  = note()
+        //        let song  = note()
         let newtrack = musicTrack()
         newtrack.title = title
-//       newtrack.song.append(song)
+        //       newtrack.song.append(song)
         return newtrack
     }
     
@@ -68,13 +68,10 @@ class musicStore: ObservableObject {
     }
     
     public func deleteAllTrack (){
-           try! realm.write {
-               realm.deleteAll()
-           }
-       }
-
-    
-    
+        try! realm.write {
+            realm.deleteAll()
+        }
     }
+}
 
 
