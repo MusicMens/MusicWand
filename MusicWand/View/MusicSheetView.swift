@@ -17,30 +17,38 @@ struct MusicSheetView: View {
     @ObservedObject var musicStores =  musicStore();
     
     var body: some View {
-         _ = musicStores.addTrack(musicStores.makeTrack("String"))
-         _ = musicStores.addTrack(musicStores.makeTrack("String1"))
-         _ = musicStores.addTrack(musicStores.makeTrack("String2"))
-         _ = musicStores.addTrack(musicStores.makeTrack("String3"))
+//         _ = musicStores.addTrack(musicStores.makeTrack("String"))
+//         _ = musicStores.addTrack(musicStores.makeTrack("String1"))
+//         _ = musicStores.addTrack(musicStores.makeTrack("String2"))
+//         _ = musicStores.addTrack(musicStores.makeTrack("String3"))
 //        _ = musicStores.deleteAllTrack()
 //             _ = musicStores.deleteTrackByName("String")
    let realm: Realm = try! Realm()
   let tracks = realm.objects(musicTrack.self)
         return VStack {
-            NavigationView{
-                List(tracks, id: \.self){ score in
-                    NavigationLink(destination: ScoreDetail(score: score)){
-                        ScoreRow(score: score)
+                NavigationView{
+                    List{
+                        ForEach(tracks, id: \.self){ score in
+                        NavigationLink(destination: ScoreDetail(score: score)){
+                            ScoreRow(score: score)
+                        }
+                    }.onDelete(perform: delete)
+                        
                     }
                 }
+                .navigationBarTitle(Text("Scores"))
+                Button(action: {
+                    self.addNewMusicSheet()
+                    self.isLinkActive = true
+                }, label: {Image(systemName: "goforward.plus").font(.largeTitle)})
+                Spacer(minLength: 45)
             }
-            .navigationBarTitle(Text("Scores"))
-            Button(action: {
-                self.addNewMusicSheet()
-                self.isLinkActive = true
-            }, label: {Image(systemName: "goforward.plus").font(.largeTitle)})
-            Spacer(minLength: 45)
         }
-    }
+    
+    func delete(at indexSet: IndexSet){
+           
+    //        musicStores.deleteTrackByID()
+        }
     
     func addNewMusicSheet() {
         musicSheetStore.musicSheets.append(MusicNoteElement(id: UUID(), name: newMusicSheet, musicBar: newMusicSheet))
