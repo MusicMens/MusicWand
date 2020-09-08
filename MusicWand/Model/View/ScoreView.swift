@@ -48,11 +48,11 @@ func originY(bounds: CGRect) -> CGFloat {
 
 func cellWidth(bounds: CGRect) -> CGFloat {
     let cols: Int = 4
-    return (bounds.size.width * 0.9) / CGFloat(cols + 1)
+    return (bounds.size.width * 0.8) / CGFloat(cols + 1)
 }
  func cellHeight(bounds: CGRect) -> CGFloat {
     let rows: Int = 19
-    return  (bounds.size.height * 0.3) / CGFloat(rows)
+    return  (bounds.size.height * 0.3) / CGFloat(rows - 1)
 }
 
 
