@@ -22,9 +22,7 @@ struct ContentView: View {
     var body: some View {
         
         TabView(selection: $selectedTab) {
-            ScoreView(notes: Array(noteData)).tabItem {
-                      Image(systemName: "music.note")
-                  }.tag(1)
+                  PianoView().tag(1)
                   MusicSheetView().tabItem {
                       Image(systemName: "wand.and.stars.inverse")
                   }.tag(2)

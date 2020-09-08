@@ -72,7 +72,8 @@ func cellHeight(bounds: CGRect) -> CGFloat {
 
 struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreView(notes: [Note].init())
+        Text("Byebye!")
+        //ScoreView(notes: [Note].init())
     }
 }
 
