@@ -11,18 +11,14 @@ import PDFKit
 
 struct ContentView: View {
     
-    
-    
- 
-    let notes: Note
-    
-   
     @State private var selectedTab = 2
     
     var body: some View {
         
         TabView(selection: $selectedTab) {
-                  PianoView().tag(1)
+            ScoreView(scoreGame: ScoreGame()).tabItem {
+                      Image(systemName: "music.note")
+                  }.tag(1)
                   MusicSheetView().tabItem {
                       Image(systemName: "wand.and.stars.inverse")
                   }.tag(2)
@@ -41,7 +37,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(notes: noteData.first!)
+        ContentView()
         
     }
 }
