@@ -34,8 +34,8 @@ struct ScoreGrid: Shape {
             path.addLine(to: CGPoint(x: origX + (bounds.size.width * 0.8), y: origY + CGFloat(row) * cellheight))
         }
         for col in 0..<cols {
-            path.move(to: CGPoint(x:origX + CGFloat(col) * cellwidth, y: origY ))
-            path.addLine(to: CGPoint(x: origX + CGFloat(col) * cellwidth, y: origY + bounds.size.height * 0.3))
+            path.move(to: CGPoint(x:origX + CGFloat(col + 1) * cellwidth, y: origY ))
+            path.addLine(to: CGPoint(x: origX + CGFloat(col + 1) * cellwidth, y: origY + bounds.size.height * 0.3))
         }
         return path
     }
