@@ -9,12 +9,14 @@
 import SwiftUI
 
 struct PianoView: View {
+   
     var body: some View {
        VStack{
         
          NavBar()
         
              Spacer()
+        
             
              
          }

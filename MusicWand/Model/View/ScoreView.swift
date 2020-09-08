@@ -61,10 +61,18 @@ func cellHeight(bounds: CGRect) -> CGFloat {
 }
 
 
-func notePosition(bounds: CGRect, col: Int, row: Int) -> CGPoint {
-    let x = originX(bounds: bounds) + CGFloat(col) * cellWidth(bounds: bounds)
-    let y = originY(bounds: bounds) + CGFloat(row) * cellHeight(bounds: bounds)
+ func notePosition(bounds: CGRect, col: Int, row: Int) -> CGPoint {
+    let x = originX(bounds: bounds) + CGFloat(col + 1) * cellWidth(bounds: bounds) + 5
+    let y = originY(bounds: bounds) + CGFloat(row - 1) * cellHeight(bounds: bounds)
     return CGPoint(x: x, y: y)
 }
 
+
+
+
+struct ScoreView_Previews: PreviewProvider {
+    static var previews: some View {
+        ScoreView(notes: [Note].init())
+    }
+}
 
