@@ -23,6 +23,9 @@
 		8DCB148824FE133A00D49707 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB148724FE133A00D49707 /* SettingView.swift */; };
 		8DCB148A24FE28FD00D49707 /* SettingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB148924FE28FD00D49707 /* SettingDetailView.swift */; };
 		8DCB148C24FE608D00D49707 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB148B24FE608D00D49707 /* AboutView.swift */; };
+		8DEA0E752507094900A8DBE7 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA0E742507094900A8DBE7 /* ScoreView.swift */; };
+		8DEA0E772507098B00A8DBE7 /* ScoreGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA0E762507098B00A8DBE7 /* ScoreGrid.swift */; };
+		8DEA0E792507106700A8DBE7 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA0E782507106700A8DBE7 /* Note.swift */; };
 		8DF7E6842500D6810086F723 /* ScorePDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7E6832500D6810086F723 /* ScorePDFViewer.swift */; };
 		BC5F7D4225023461007FC290 /* Sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BC5F7D4125023461007FC290 /* Sample.pdf */; };
 		BC5F7D4A2504A984007FC290 /* ScoreRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F7D492504A984007FC290 /* ScoreRow.swift */; };
@@ -49,6 +52,9 @@
 		8DCB148724FE133A00D49707 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		8DCB148924FE28FD00D49707 /* SettingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDetailView.swift; sourceTree = "<group>"; };
 		8DCB148B24FE608D00D49707 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		8DEA0E742507094900A8DBE7 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
+		8DEA0E762507098B00A8DBE7 /* ScoreGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreGrid.swift; sourceTree = "<group>"; };
+		8DEA0E782507106700A8DBE7 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		8DF7E6832500D6810086F723 /* ScorePDFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorePDFViewer.swift; sourceTree = "<group>"; };
 		B1905636138077EEBBE9D2EA /* Pods_MusicWand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicWand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC5F7D4125023461007FC290 /* Sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Sample.pdf; sourceTree = "<group>"; };
@@ -104,9 +110,9 @@
 				8DCB145A24FE105300D49707 /* Controller */,
 				8DCB145924FE104A00D49707 /* Model */,
 				8DCB145824FE104000D49707 /* View */,
-				8DCB144424FE0F9100D49707 /* AppDelegate.swift */,
 				8DCB144824FE0F9100D49707 /* ContentView.swift */,
 				8DCB144624FE0F9100D49707 /* SceneDelegate.swift */,
+				8DCB144424FE0F9100D49707 /* AppDelegate.swift */,
 				8DCB144A24FE0F9600D49707 /* Assets.xcassets */,
 				8DCB144F24FE0F9600D49707 /* LaunchScreen.storyboard */,
 				8DCB144C24FE0F9600D49707 /* Preview Content */,
@@ -136,8 +142,10 @@
 				8DCB148B24FE608D00D49707 /* AboutView.swift */,
 				8DC0DDC224FFAB4600C55DB1 /* ScorePDFCreator.swift */,
 				8DF7E6832500D6810086F723 /* ScorePDFViewer.swift */,
+				8DEA0E742507094900A8DBE7 /* ScoreView.swift */,
 			);
-			path = View;
+			name = View;
+			path = Model/View;
 			sourceTree = "<group>";
 		};
 		8DCB145924FE104A00D49707 /* Model */ = {
@@ -146,6 +154,8 @@
 				BC5F7D4C2504AA5A007FC290 /* Score.swift */,
 				BC5F7D4B2504AA59007FC290 /* ScoreData.swift */,
 				8DCB147F24FE119900D49707 /* SettingsItem.swift */,
+				8DEA0E762507098B00A8DBE7 /* ScoreGrid.swift */,
+				8DEA0E782507106700A8DBE7 /* Note.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -290,7 +300,10 @@
 				8DCB148624FE132200D49707 /* MusicSheetView.swift in Sources */,
 				BC5F7D4D2504AA5A007FC290 /* ScoreData.swift in Sources */,
 				8DF7E6842500D6810086F723 /* ScorePDFViewer.swift in Sources */,
+				8DEA0E792507106700A8DBE7 /* Note.swift in Sources */,
 				BC5F7D4E2504AA5A007FC290 /* Score.swift in Sources */,
+				8DEA0E752507094900A8DBE7 /* ScoreView.swift in Sources */,
+				8DEA0E772507098B00A8DBE7 /* ScoreGrid.swift in Sources */,
 				8DCB148424FE123500D49707 /* NavBar.swift in Sources */,
 				8DCB148224FE120D00D49707 /* PianoView.swift in Sources */,
 				BC5F7D4A2504A984007FC290 /* ScoreRow.swift in Sources */,
