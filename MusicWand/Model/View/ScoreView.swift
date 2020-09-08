@@ -13,9 +13,10 @@ struct ScoreView: View {
     var score: musicTrack
     let notes: [Note]
     @State private var movingNoteLocation = CGPoint(x: 200, y: 300)
+    let sequencer = Sequencer()
     
     var body: some View {
-        VStack{
+        return VStack{
             Text("score view baby")
             Text(score.title)
             ZStack {
@@ -36,7 +37,11 @@ struct ScoreView: View {
                         )
                     }
                 }
-                
+                Button(action: {
+                    self.sequencer.play()
+                })
+                { Text("Click")}
+
             }
         }
     }
