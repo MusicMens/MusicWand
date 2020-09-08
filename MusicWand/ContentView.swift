@@ -16,7 +16,7 @@ struct ContentView: View {
     var body: some View {
         
         TabView(selection: $selectedTab) {
-            ScoreView(scoreGame: ScoreGame()).tabItem {
+            ScoreView(scoreModel: ScoreModel()).tabItem {
                       Image(systemName: "music.note")
                   }.tag(1)
                   MusicSheetView().tabItem {
