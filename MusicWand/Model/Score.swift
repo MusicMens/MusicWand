@@ -45,6 +45,11 @@ class musicStore: ObservableObject {
         
     }
     
+    public func findAllTracks () -> Results<musicTrack>{
+        let tracks = realm.objects(musicTrack.self)
+        return tracks
+    }
+    
     public func makeTrack (_ title :String ) -> musicTrack {
         //        let song  = note()
         let newtrack = musicTrack()
@@ -60,11 +65,10 @@ class musicStore: ObservableObject {
             try! realm.write({
                 if i.title == title{
                     realm.delete(i)
+                    print("I sent it to hell")
                 }
             })
         }
-        
-        
     }
     
     public func deleteAllTrack (){

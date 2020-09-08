@@ -9,15 +9,7 @@
 import Foundation
 import SwiftUI
 
-
-
-
-
-
-
 struct ScoreGrid: Shape {
-    
-
     
     let bounds: CGRect
     
