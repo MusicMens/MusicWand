@@ -8,4 +8,5 @@ target 'MusicWand' do
   # Pods for MusicWand
 
 pod 'RealmSwift'
+pod 'AudioKit', '~> 4.0'
 end
