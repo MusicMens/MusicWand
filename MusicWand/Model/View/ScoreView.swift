@@ -63,6 +63,7 @@ struct ScoreView: View {
                 }) {
                     Text("button")
                 }
+                
             }
         }
     }
@@ -91,12 +92,12 @@ struct ScoreView: View {
         return  (bounds.size.height * 0.3) / CGFloat(rows)
     }
 
-
      func notePosition(bounds: CGRect, col: Int, row: Int) -> CGPoint {
         let x = originX(bounds: bounds) + CGFloat(col) * cellWidth(bounds: bounds)
         let y = originY(bounds: bounds) + CGFloat(row) * cellHeight(bounds: bounds)
         return CGPoint(x: x, y: y)
     }
+
 
 
 

@@ -1,4 +1,10 @@
 PODS:
+  - AudioKit (4.10.1):
+    - AudioKit/Core (= 4.10.1)
+    - AudioKit/UI (= 4.10.1)
+  - AudioKit/Core (4.10.1)
+  - AudioKit/UI (4.10.1):
+    - AudioKit/Core
   - Realm (5.3.6):
     - Realm/Headers (= 5.3.6)
   - Realm/Headers (5.3.6)
@@ -6,17 +12,20 @@ PODS:
     - Realm (= 5.3.6)
 
 DEPENDENCIES:
+  - AudioKit (~> 4.0)
   - RealmSwift
 
 SPEC REPOS:
   trunk:
+    - AudioKit
     - Realm
     - RealmSwift
 
 SPEC CHECKSUMS:
+  AudioKit: b8e508a0af3dc7d53caf0ca1002b187a662f949e
   Realm: cd400dd7e5b5bb5c8ae9842eecd73792369e6ec0
   RealmSwift: 99a16dbdee5d6dfb3d91d56088a9f8c15c0871d1
 
-PODFILE CHECKSUM: 01d6c20e8fc0553de3c29360abdb851d601eacfb
+PODFILE CHECKSUM: 6f1b69bdf2db50bc3ccc1136a3680785986fdb9e
 
 COCOAPODS: 1.9.3

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		42A4D3CBB61CB2C721DD4332 /* Pods_MusicWand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1905636138077EEBBE9D2EA /* Pods_MusicWand.framework */; };
+		7C4B9AC3250755820095371C /* Sequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4B9AC2250755820095371C /* Sequencer.swift */; };
 		7C5278DC2505DE7B007D7397 /* ScoreDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5278DB2505DE7A007D7397 /* ScoreDetail.swift */; };
 		8DC0DDC324FFAB4600C55DB1 /* ScorePDFCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC0DDC224FFAB4600C55DB1 /* ScorePDFCreator.swift */; };
 		8DCB144524FE0F9100D49707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB144424FE0F9100D49707 /* AppDelegate.swift */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		78DCBE418A79C6D85AC82BFA /* Pods-MusicWand.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicWand.debug.xcconfig"; path = "Target Support Files/Pods-MusicWand/Pods-MusicWand.debug.xcconfig"; sourceTree = "<group>"; };
+		7C4B9AC2250755820095371C /* Sequencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequencer.swift; sourceTree = "<group>"; };
 		7C5278DB2505DE7A007D7397 /* ScoreDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreDetail.swift; sourceTree = "<group>"; };
 		8DC0DDC224FFAB4600C55DB1 /* ScorePDFCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorePDFCreator.swift; sourceTree = "<group>"; };
 		8DCB144124FE0F9100D49707 /* MusicWand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicWand.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +161,7 @@
 				8DEA0E762507098B00A8DBE7 /* ScoreGrid.swift */,
 				8DEA0E782507106700A8DBE7 /* Note.swift */,
 				8DEA0E7A25076D1800A8DBE7 /* ScoreModel.swift */,
+				7C4B9AC2250755820095371C /* Sequencer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				8DCB148224FE120D00D49707 /* PianoView.swift in Sources */,
 				BC5F7D4A2504A984007FC290 /* ScoreRow.swift in Sources */,
 				8DCB148A24FE28FD00D49707 /* SettingDetailView.swift in Sources */,
+				7C4B9AC3250755820095371C /* Sequencer.swift in Sources */,
 				8DCB148024FE119900D49707 /* SettingsItem.swift in Sources */,
 				7C5278DC2505DE7B007D7397 /* ScoreDetail.swift in Sources */,
 			);
