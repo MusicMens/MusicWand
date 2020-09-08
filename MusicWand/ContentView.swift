@@ -12,14 +12,9 @@ import PDFKit
 struct ContentView: View {
     
     
-    init() {
-       UITabBar.appearance().backgroundColor = UIColor.darkGray
-    let scorePDFCreator = ScorePDFCreator()
-        let output = scorePDFCreator.createScore()
-    let url = getDocumentsDirectory().appendingPathComponent("magicWand.pdf")
-    try? output.write(to: url)
-    print(url)
-    }
+    
+ 
+    let notes: Note
     
    
     @State private var selectedTab = 2
@@ -27,7 +22,7 @@ struct ContentView: View {
     var body: some View {
         
         TabView(selection: $selectedTab) {
-                  PianoView().tabItem {
+            ScoreView(notes: noteData.first!).tabItem {
                       Image(systemName: "music.note")
                   }.tag(1)
                   MusicSheetView().tabItem {
@@ -48,7 +43,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(notes: noteData.first!)
         
     }
 }
