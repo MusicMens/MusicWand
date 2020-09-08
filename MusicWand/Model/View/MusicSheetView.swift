@@ -10,11 +10,11 @@ import SwiftUI
 import RealmSwift
 
 struct MusicSheetView: View {
+    @ObservedObject var score = musicStore()
     
     var body: some View {
         let realm: Realm = try! Realm()
         let tracks = realm.objects(musicTrack.self)
-        //realm.add(<#T##object: Object##Object#>, update: <#T##Realm.UpdatePolicy#>)
         return
             NavigationView{
                 VStack{
@@ -25,14 +25,18 @@ struct MusicSheetView: View {
                             }
                         }.onDelete(perform: delete)
                     }
-                    Button(action:{
-                        print("I love chicken")
+                    Button(action: {
+                        print("I added chicken")
+                        let track = self.score.makeTrack("untitled")
+                        self.score.addTrack(track)
                     }, label: {Image(systemName: "goforward.plus").font(.largeTitle)})
                     Spacer(minLength: 45)
                 }
             }
             .navigationBarTitle(Text("Scores"))
+
     }
+
     
     func delete(at indexSet: IndexSet){
     }

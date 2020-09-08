@@ -109,9 +109,10 @@
 				8DCB145224FE0F9600D49707 /* Info.plist */,
 				8DCB145A24FE105300D49707 /* Controller */,
 				8DCB145924FE104A00D49707 /* Model */,
-				8DCB144424FE0F9100D49707 /* AppDelegate.swift */,
+				8DCB145824FE104000D49707 /* View */,
 				8DCB144824FE0F9100D49707 /* ContentView.swift */,
 				8DCB144624FE0F9100D49707 /* SceneDelegate.swift */,
+				8DCB144424FE0F9100D49707 /* AppDelegate.swift */,
 				8DCB144A24FE0F9600D49707 /* Assets.xcassets */,
 				8DCB144F24FE0F9600D49707 /* LaunchScreen.storyboard */,
 				8DCB144C24FE0F9600D49707 /* Preview Content */,
@@ -143,13 +144,13 @@
 				8DF7E6832500D6810086F723 /* ScorePDFViewer.swift */,
 				8DEA0E742507094900A8DBE7 /* ScoreView.swift */,
 			);
-			path = View;
+			name = View;
+			path = Model/View;
 			sourceTree = "<group>";
 		};
 		8DCB145924FE104A00D49707 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8DCB145824FE104000D49707 /* View */,
 				BC5F7D4C2504AA5A007FC290 /* Score.swift */,
 				BC5F7D4B2504AA59007FC290 /* ScoreData.swift */,
 				8DCB147F24FE119900D49707 /* SettingsItem.swift */,
