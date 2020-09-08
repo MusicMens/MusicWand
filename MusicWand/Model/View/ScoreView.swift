@@ -68,9 +68,8 @@ struct ScoreView: View {
     }
 
     func xyToColRow(bounds: CGRect, x: CGFloat, y: CGFloat) -> (Int, Int) {
-        let cellSide = cellWidth(bounds: bounds) + cellHeight(bounds: bounds) + 0.5
-        let col: Int = Int((x - originX(bounds: bounds)) / cellSide)
-        let row: Int = Int((y - originY(bounds: bounds)) / cellSide)
+        let col: Int = Int((x - originX(bounds: bounds)) / cellHeight(bounds: bounds) + 0.5)
+        let row: Int = Int((y - originY(bounds: bounds)) / cellWidth(bounds: bounds) + 0.5)
         return (col, row)
     }
 
