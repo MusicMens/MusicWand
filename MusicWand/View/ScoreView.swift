@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ScoreView: View {
     
-    let notes: [Note]
+    let notes: Note
     @State private var movingNoteLocation = CGPoint(x: 200, y: 300)
     
     var body: some View {
@@ -19,20 +19,18 @@ struct ScoreView: View {
                 ScoreGrid(bounds: geo.frame(in: .local))
                     .stroke()
                 
-                ForEach(self.notes, id: \.self) { note in
-                    Image(note.imgName)
-                    .resizable()
-                    .frame(width: 35, height: 35)
-                    .position(notePosition(bounds: geo.frame(in: .local), col: note.col, row: note.row))
-                    .gesture(DragGesture().onChanged({ value in
-                        self.movingNoteLocation = value.location
-                    }).onEnded({ value in
-                        print(value.location)
-                    })
-                    )
-                }
+                Image(self.notes.imgName)
+                .resizable()
+                .frame(width: 35, height: 35)
+                    .position(notePosition(bounds: geo.frame(in: .local), col: self.notes.col, row: self.notes.row))
+                .gesture(DragGesture().onChanged({ value in
+                    self.movingNoteLocation = value.location
+                }).onEnded({ value in
+                    print(value.location)
+                }))
             }
             
+        
         }
     }
 }
@@ -67,7 +65,7 @@ func cellWidth(bounds: CGRect) -> CGFloat {
 
 struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreView(notes: [Note].init())
+        ScoreView(notes: noteData.first!)
     }
 }
 
