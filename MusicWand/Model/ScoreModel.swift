@@ -9,16 +9,11 @@
 import Foundation
 import Combine
 
-class ScoreGame: ObservableObject {
+class ScoreModel: ObservableObject {
     @Published var notes: Set<Note> = []
     
     init() {
-        notes.insert(Note(col: 0, row: 0, imgName: "MusicNote"))
-        notes.insert(Note(col: 0, row: 0, imgName: "deathknight"))
-        notes.insert(Note(col: 0, row: 0, imgName: "all_classes"))
-        notes.insert(Note(col: 0, row: 0, imgName: "druid"))
-        notes.insert(Note(col: 0, row: 0, imgName: "hunter"))
-        notes.insert(Note(col: 0, row: 0, imgName: "mage"))
+        notes.insert(Note(col: 1, row: 0, imgName: "MusicNote"))
         
     }
     
@@ -30,6 +25,17 @@ class ScoreGame: ObservableObject {
         notes.filter {
             $0.col == col && $0.row == row
         }.first
+    }
+    
+    func moveNote(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
+        guard let movingNote = noteAt(col: fromCol, row: fromRow) else {return}
+        
+        notes.remove(movingNote)
+        if let targetNote = noteAt(col: toCol, row: toRow) {
+            notes.remove(targetNote)
+        }
+        
+        notes.insert(Note(col: toCol, row: toRow, imgName: movingNote.imgName))
     }
     
     

@@ -16,16 +16,20 @@ struct ContentView: View {
     var body: some View {
         
         TabView(selection: $selectedTab) {
-            ScoreView(scoreGame: ScoreGame()).tabItem {
-                      Image(systemName: "music.note")
-                  }.tag(1)
-                  MusicSheetView().tabItem {
-                      Image(systemName: "wand.and.stars.inverse")
-                  }.tag(2)
-                  SettingView().tabItem {
-                      Image(systemName: "slider.horizontal.3")
-                  }.tag(3)
-              }//.accentColor(.black)
+            PianoView().tabItem {
+                Image(systemName: "keyboard")
+            }.tag(1)
+            
+            ScoreView(scoreModel: ScoreModel()).tabItem {
+                Image(systemName: "music.note")
+            }.tag(2)
+            MusicSheetView().tabItem {
+                Image(systemName: "wand.and.stars.inverse")
+            }.tag(3)
+            SettingView().tabItem {
+                Image(systemName: "slider.horizontal.3")
+            }.tag(4)
+        }
         
     }
     
