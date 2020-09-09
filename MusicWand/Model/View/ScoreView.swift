@@ -13,7 +13,7 @@ struct ScoreView: View {
     @State private var movingNoteLocation = CGPoint(x: 200, y: 300)
     @State private var fromPoint: CGPoint?
     @State private var movingNote: Note?
-    
+    var sequencer = Sequencer()
     var body: some View {
         VStack {
             ZStack {
@@ -60,11 +60,11 @@ struct ScoreView: View {
                 }
                 
             }
-            Text("new Note")
+            Button(action:{}){Text("new Note")}
             Button(action: {
-                
+                self.sequencer.play()
             }) {
-                Text("button")
+                Text("Play")
             }
         }
     }

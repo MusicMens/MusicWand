@@ -11,7 +11,7 @@ import PDFKit
 
 struct ContentView: View {
     
-    @State private var selectedTab = 2
+    @State private var selectedTab = 3
     
     var body: some View {
         
