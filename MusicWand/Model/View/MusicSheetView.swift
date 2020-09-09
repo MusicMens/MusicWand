@@ -17,7 +17,7 @@ struct MusicSheetView: View {
     
     let notes = [Note]()
     var body: some View {
-        //let tracks = score.findAllTracks()
+//         score.deleteAllTrack()
         print("YOLO")
         return
             NavigationView{
@@ -41,7 +41,7 @@ struct MusicSheetView: View {
                         let track = self.score.makeTrack("untitled1")
                         self.score.addTrack(track)
                         self.sendToHell.toggle();
-                    }, label: {Image(systemName: "goforward.plus").font(.largeTitle)})
+                    },label: {Image(systemName: "goforward.plus").font(.largeTitle)})
                     Spacer(minLength: 45)
                 }
             }
