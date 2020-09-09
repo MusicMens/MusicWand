@@ -9,22 +9,11 @@
 import SwiftUI
 import RealmSwift
 struct ScoreRow: View {
-    var score: musicTrack
+    var score: ContentViewCellModel
     
     var body: some View {
         Text(score.title)
     }
 }
 
-struct ScoreRow_Previews: PreviewProvider {
-    static var previews: some View {
-         let realm: Realm = try! Realm()
-        let tracks = realm.objects(musicTrack.self)
 
-        return Group{
-            ScoreRow(score: tracks[0])
-            ScoreRow(score: tracks[1])
-            ScoreRow(score: tracks[2])
-        }
-    }
-}
