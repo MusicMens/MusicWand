@@ -13,9 +13,10 @@ struct ScoreView: View {
         @State private var movingNoteLocation = CGPoint(x: 200, y: 300)
         @State private var fromPoint: CGPoint?
         @State private var movingNote: Note?
-        
+        var sequencer = Sequencer()
+
         var body: some View {
-            VStack {
+            return VStack {
                 ZStack {
                     GeometryReader { geo in
                         ScoreGrid(bounds: geo.frame(in: .local))
@@ -63,7 +64,11 @@ struct ScoreView: View {
                 }) {
                     Text("button")
                 }
-                
+                Button(action: {
+                    self.sequencer.play()
+                })
+                { Text("Play")}
+
             }
         }
     }
