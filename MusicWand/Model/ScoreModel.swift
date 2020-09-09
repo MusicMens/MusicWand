@@ -14,9 +14,6 @@ class ScoreModel: ObservableObject {
     
     init() {
         notes.insert(Note(col: 1, row: 0, imgName: "MusicNote"))
-//        notes.insert(Note(col: 2, row: 14, imgName: "deathknight"))
-//        notes.insert(Note(col: 3, row: 7, imgName: "all_classes"))
-//        notes.insert(Note(col: 4, row: 5, imgName: "druid"))
         
     }
     
