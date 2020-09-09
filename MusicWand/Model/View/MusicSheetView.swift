@@ -11,21 +11,18 @@ import RealmSwift
 
 struct MusicSheetView: View {
     @ObservedObject var score = musicStore()
-    @State var sendToHell = false
-    @State var allTracks = realm.objects(musicTrack.self)
-     @ObservedObject var model = ContentViewModel()
+    @ObservedObject var model = ContentViewModel()
+    @State var countUntitled = 0;
     
     let notes = [Note]()
     var body: some View {
-//         score.deleteAllTrack()
-        print("YOLO")
         return
             NavigationView{
                 VStack{
                     List{
                         ForEach(model.cellModels , id: \.trackID){ score in
-                            NavigationLink(destination: ScoreView(scoreGame: ScoreGame())){
-                                ScoreRow(score: self.model.cellModels[0])////
+                            NavigationLink(destination: ScoreView(scoreModel: ScoreModel())){
+                                ScoreRow(score: self.model.cellModels[0])
                             }
                         }.onDelete{ indexSet in
                             let realm = try? Realm()
@@ -38,9 +35,9 @@ struct MusicSheetView: View {
                     }
                     Button(action: {
                         print("I added chicken")
-                        let track = self.score.makeTrack("untitled1")
+                        self.countUntitled += 1
+                        let track = self.score.makeTrack("Untitled\(self.countUntitled)")
                         self.score.addTrack(track)
-                        self.sendToHell.toggle();
                     },label: {Image(systemName: "goforward.plus").font(.largeTitle)})
                     Spacer(minLength: 45)
                 }
