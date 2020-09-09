@@ -22,9 +22,9 @@ class musicTrack: Object {
 
 
 class note :Object {
-    @objc dynamic var noteNumber: Int = 0
-    @objc dynamic var position: Double = 0
-    @objc dynamic var duration: Double = 0
+    @objc dynamic var col: Int = 0
+    @objc dynamic var row: Int = 0
+    @objc dynamic var imgName: String = ""
 }
 
 class musicStore: ObservableObject {
@@ -78,4 +78,31 @@ class musicStore: ObservableObject {
     }
 }
 
+struct ContentViewCellModel {
+    let trackID:String
+    let title: String
+    let song : [noteViewModel] = [noteViewModel]()
+}
 
+struct noteViewModel{
+     let col: Int = 0
+     let row: Int = 0
+     let imgName: String = ""
+}
+
+
+class ContentViewModel: ObservableObject {
+    private var token: NotificationToken?
+    private var myModelResults = try? Realm().objects(musicTrack.self)
+    @Published var cellModels: [ContentViewCellModel] = []
+    
+    init() {
+        token = myModelResults?.observe { [weak self] _ in
+            self?.cellModels = self?.myModelResults?.map { ContentViewCellModel(trackID : $0.trackID, title: $0.title) } ?? []
+        }
+    }
+    
+    deinit {
+        token?.invalidate()
+    }
+}
