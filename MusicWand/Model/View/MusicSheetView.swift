@@ -15,7 +15,7 @@ struct MusicSheetView: View {
     @State var allTracks = realm.objects(musicTrack.self)
     let notes = [Note]()
     var body: some View {
-        //let tracks = score.findAllTracks()
+//         score.deleteAllTrack()
         print("YOLO")
         return
             NavigationView{
