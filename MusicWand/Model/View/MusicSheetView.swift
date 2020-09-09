@@ -22,7 +22,7 @@ struct MusicSheetView: View {
                 VStack{
                     List{
                         ForEach(allTracks, id: \.self){ score in
-                            NavigationLink(destination: ScoreView(scoreGame: ScoreGame())){
+                            NavigationLink(destination: ScoreView(scoreModel: ScoreModel())){
                                 ScoreRow(score: score)
                             }
                         }.onDelete(perform: delete)
