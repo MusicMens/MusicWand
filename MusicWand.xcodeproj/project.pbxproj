@@ -27,6 +27,7 @@
 		8DEA0E752507094900A8DBE7 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA0E742507094900A8DBE7 /* ScoreView.swift */; };
 		8DEA0E772507098B00A8DBE7 /* ScoreGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA0E762507098B00A8DBE7 /* ScoreGrid.swift */; };
 		8DEA0E792507106700A8DBE7 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA0E782507106700A8DBE7 /* Note.swift */; };
+		8DEA0E7B25076D1800A8DBE7 /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA0E7A25076D1800A8DBE7 /* ScoreModel.swift */; };
 		8DF7E6842500D6810086F723 /* ScorePDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7E6832500D6810086F723 /* ScorePDFViewer.swift */; };
 		BC5F7D4225023461007FC290 /* Sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BC5F7D4125023461007FC290 /* Sample.pdf */; };
 		BC5F7D4A2504A984007FC290 /* ScoreRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F7D492504A984007FC290 /* ScoreRow.swift */; };
@@ -57,6 +58,7 @@
 		8DEA0E742507094900A8DBE7 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		8DEA0E762507098B00A8DBE7 /* ScoreGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreGrid.swift; sourceTree = "<group>"; };
 		8DEA0E782507106700A8DBE7 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		8DEA0E7A25076D1800A8DBE7 /* ScoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
 		8DF7E6832500D6810086F723 /* ScorePDFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorePDFViewer.swift; sourceTree = "<group>"; };
 		B1905636138077EEBBE9D2EA /* Pods_MusicWand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicWand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC5F7D4125023461007FC290 /* Sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Sample.pdf; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				8DCB147F24FE119900D49707 /* SettingsItem.swift */,
 				8DEA0E762507098B00A8DBE7 /* ScoreGrid.swift */,
 				8DEA0E782507106700A8DBE7 /* Note.swift */,
+				8DEA0E7A25076D1800A8DBE7 /* ScoreModel.swift */,
 				7C4B9AC2250755820095371C /* Sequencer.swift */,
 			);
 			path = Model;
@@ -294,6 +297,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DEA0E7B25076D1800A8DBE7 /* ScoreModel.swift in Sources */,
 				8DCB144524FE0F9100D49707 /* AppDelegate.swift in Sources */,
 				8DCB144724FE0F9100D49707 /* SceneDelegate.swift in Sources */,
 				8DC0DDC324FFAB4600C55DB1 /* ScorePDFCreator.swift in Sources */,

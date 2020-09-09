@@ -9,76 +9,107 @@
 import SwiftUI
 
 struct ScoreView: View {
-    
-    var score: musicTrack
-    let notes: [Note]
-    @State private var movingNoteLocation = CGPoint(x: 200, y: 300)
-    let sequencer = Sequencer()
-    
-    var body: some View {
-        return VStack{
-            Text("score view baby")
-            Text(score.title)
-            ZStack {
-                GeometryReader { geo in
-                    ScoreGrid(bounds: geo.frame(in: .local))
-                        .stroke()
-                    
-                    ForEach(self.notes, id: \.self) { note in
-                        Image(note.imgName)
+    @ObservedObject var scoreGame: ScoreGame
+        @State private var movingNoteLocation = CGPoint(x: 200, y: 300)
+        @State private var fromPoint: CGPoint?
+        @State private var movingNote: Note?
+        var sequencer = Sequencer()
+
+        var body: some View {
+            return VStack {
+                ZStack {
+                    GeometryReader { geo in
+                        ScoreGrid(bounds: geo.frame(in: .local))
+                            .stroke()
+                        
+                        ForEach(Array(self.scoreGame.notes), id: \.self) { note in
+                            Image(note.imgName)
                             .resizable()
-                            .frame(width: 35, height: 35)
+                            .frame(width: 30, height: 30)
                             .position(notePosition(bounds: geo.frame(in: .local), col: note.col, row: note.row))
                             .gesture(DragGesture().onChanged({ value in
                                 self.movingNoteLocation = value.location
+                                if self.fromPoint == nil {
+                                    self.fromPoint = value.location
+                                    let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: value.location.x, y: value.location.y)
+                                    self.movingNote = self.scoreGame.noteAt(col: fromCol, row: fromRow)
+                                }
                             }).onEnded({ value in
-                                print(value.location)
-                            })
-                        )
+                                let toPoint: CGPoint = value.location
+                                if let fromPoint = self.fromPoint {
+                                    let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: fromPoint.x, y: fromPoint.y)
+                                    let (toCol, toRow) = xyToColRow(bounds: geo.frame(in: .local), x: toPoint.x, y: toPoint.y)
+                                    print("from col:(\(fromCol), from row: \(fromRow) to col:\(toCol), to row: \(toRow)")
+                                }
+                                
+                                self.fromPoint = nil
+                                self.movingNote = nil
+                            }))
+                            
+                        }
+                        if self.movingNote != nil {
+                            Image(self.movingNote!.imgName)
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .position(self.movingNoteLocation)
+                        }
+                       
+                            
                     }
+                    
+                }
+                Text("new Note")
+                Button(action: {
+                    
+                }) {
+                    Text("button")
                 }
                 Button(action: {
                     self.sequencer.play()
                 })
-                { Text("Click")}
+                { Text("Play")}
 
             }
         }
     }
-}
+
+    func xyToColRow(bounds: CGRect, x: CGFloat, y: CGFloat) -> (Int, Int) {
+        let col: Int = Int((x - originX(bounds: bounds)) / cellHeight(bounds: bounds) + 0.5)
+        let row: Int = Int((y - originY(bounds: bounds)) / cellWidth(bounds: bounds) + 0.5)
+        return (col, row)
+    }
 
 
-func originX(bounds: CGRect) -> CGFloat {
-    return bounds.size.width * 0.1
-}
+    func originX(bounds: CGRect) -> CGFloat {
+        return bounds.size.width * 0.1
+    }
 
-func originY(bounds: CGRect) -> CGFloat {
-    return bounds.size.height * 0.1
-}
+    func originY(bounds: CGRect) -> CGFloat {
+        return bounds.size.height * 0.1
+    }
 
-func cellWidth(bounds: CGRect) -> CGFloat {
-    let cols: Int = 4
-    return (bounds.size.width * 0.8) / CGFloat(cols + 1)
-}
-func cellHeight(bounds: CGRect) -> CGFloat {
-    let rows: Int = 19
-    return  (bounds.size.height * 0.3) / CGFloat(rows - 1)
-}
+    func cellWidth(bounds: CGRect) -> CGFloat {
+        let cols: Int = 4
+        return (bounds.size.width * 0.9) / CGFloat(cols + 1)
+    }
+     func cellHeight(bounds: CGRect) -> CGFloat {
+        let rows: Int = 19
+        return  (bounds.size.height * 0.3) / CGFloat(rows)
+    }
 
+     func notePosition(bounds: CGRect, col: Int, row: Int) -> CGPoint {
+        let x = originX(bounds: bounds) + CGFloat(col) * cellWidth(bounds: bounds)
+        let y = originY(bounds: bounds) + CGFloat(row) * cellHeight(bounds: bounds)
+        return CGPoint(x: x, y: y)
+    }
 
- func notePosition(bounds: CGRect, col: Int, row: Int) -> CGPoint {
-    let x = originX(bounds: bounds) + CGFloat(col + 1) * cellWidth(bounds: bounds) + 5
-    let y = originY(bounds: bounds) + CGFloat(row - 1) * cellHeight(bounds: bounds)
-    return CGPoint(x: x, y: y)
-}
 
 
 
 
 struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {
-        Text("Byebye!")
-        //ScoreView(notes: [Note].init())
+        ScoreView(scoreGame: ScoreGame())
     }
 }
 
