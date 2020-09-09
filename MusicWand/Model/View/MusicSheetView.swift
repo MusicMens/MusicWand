@@ -13,8 +13,6 @@ struct MusicSheetView: View {
     @ObservedObject var score = musicStore()
     @ObservedObject var model = ContentViewModel()
     @State var countUntitled = 0;
-    
-    let notes = [Note]()
     var body: some View {
         return
             NavigationView{
@@ -22,7 +20,7 @@ struct MusicSheetView: View {
                     List{
                         ForEach(model.cellModels , id: \.trackID){ score in
                             NavigationLink(destination: ScoreView(scoreModel: ScoreModel())){
-                                ScoreRow(score: self.model.cellModels[0])
+                                ScoreRow(score: score)
                             }
                         }.onDelete{ indexSet in
                             let realm = try? Realm()

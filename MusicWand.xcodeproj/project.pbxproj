@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		42A4D3CBB61CB2C721DD4332 /* Pods_MusicWand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1905636138077EEBBE9D2EA /* Pods_MusicWand.framework */; };
 		7C046F052508B04900D89087 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C046F042508B04900D89087 /* Note.swift */; };
-		7C046F072508B05F00D89087 /* ScoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C046F062508B05F00D89087 /* ScoreData.swift */; };
 		7C4B9AC3250755820095371C /* Sequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4B9AC2250755820095371C /* Sequencer.swift */; };
-		7C5278DC2505DE7B007D7397 /* ScoreDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5278DB2505DE7A007D7397 /* ScoreDetail.swift */; };
 		8DCB144524FE0F9100D49707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB144424FE0F9100D49707 /* AppDelegate.swift */; };
 		8DCB144724FE0F9100D49707 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB144624FE0F9100D49707 /* SceneDelegate.swift */; };
 		8DCB144924FE0F9100D49707 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB144824FE0F9100D49707 /* ContentView.swift */; };
@@ -28,7 +26,6 @@
 		8DEA0E752507094900A8DBE7 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA0E742507094900A8DBE7 /* ScoreView.swift */; };
 		8DEA0E772507098B00A8DBE7 /* ScoreGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA0E762507098B00A8DBE7 /* ScoreGrid.swift */; };
 		8DEA0E7B25076D1800A8DBE7 /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA0E7A25076D1800A8DBE7 /* ScoreModel.swift */; };
-		BC5F7D4225023461007FC290 /* Sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BC5F7D4125023461007FC290 /* Sample.pdf */; };
 		BC5F7D4A2504A984007FC290 /* ScoreRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F7D492504A984007FC290 /* ScoreRow.swift */; };
 		BC5F7D4E2504AA5A007FC290 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F7D4C2504AA5A007FC290 /* Score.swift */; };
 /* End PBXBuildFile section */
@@ -36,9 +33,7 @@
 /* Begin PBXFileReference section */
 		78DCBE418A79C6D85AC82BFA /* Pods-MusicWand.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicWand.debug.xcconfig"; path = "Target Support Files/Pods-MusicWand/Pods-MusicWand.debug.xcconfig"; sourceTree = "<group>"; };
 		7C046F042508B04900D89087 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Note.swift; path = ../../../../.Trash/Note.swift; sourceTree = "<group>"; };
-		7C046F062508B05F00D89087 /* ScoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreData.swift; path = ../../../../.Trash/ScoreData.swift; sourceTree = "<group>"; };
 		7C4B9AC2250755820095371C /* Sequencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequencer.swift; sourceTree = "<group>"; };
-		7C5278DB2505DE7A007D7397 /* ScoreDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreDetail.swift; sourceTree = "<group>"; };
 		8DCB144124FE0F9100D49707 /* MusicWand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicWand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DCB144424FE0F9100D49707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DCB144624FE0F9100D49707 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,7 +53,6 @@
 		8DEA0E762507098B00A8DBE7 /* ScoreGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreGrid.swift; sourceTree = "<group>"; };
 		8DEA0E7A25076D1800A8DBE7 /* ScoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
 		B1905636138077EEBBE9D2EA /* Pods_MusicWand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicWand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC5F7D4125023461007FC290 /* Sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Sample.pdf; sourceTree = "<group>"; };
 		BC5F7D492504A984007FC290 /* ScoreRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreRow.swift; sourceTree = "<group>"; };
 		BC5F7D4C2504AA5A007FC290 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		E8E2499DFAB10ED09C487FB0 /* Pods-MusicWand.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicWand.release.xcconfig"; path = "Target Support Files/Pods-MusicWand/Pods-MusicWand.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,10 +126,8 @@
 			isa = PBXGroup;
 			children = (
 				BC5F7D492504A984007FC290 /* ScoreRow.swift */,
-				BC5F7D4125023461007FC290 /* Sample.pdf */,
 				8DCB148124FE120D00D49707 /* PianoView.swift */,
 				8DCB148324FE123500D49707 /* NavBar.swift */,
-				7C5278DB2505DE7A007D7397 /* ScoreDetail.swift */,
 				8DCB148524FE132200D49707 /* MusicSheetView.swift */,
 				8DCB148724FE133A00D49707 /* SettingView.swift */,
 				8DCB148924FE28FD00D49707 /* SettingDetailView.swift */,
@@ -150,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				BC5F7D4C2504AA5A007FC290 /* Score.swift */,
-				7C046F062508B05F00D89087 /* ScoreData.swift */,
 				8DCB147F24FE119900D49707 /* SettingsItem.swift */,
 				8DEA0E762507098B00A8DBE7 /* ScoreGrid.swift */,
 				7C046F042508B04900D89087 /* Note.swift */,
@@ -237,7 +228,6 @@
 			files = (
 				8DCB145124FE0F9600D49707 /* LaunchScreen.storyboard in Resources */,
 				8DCB144E24FE0F9600D49707 /* Preview Assets.xcassets in Resources */,
-				BC5F7D4225023461007FC290 /* Sample.pdf in Resources */,
 				8DCB144B24FE0F9600D49707 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,8 +298,6 @@
 				8DCB148A24FE28FD00D49707 /* SettingDetailView.swift in Sources */,
 				7C4B9AC3250755820095371C /* Sequencer.swift in Sources */,
 				8DCB148024FE119900D49707 /* SettingsItem.swift in Sources */,
-				7C046F072508B05F00D89087 /* ScoreData.swift in Sources */,
-				7C5278DC2505DE7B007D7397 /* ScoreDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

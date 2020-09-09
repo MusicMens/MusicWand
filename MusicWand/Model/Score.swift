@@ -13,7 +13,7 @@ import RealmSwift
 class musicTrack: Object {
     @objc dynamic var trackID = UUID().uuidString
     @objc dynamic var title: String = ""
-    let song = List<note>()
+    dynamic var song = [noteViewModel]()
     
     override static func primaryKey() -> String? {
         return "trackID"
@@ -81,7 +81,7 @@ class musicStore: ObservableObject {
 struct ContentViewCellModel {
     let trackID:String
     let title: String
-    let song : [noteViewModel] = [noteViewModel]()
+    let song : [noteViewModel]
 }
 
 struct noteViewModel{
@@ -98,7 +98,7 @@ class ContentViewModel: ObservableObject {
     
     init() {
         token = myModelResults?.observe { [weak self] _ in
-            self?.cellModels = self?.myModelResults?.map { ContentViewCellModel(trackID : $0.trackID, title: $0.title) } ?? []
+            self?.cellModels = self?.myModelResults?.map { ContentViewCellModel(trackID : $0.trackID, title: $0.title, song: $0.song) } ?? []
         }
     }
     
