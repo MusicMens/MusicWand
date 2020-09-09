@@ -60,12 +60,10 @@ struct ScoreView: View {
                 }
                 
             }
-            Button(action:{}){Text("new Note")}
+//            Button(action:{}){Text("new Note")}
             Button(action: {
                 self.sequencer.play()
-            }) {
-                Text("Play")
-            }
+            }, label: {Image(systemName: "play").font(.largeTitle)} )
         }
     }
     
