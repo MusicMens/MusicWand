@@ -32,7 +32,7 @@ struct MusicSheetView: View {
                         let track = self.score.makeTrack("untitled1")
                         self.score.addTrack(track)
                         self.sendToHell.toggle();
-                    }, label: {Image(systemName: "goforward.plus").font(.largeTitle)})
+                    },label: {Image(systemName: "goforward.plus").font(.largeTitle)})
                     Spacer(minLength: 45)
                 }
             }
