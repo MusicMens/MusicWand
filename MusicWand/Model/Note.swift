@@ -16,3 +16,8 @@ struct Note: Hashable {
     let row: Int
     let imgName: String
 }
+
+var noteData: Set<Note> = [
+    Note(col: 3, row: 5, imgName: "MusicNote"),
+    Note(col: 0, row: 0, imgName: "MusicNote")
+]

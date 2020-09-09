@@ -113,6 +113,7 @@ func notePosition(bounds: CGRect, col: Int, row: Int) -> CGPoint {
 
 
 
+
 struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {
         ScoreView(scoreModel: ScoreModel())

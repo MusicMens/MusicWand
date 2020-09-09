@@ -11,24 +11,27 @@ import RealmSwift
 
 struct MusicSheetView: View {
     @ObservedObject var score = musicStore()
-    
+    @State var sendToHell = false
+    @State var allTracks = realm.objects(musicTrack.self)
+    let notes = [Note]()
     var body: some View {
-        let realm: Realm = try! Realm()
-        let tracks = realm.objects(musicTrack.self)
+        //let tracks = score.findAllTracks()
+        print("YOLO")
         return
             NavigationView{
                 VStack{
                     List{
-                        ForEach(tracks, id: \.self){ score in
-                            NavigationLink(destination: ScoreDetail(score: score)){
+                        ForEach(allTracks, id: \.self){ score in
+                            NavigationLink(destination: ScoreView(scoreGame: ScoreGame())){
                                 ScoreRow(score: score)
                             }
                         }.onDelete(perform: delete)
                     }
                     Button(action: {
                         print("I added chicken")
-                        let track = self.score.makeTrack("untitled")
+                        let track = self.score.makeTrack("untitled1")
                         self.score.addTrack(track)
+                        self.sendToHell.toggle();
                     }, label: {Image(systemName: "goforward.plus").font(.largeTitle)})
                     Spacer(minLength: 45)
                 }
@@ -37,7 +40,6 @@ struct MusicSheetView: View {
 
     }
 
-    
     func delete(at indexSet: IndexSet){
     }
     
