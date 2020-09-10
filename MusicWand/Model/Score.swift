@@ -81,13 +81,13 @@ class musicStore: ObservableObject {
 struct ContentViewCellModel {
     let trackID:String
     let title: String
-    let song : [noteViewModel] = [noteViewModel]()
+//    let song : [noteViewModel]
 }
 
 struct noteViewModel{
-     let col: Int = 0
-     let row: Int = 0
-     let imgName: String = ""
+     let col: Int
+     let row: Int
+     let imgName: String
 }
 
 
