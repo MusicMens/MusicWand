@@ -13,8 +13,6 @@ struct MusicSheetView: View {
     @ObservedObject var score = musicStore()
     @ObservedObject var model = ContentViewModel()
     @State var countUntitled = 0;
-    
-    let notes = [Note]()
     var body: some View {
         return
             NavigationView{
@@ -35,9 +33,17 @@ struct MusicSheetView: View {
                     }
                     Button(action: {
                         print("I added chicken")
-                        self.countUntitled += 1
-                        let track = self.score.makeTrack("Untitled\(self.countUntitled)")
-                        self.score.addTrack(track)
+                        let alertHC = UIHostingController(rootView: newTrackAlertView())
+
+                            alertHC.preferredContentSize = CGSize(width: 300, height: 200)
+                            alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
+
+                            UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
+
+                        
+//                        self.countUntitled += 1
+//                        let track = self.score.makeTrack("Untitled\(self.countUntitled)")
+//                        self.score.addTrack(track)
                     },label: {Image(systemName: "goforward.plus").font(.largeTitle)})
                     Spacer(minLength: 45)
                 }
@@ -54,6 +60,7 @@ struct MusicSheetView: View {
 
 struct MusicSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+       MusicSheetView()
+        
     }
 }
