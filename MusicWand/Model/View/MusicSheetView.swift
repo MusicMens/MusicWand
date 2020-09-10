@@ -11,10 +11,11 @@ import RealmSwift
 
 struct MusicSheetView: View {
     @ObservedObject var score = musicStore()
-     @ObservedObject var model = ContentViewModel()
+    @ObservedObject var model = ContentViewModel()
+    @State var countUntitled = 0;
+    
+    let notes = [Note]()
     var body: some View {
-//         score.deleteAllTrack()
-        print("YOLO")
         return
             NavigationView{
                 VStack{
@@ -34,7 +35,8 @@ struct MusicSheetView: View {
                     }
                     Button(action: {
                         print("I added chicken")
-                        let track = self.score.makeTrack("untitled1")
+                        self.countUntitled += 1
+                        let track = self.score.makeTrack("Untitled\(self.countUntitled)")
                         self.score.addTrack(track)
                     },label: {Image(systemName: "goforward.plus").font(.largeTitle)})
                     Spacer(minLength: 45)
