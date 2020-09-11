@@ -12,7 +12,7 @@ import PDFKit
 struct ContentView: View {
     
     @State private var selectedTab = 3
-    
+   // var model = ContentViewModel().cellModels
     var body: some View {
         
         TabView(selection: $selectedTab) {
@@ -20,9 +20,9 @@ struct ContentView: View {
                 Image(systemName: "keyboard")
             }.tag(1)
             
-            ScoreView(scoreModel: ScoreModel()).tabItem {
-                Image(systemName: "music.note")
-            }.tag(2)
+//            ScoreView(scoreModel: ScoreModel()).tabItem {
+//                Image(systemName: "music.note")
+//            }.tag(2)
             MusicSheetView().tabItem {
                 Image(systemName: "wand.and.stars.inverse")
             }.tag(3)

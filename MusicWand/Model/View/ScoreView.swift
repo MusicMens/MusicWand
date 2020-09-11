@@ -10,7 +10,7 @@ import SwiftUI
 import RealmSwift
 
 struct ScoreView: View {
-  
+    var trackData : ContentViewCellModel
     let colsRowsData =  note()
     @ObservedObject var scoreModel: ScoreModel
     @State private var movingNoteLocation = CGPoint(x: 200, y: 200)
@@ -26,7 +26,7 @@ struct ScoreView: View {
                         ScoreGrid(bounds: geo.frame(in: .local))
                             .stroke()
                         
-                        ForEach(Array(self.scoreModel.notes), id: \.self) { note in
+                        ForEach(Array(self.trackData.song), id: \.self) { note in
                             Image(note.imgName)
                                 .resizable()
     //                            .frame(width: cellWidth(bounds: geo.frame(in: .local)), height: cellHeight(bounds: geo.frame(in: .local)))
@@ -77,7 +77,7 @@ struct ScoreView: View {
                     self.sequencer.play()
                 }, label: {Image(systemName: "play").font(.largeTitle)} )
             }
-        }.navigationBarTitle(Text("dfasfas"))
+        }.navigationBarTitle(self.trackData.title)
     }
     
     func moveNote(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
@@ -125,9 +125,9 @@ func notePosition(bounds: CGRect, col: Int, row: Int) -> CGPoint {
 
 
 
-struct ScoreView_Previews: PreviewProvider {
-    static var previews: some View {
-        ScoreView(scoreModel: ScoreModel())
-    }
-}
+//struct ScoreView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ScoreView(scoreModel: ScoreModel())
+//    }
+//}
 

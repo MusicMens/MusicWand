@@ -19,10 +19,9 @@ struct MusicSheetView: View {
                 VStack{
                     List{
                         ForEach(model.cellModels , id: \.trackID){ score in
-                            NavigationLink(destination: ScoreView(scoreModel: ScoreModel())){
+                            NavigationLink(destination: ScoreView(trackData: score, scoreModel: ScoreModel())){
                                 ScoreRow(score: score)
-                                
-                               
+                
                             }
                              
                         }.onDelete{ indexSet in
