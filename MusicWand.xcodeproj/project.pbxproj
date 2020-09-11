@@ -10,6 +10,10 @@
 		42A4D3CBB61CB2C721DD4332 /* Pods_MusicWand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1905636138077EEBBE9D2EA /* Pods_MusicWand.framework */; };
 		7C4B9AC3250755820095371C /* Sequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4B9AC2250755820095371C /* Sequencer.swift */; };
 		7C5278DC2505DE7B007D7397 /* ScoreDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5278DB2505DE7A007D7397 /* ScoreDetail.swift */; };
+		7C6C8364250B3AC600751ACB /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6C8363250B3AC600751ACB /* Note.swift */; };
+		7C6C8366250B3BAC00751ACB /* ScoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6C8365250B3BAC00751ACB /* ScoreData.swift */; };
+		7C6C8369250B3C7E00751ACB /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 7C6C8368250B3C7D00751ACB /* Sounds */; };
+		7C6C836B250B3DC700751ACB /* UprightPianoKW-20190703.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 7C6C836A250B3DC700751ACB /* UprightPianoKW-20190703.sf2 */; };
 		8DCB144524FE0F9100D49707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB144424FE0F9100D49707 /* AppDelegate.swift */; };
 		8DCB144724FE0F9100D49707 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB144624FE0F9100D49707 /* SceneDelegate.swift */; };
 		8DCB144924FE0F9100D49707 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB144824FE0F9100D49707 /* ContentView.swift */; };
@@ -29,8 +33,6 @@
 		BC5F7D4225023461007FC290 /* Sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BC5F7D4125023461007FC290 /* Sample.pdf */; };
 		BC5F7D4A2504A984007FC290 /* ScoreRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F7D492504A984007FC290 /* ScoreRow.swift */; };
 		BC5F7D4E2504AA5A007FC290 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F7D4C2504AA5A007FC290 /* Score.swift */; };
-		BC8470152509AEF400F335B9 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8470142509AEF400F335B9 /* Note.swift */; };
-		BC8470172509AF0900F335B9 /* ScoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8470162509AF0900F335B9 /* ScoreData.swift */; };
 		BC84701D2509B6A200F335B9 /* newTrackAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC84701C2509B6A200F335B9 /* newTrackAlert.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +40,10 @@
 		78DCBE418A79C6D85AC82BFA /* Pods-MusicWand.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicWand.debug.xcconfig"; path = "Target Support Files/Pods-MusicWand/Pods-MusicWand.debug.xcconfig"; sourceTree = "<group>"; };
 		7C4B9AC2250755820095371C /* Sequencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequencer.swift; sourceTree = "<group>"; };
 		7C5278DB2505DE7A007D7397 /* ScoreDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreDetail.swift; sourceTree = "<group>"; };
+		7C6C8363250B3AC600751ACB /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		7C6C8365250B3BAC00751ACB /* ScoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreData.swift; sourceTree = "<group>"; };
+		7C6C8368250B3C7D00751ACB /* Sounds */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Sounds; path = MusicWand/Sounds; sourceTree = SOURCE_ROOT; };
+		7C6C836A250B3DC700751ACB /* UprightPianoKW-20190703.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UprightPianoKW-20190703.sf2"; sourceTree = "<group>"; };
 		8DCB144124FE0F9100D49707 /* MusicWand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicWand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DCB144424FE0F9100D49707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DCB144624FE0F9100D49707 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,8 +66,6 @@
 		BC5F7D4125023461007FC290 /* Sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Sample.pdf; sourceTree = "<group>"; };
 		BC5F7D492504A984007FC290 /* ScoreRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreRow.swift; sourceTree = "<group>"; };
 		BC5F7D4C2504AA5A007FC290 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
-		BC8470142509AEF400F335B9 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Note.swift; path = "../../../../cartella senza titolo/MusicWandPog/MusicWand/Model/Note.swift"; sourceTree = "<group>"; };
-		BC8470162509AF0900F335B9 /* ScoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreData.swift; path = "../../../../cartella senza titolo/MusicWandPog/MusicWand/Model/ScoreData.swift"; sourceTree = "<group>"; };
 		BC84701C2509B6A200F335B9 /* newTrackAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newTrackAlert.swift; sourceTree = "<group>"; };
 		E8E2499DFAB10ED09C487FB0 /* Pods-MusicWand.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicWand.release.xcconfig"; path = "Target Support Files/Pods-MusicWand/Pods-MusicWand.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +94,7 @@
 		8DCB143824FE0F9100D49707 = {
 			isa = PBXGroup;
 			children = (
+				7C6C836A250B3DC700751ACB /* UprightPianoKW-20190703.sf2 */,
 				8DCB144324FE0F9100D49707 /* MusicWand */,
 				8DCB144224FE0F9100D49707 /* Products */,
 				150E0570D8954453426E7070 /* Pods */,
@@ -108,6 +113,7 @@
 		8DCB144324FE0F9100D49707 /* MusicWand */ = {
 			isa = PBXGroup;
 			children = (
+				7C6C8368250B3C7D00751ACB /* Sounds */,
 				8DCB145224FE0F9600D49707 /* Info.plist */,
 				8DCB145A24FE105300D49707 /* Controller */,
 				8DCB145924FE104A00D49707 /* Model */,
@@ -153,12 +159,12 @@
 			isa = PBXGroup;
 			children = (
 				BC5F7D4C2504AA5A007FC290 /* Score.swift */,
-				BC8470162509AF0900F335B9 /* ScoreData.swift */,
 				8DCB147F24FE119900D49707 /* SettingsItem.swift */,
+				7C6C8365250B3BAC00751ACB /* ScoreData.swift */,
 				8DEA0E762507098B00A8DBE7 /* ScoreGrid.swift */,
-				BC8470142509AEF400F335B9 /* Note.swift */,
 				8DEA0E7A25076D1800A8DBE7 /* ScoreModel.swift */,
 				7C4B9AC2250755820095371C /* Sequencer.swift */,
+				7C6C8363250B3AC600751ACB /* Note.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -238,6 +244,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C6C836B250B3DC700751ACB /* UprightPianoKW-20190703.sf2 in Resources */,
+				7C6C8369250B3C7E00751ACB /* Sounds in Resources */,
 				8DCB145124FE0F9600D49707 /* LaunchScreen.storyboard in Resources */,
 				8DCB144E24FE0F9600D49707 /* Preview Assets.xcassets in Resources */,
 				BC5F7D4225023461007FC290 /* Sample.pdf in Resources */,
@@ -306,11 +314,11 @@
 				8DEA0E772507098B00A8DBE7 /* ScoreGrid.swift in Sources */,
 				8DCB148424FE123500D49707 /* NavBar.swift in Sources */,
 				8DCB148224FE120D00D49707 /* PianoView.swift in Sources */,
-				BC8470172509AF0900F335B9 /* ScoreData.swift in Sources */,
+				7C6C8366250B3BAC00751ACB /* ScoreData.swift in Sources */,
 				BC84701D2509B6A200F335B9 /* newTrackAlert.swift in Sources */,
 				BC5F7D4A2504A984007FC290 /* ScoreRow.swift in Sources */,
+				7C6C8364250B3AC600751ACB /* Note.swift in Sources */,
 				8DCB148A24FE28FD00D49707 /* SettingDetailView.swift in Sources */,
-				BC8470152509AEF400F335B9 /* Note.swift in Sources */,
 				7C4B9AC3250755820095371C /* Sequencer.swift in Sources */,
 				8DCB148024FE119900D49707 /* SettingsItem.swift in Sources */,
 				7C5278DC2505DE7B007D7397 /* ScoreDetail.swift in Sources */,
