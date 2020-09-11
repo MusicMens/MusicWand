@@ -26,7 +26,7 @@ struct ScoreView: View {
                         Image(note.imgName)
                             .resizable()
 //                            .frame(width: cellWidth(bounds: geo.frame(in: .local)), height: cellHeight(bounds: geo.frame(in: .local)))
-                            .frame(width: 30, height: 30)
+                            .frame(width: 50, height: 50)
                             .position(notePosition(bounds: geo.frame(in: .local), col: note.col, row: note.row))
                             .gesture(DragGesture().onChanged({ value in
                                 self.movingNoteLocation = value.location
@@ -80,8 +80,8 @@ struct ScoreView: View {
 }
 
 func xyToColRow(bounds: CGRect, x: CGFloat, y: CGFloat) -> (Int, Int) {
-    let col: Int = Int((x - originX(bounds: bounds)) / cellWidth(bounds: bounds) + 0.5)
-    let row: Int = Int((y - originY(bounds: bounds)) / cellWidth(bounds: bounds) + 0.5)
+    let col: Int = Int((x - originX(bounds: bounds)) / cellWidth(bounds: bounds))
+    let row: Int = Int((y - originY(bounds: bounds)) / cellHeight(bounds: bounds))
     return (col, row)
 }
 
@@ -96,7 +96,7 @@ func originY(bounds: CGRect) -> CGFloat {
 
 func cellWidth(bounds: CGRect) -> CGFloat {
     let cols: Int = 4
-    return (bounds.size.width * 0.9) / CGFloat(cols + 1)
+    return (bounds.size.width * 0.8) / CGFloat(cols)
 }
 func cellHeight(bounds: CGRect) -> CGFloat {
     let rows: Int = 19
@@ -106,7 +106,7 @@ func cellHeight(bounds: CGRect) -> CGFloat {
 
 func notePosition(bounds: CGRect, col: Int, row: Int) -> CGPoint {
     let x = originX(bounds: bounds) + CGFloat(col) * cellWidth(bounds: bounds)
-    let y = originY(bounds: bounds) + CGFloat(row) * cellWidth(bounds: bounds)
+    let y = originY(bounds: bounds) + CGFloat(row) * cellHeight(bounds: bounds)
     return CGPoint(x: x, y: y)
 }
 
