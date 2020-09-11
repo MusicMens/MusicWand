@@ -13,10 +13,10 @@ class ScoreModel: ObservableObject {
     @Published var notes: Set<Note> = []
     
     init() {
-        notes.insert(Note(col: 1, row: 2, imgName: "MusicNote"))
-        notes.insert(Note(col: 2, row: 0, imgName: "MusicNote"))
-        notes.insert(Note(col: 3, row: 1, imgName: "MusicNote"))
-        notes.insert(Note(col: 4, row: 0, imgName: "MusicNote"))
+        notes.insert(Note(col: 1, row: 5, imgName: "MusicNote"))
+        notes.insert(Note(col: 2, row: 5, imgName: "MusicNote"))
+        notes.insert(Note(col: 3, row: 5, imgName: "MusicNote"))
+        notes.insert(Note(col: 4, row: 5, imgName: "MusicNote"))
 
 
     }
