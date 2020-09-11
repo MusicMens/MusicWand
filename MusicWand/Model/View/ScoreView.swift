@@ -16,7 +16,7 @@ struct ScoreView: View {
     @State private var movingNoteLocation = CGPoint(x: 200, y: 200)
     @State private var fromPoint: CGPoint?
     @State private var movingNote: Note?
-    var sequencer = Sequencer()
+    var sequencer = Conductor.shared
     var body: some View {
 
         NavigationView {
