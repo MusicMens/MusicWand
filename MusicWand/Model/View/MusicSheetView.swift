@@ -21,7 +21,10 @@ struct MusicSheetView: View {
                         ForEach(model.cellModels , id: \.trackID){ score in
                             NavigationLink(destination: ScoreView(scoreModel: ScoreModel())){
                                 ScoreRow(score: score)
+                                
+                               
                             }
+                             
                         }.onDelete{ indexSet in
                             let realm = try? Realm()
                             if let index = indexSet.first, let myModel = realm?.objects(musicTrack.self).filter("trackID = %@", self.model.cellModels[index].trackID).first {
@@ -29,6 +32,7 @@ struct MusicSheetView: View {
                                     realm?.delete(myModel)
                                 }
                             }
+                            print("MusicSheetView\(self.model.cellModels)")
                         }
                     }
                     Button(action: {

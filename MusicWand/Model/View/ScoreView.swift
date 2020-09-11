@@ -7,66 +7,77 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct ScoreView: View {
-   // @State var colRowData: Note
+  
+    let colsRowsData =  note()
     @ObservedObject var scoreModel: ScoreModel
-    @State private var movingNoteLocation = CGPoint(x: 200, y: 300)
+    @State private var movingNoteLocation = CGPoint(x: 200, y: 200)
     @State private var fromPoint: CGPoint?
     @State private var movingNote: Note?
     var sequencer = Sequencer()
     var body: some View {
-        VStack {
-            ZStack {
-                GeometryReader { geo in
-                    ScoreGrid(bounds: geo.frame(in: .local))
-                        .stroke()
-                    
-                    ForEach(Array(self.scoreModel.notes), id: \.self) { note in
-                        Image(note.imgName)
-                            .resizable()
-//                            .frame(width: cellWidth(bounds: geo.frame(in: .local)), height: cellHeight(bounds: geo.frame(in: .local)))
-                            .frame(width: 30, height: 30)
-                            .position(notePosition(bounds: geo.frame(in: .local), col: note.col, row: note.row))
-                            .gesture(DragGesture().onChanged({ value in
-                                self.movingNoteLocation = value.location
-                                if self.fromPoint == nil {
-                                    self.fromPoint = value.location
-                                    let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: value.location.x, y: value.location.y)
-                                    self.movingNote = self.scoreModel.noteAt(col: fromCol, row: fromRow)
-                                }
-                            }).onEnded({ value in
-                                let toPoint: CGPoint = value.location
-                                if let fromPoint = self.fromPoint {
-                                    let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: fromPoint.x, y: fromPoint.y)
-                                    let (toCol, toRow) = xyToColRow(bounds: geo.frame(in: .local), x: toPoint.x, y: toPoint.y)
+
+        NavigationView {
+            VStack {
+                ZStack {
+                    GeometryReader { geo in
+                        ScoreGrid(bounds: geo.frame(in: .local))
+                            .stroke()
+                        
+                        ForEach(Array(self.scoreModel.notes), id: \.self) { note in
+                            Image(note.imgName)
+                                .resizable()
+    //                            .frame(width: cellWidth(bounds: geo.frame(in: .local)), height: cellHeight(bounds: geo.frame(in: .local)))
+                                .frame(width: 30, height: 30)
+                                .position(notePosition(bounds: geo.frame(in: .local), col: note.col, row: note.row))
+                                .gesture(DragGesture().onChanged({ value in
+                                    self.movingNoteLocation = value.location
+                                    if self.fromPoint == nil {
+                                        self.fromPoint = value.location
+                                        let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: value.location.x, y: value.location.y)
+                                        self.movingNote = self.scoreModel.noteAt(col: fromCol, row: fromRow)
+                                    }
+                                }).onEnded({ value in
+                                    let toPoint: CGPoint = value.location
+                                    if let fromPoint = self.fromPoint {
+                                        let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: fromPoint.x, y: fromPoint.y)
+                                        let (toCol, toRow) = xyToColRow(bounds: geo.frame(in: .local), x: toPoint.x, y: toPoint.y)
+                                        self.colsRowsData.col = toCol
+                                        self.colsRowsData.row = toRow
+                                        let realm = try! Realm()
+                                        let tracks = realm.objects(musicTrack.self)
+                                        print(tracks)
+                                        
+                                        
+                                        print("from col:(\(fromCol), from row: \(fromRow) to col:\(toCol), to row: \(toRow)")
+                                        self.moveNote(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+                                    }
                                     
-                                    print("from col:(\(fromCol), from row: \(fromRow) to col:\(toCol), to row: \(toRow)")
-                                    self.moveNote(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
-                                }
-                                
-                                self.fromPoint = nil
-                                self.movingNote = nil
-                            }))
+                                    self.fromPoint = nil
+                                    self.movingNote = nil
+                                }))
+                            
+                        }
+                        if self.movingNote != nil {
+                            Image(self.movingNote!.imgName)
+                                .resizable()
+    //                           .frame(width: cellWidth(bounds: geo.frame(in: .local)), height: cellHeight(bounds: geo.frame(in: .local)))
+                                .frame(width: 30, height: 30)
+                                .position(self.movingNoteLocation)
+                        }
+                        
                         
                     }
-                    if self.movingNote != nil {
-                        Image(self.movingNote!.imgName)
-                            .resizable()
-//                           .frame(width: cellWidth(bounds: geo.frame(in: .local)), height: cellHeight(bounds: geo.frame(in: .local)))
-                            .frame(width: 30, height: 30)
-                            .position(self.movingNoteLocation)
-                    }
-                    
                     
                 }
-                
+    //            Button(action:{}){Text("new Note")}
+                Button(action: {
+                    self.sequencer.play()
+                }, label: {Image(systemName: "play").font(.largeTitle)} )
             }
-//            Button(action:{}){Text("new Note")}
-            Button(action: {
-                self.sequencer.play()
-            }, label: {Image(systemName: "play").font(.largeTitle)} )
-        }
+        }.navigationBarTitle(Text("dfasfas"))
     }
     
     func moveNote(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {

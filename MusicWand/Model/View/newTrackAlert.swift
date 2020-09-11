@@ -15,7 +15,7 @@ struct newTrackAlertView: View {
     @ObservedObject var model = ScoreModel()
 //    @ObservedObject var viewModel = ContentViewCellModel()
     
-    @State var onSubmit = false
+    @State private var onSubmit = false
     var body: some View {
         NavigationView{
             VStack{
@@ -23,17 +23,17 @@ struct newTrackAlertView: View {
             
                 TextField("Title" , text: $title).textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
-                Button(action: {
+               NavigationLink(destination: ScoreView(scoreModel: ScoreModel()), isActive: self.$onSubmit){
+                                                    Text("")
+                                                 }
+                Button("Done") {
+                   
                 let track = self.score.makeTrack(self.title)
                 self.score.addTrack(track)
-//                    NavigationLink(destination: ScoreView(scoreModel: ScoreModel())){
-//                        ScoreRow(score: self.model)
-//                    }
+                    self.onSubmit = true
         
-                })
-                {
-                    Text("Done")
                 }
+               
          }
         }
     }
