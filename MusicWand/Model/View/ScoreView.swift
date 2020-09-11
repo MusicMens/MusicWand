@@ -9,11 +9,12 @@
 import SwiftUI
 
 struct ScoreView: View {
+   // @State var colRowData: Note
     @ObservedObject var scoreModel: ScoreModel
     @State private var movingNoteLocation = CGPoint(x: 200, y: 300)
     @State private var fromPoint: CGPoint?
     @State private var movingNote: Note?
-    var sequencer = Sequencer()
+    var sequencer = Conductor.shared
     var body: some View {
         VStack {
             ZStack {
@@ -39,6 +40,7 @@ struct ScoreView: View {
                                 if let fromPoint = self.fromPoint {
                                     let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: fromPoint.x, y: fromPoint.y)
                                     let (toCol, toRow) = xyToColRow(bounds: geo.frame(in: .local), x: toPoint.x, y: toPoint.y)
+                                    
                                     print("from col:(\(fromCol), from row: \(fromRow) to col:\(toCol), to row: \(toRow)")
                                     self.moveNote(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
                                 }
