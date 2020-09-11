@@ -48,7 +48,12 @@ struct ScoreView: View {
                                         self.colsRowsData.row = toRow
                                         let realm = try! Realm()
                                         let tracks = realm.objects(musicTrack.self)
-                                        print(tracks)
+                                        for i in tracks{
+                                            if i.title == self.trackData.title {
+                                                print(i)
+                                            }
+                                        }
+                                        //print(tracks)
                                         
                                         
                                         print("from col:(\(fromCol), from row: \(fromRow) to col:\(toCol), to row: \(toRow)")
