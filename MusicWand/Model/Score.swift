@@ -1,4 +1,4 @@
-//
+////
 //  Score.swift
 //  MusicWand
 //
@@ -86,7 +86,7 @@ class musicStore: ObservableObject {
 struct ContentViewCellModel {
     let trackID:String
     let title: String
-//    let song : [noteViewModel]
+    let song : List<note>
 }
 
 struct noteViewModel{
@@ -103,7 +103,7 @@ class ContentViewModel: ObservableObject {
     
     init() {
         token = myModelResults?.observe { [weak self] _ in
-            self?.cellModels = self?.myModelResults?.map { ContentViewCellModel(trackID : $0.trackID, title: $0.title) } ?? []
+            self?.cellModels = self?.myModelResults?.map { ContentViewCellModel(trackID : $0.trackID, title: $0.title, song: $0.song) } ?? []
         }
     }
     
