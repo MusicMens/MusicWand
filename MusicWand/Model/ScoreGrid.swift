@@ -27,9 +27,10 @@ struct ScoreGrid: Shape {
             path.addLine(to: CGPoint(x: origX + (bounds.size.width * 0.8), y: origY + CGFloat(row) * cellheight))
             }}
         for col in 0..<cols {
+            if col > 0 {
             path.move(to: CGPoint(x:origX + CGFloat(col) * cellwidth, y: origY + 5 * cellheight))
             path.addLine(to: CGPoint(x: origX + CGFloat(col) * cellwidth, y: origY + 13 * cellheight))
-        }
+            }}
         return path
     }
 }
