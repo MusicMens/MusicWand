@@ -26,7 +26,7 @@ struct ScoreView: View {
                         ScoreGrid(bounds: geo.frame(in: .local))
                             .stroke()
                         
-                        ForEach(Array(self.trackData.song), id: \.self) { note in
+                        ForEach(Array(self.scoreModel.notes), id: \.self) { note in
                             Image(note.imgName)
                                 .resizable()
     //                            .frame(width: cellWidth(bounds: geo.frame(in: .local)), height: cellHeight(bounds: geo.frame(in: .local)))
@@ -92,8 +92,8 @@ struct ScoreView: View {
 }
 
 func xyToColRow(bounds: CGRect, x: CGFloat, y: CGFloat) -> (Int, Int) {
-    let col: Int = Int((x - originX(bounds: bounds)) / cellWidth(bounds: bounds) + 0.5)
-    let row: Int = Int((y - originY(bounds: bounds)) / cellWidth(bounds: bounds) + 0.5)
+    let col: Int = Int((x - originX(bounds: bounds)) / cellWidth(bounds: bounds))
+    let row: Int = Int((y - originY(bounds: bounds)) / cellHeight(bounds: bounds))
     return (col, row)
 }
 
@@ -118,7 +118,7 @@ func cellHeight(bounds: CGRect) -> CGFloat {
 
 func notePosition(bounds: CGRect, col: Int, row: Int) -> CGPoint {
     let x = originX(bounds: bounds) + CGFloat(col) * cellWidth(bounds: bounds)
-    let y = originY(bounds: bounds) + CGFloat(row) * cellWidth(bounds: bounds)
+    let y = originY(bounds: bounds) + CGFloat(row) * cellHeight(bounds: bounds)
     return CGPoint(x: x, y: y)
 }
 
