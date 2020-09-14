@@ -10,28 +10,42 @@ import SwiftUI
 import RealmSwift
 
 struct MusicSheetView: View {
-    @ObservedObject var score = musicStore()
-    @ObservedObject var model = ContentViewModel()
+    var musicStores = musicStore.store
+    @State var allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
+    
+       // @ObservedObject var score = musicStore()
+   // @ObservedObject var model = ContentViewModel()
     @State var countUntitled = 0;
     var body: some View {
         return
             NavigationView{
                 VStack{
                     List{
-                        ForEach(model.cellModels , id: \.trackID){ score in
-                            NavigationLink(destination: ScoreView(trackData: score, scoreModel: ScoreModel())){
+                        ForEach(allTrack , id: \.self){ score in
+                            NavigationLink(destination: ScoreView(trackData: score)){
                                 ScoreRow(score: score)
                 
                             }
                              
-                        }.onDelete{ indexSet in
-                            let realm = try? Realm()
-                            if let index = indexSet.first, let myModel = realm?.objects(musicTrack.self).filter("trackID = %@", self.model.cellModels[index].trackID).first {
-                                try? realm?.write {
-                                    realm?.delete(myModel)
-                                }
+                        }
+                     .onDelete{ indexSet in
+                        let index = indexSet.first
+                        let title = self.allTrack[index!].title
+                        let track = self.musicStores.findTrack(title)
+                        self.allTrack = self.allTrack.enumerated().filter{!indexSet.contains($0.offset)}.map{$0.element}
+                        
+                        try! self.musicStores.realm.write{
+                             self.musicStores.realm.delete(track)
                             }
-                            print("MusicSheetView\(self.model.cellModels)")
+
+                        print(self.allTrack)
+////                            let realm = try? Realm()
+//                            let index = indexSet.first
+//                            try! self.musicStores.realm.write{
+//                                self.musicStores.realm.delete(self.allTrack[index!])
+//
+//                            }
+                           // print("MusicSheetView\(self.model.cellModels)")
                         }
                     }
                     Button(action: {
@@ -61,9 +75,9 @@ struct MusicSheetView: View {
 }
 
 
-struct MusicSheetView_Previews: PreviewProvider {
-    static var previews: some View {
-       MusicSheetView()
-        
-    }
-}
+//struct MusicSheetView_Previews: PreviewProvider {
+//    static var previews: some View {
+//       MusicSheetView()
+//
+//    }
+//}

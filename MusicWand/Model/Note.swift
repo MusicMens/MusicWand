@@ -12,9 +12,9 @@ import SwiftUI
 
 struct Note: Hashable {
     var id = UUID()
-    let col: Int
-    let row: Int
-    let imgName: String
+    var col: Int
+    var row: Int
+    var imgName: String
 }
 
 var noteData: Set<Note> = [

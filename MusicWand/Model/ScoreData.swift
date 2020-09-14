@@ -11,5 +11,5 @@ import UIKit
 import SwiftUI
 import RealmSwift
 
-let realm: Realm = try! Realm()
-let scoreData = realm.objects(musicTrack.self)
+
+//let scoreData = musicStore.realm.objects(musicTrack.self)

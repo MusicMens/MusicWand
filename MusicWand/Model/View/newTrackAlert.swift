@@ -23,12 +23,12 @@ struct newTrackAlertView: View {
             
                 TextField("Title" , text: $title).textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
-                //NavigationLink(destination: ScoreView(trackData: ContentViewCellModel, scoreModel: ScoreModel()), isActive: self.$onSubmit){EmptyView()}
+//                NavigationLink(destination: ScoreView(trackData: musicTrack(), scoreModel: ScoreModel()), isActive: self.$onSubmit){EmptyView()}
                 Button("Done") {
                    
                 let track = self.score.makeTrack(self.title)
                 self.score.addTrack(track)
-                    self.onSubmit = true
+                self.onSubmit = true
         
                 }
                

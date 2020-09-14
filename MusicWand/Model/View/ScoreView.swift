@@ -10,9 +10,8 @@ import SwiftUI
 import RealmSwift
 
 struct ScoreView: View {
-    var trackData : ContentViewCellModel
-    let colsRowsData =  note()
-    @ObservedObject var scoreModel: ScoreModel
+    var trackData : musicTrack
+    @State private var colsRowsData =  note()
     @State private var movingNoteLocation = CGPoint(x: 200, y: 200)
     @State private var fromPoint: CGPoint?
     @State private var movingNote: Note?
@@ -25,8 +24,7 @@ struct ScoreView: View {
                     GeometryReader { geo in
                         ScoreGrid(bounds: geo.frame(in: .local))
                             .stroke()
-                        
-                        ForEach(Array(self.scoreModel.notes), id: \.self) { note in
+                        ForEach(self.trackData.song, id: \.self) { note in
                             Image(note.imgName)
                                 .resizable()
     //                            .frame(width: cellWidth(bounds: geo.frame(in: .local)), height: cellHeight(bounds: geo.frame(in: .local)))
@@ -37,23 +35,20 @@ struct ScoreView: View {
                                     if self.fromPoint == nil {
                                         self.fromPoint = value.location
                                         let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: value.location.x, y: value.location.y)
-                                        self.movingNote = self.scoreModel.noteAt(col: fromCol, row: fromRow)
+                                      //  self.movingNote = self.scoreModel.noteAt(col: fromCol, row: fromRow)
                                     }
                                 }).onEnded({ value in
                                     let toPoint: CGPoint = value.location
                                     if let fromPoint = self.fromPoint {
                                         let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: fromPoint.x, y: fromPoint.y)
                                         let (toCol, toRow) = xyToColRow(bounds: geo.frame(in: .local), x: toPoint.x, y: toPoint.y)
-                                        self.colsRowsData.col = toCol
-                                        self.colsRowsData.row = toRow
-                                        let realm = try! Realm()
-                                        let tracks = realm.objects(musicTrack.self)
+//                                        self.colsRowsData.col = toCol
+//                                        self.colsRowsData.row = toRow
                                         
-                                        print(tracks)
                                         
                                         
                                         print("from col:(\(fromCol), from row: \(fromRow) to col:\(toCol), to row: \(toRow)")
-                                        self.moveNote(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+                                       // self.moveNote(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
                                     }
                                     
                                     self.fromPoint = nil
@@ -81,9 +76,9 @@ struct ScoreView: View {
         }.navigationBarTitle(self.trackData.title)
     }
     
-    func moveNote(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
-        scoreModel.moveNote(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
-    }
+//    func moveNote(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
+//        scoreModel.moveNote(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+//    }
     
     func createNote() {
         
