@@ -72,7 +72,7 @@ struct ScoreView: View {
                 }
                 Button(action:{
                    let note2 = Note(col: 3 , row: 2 , imgName: "MusicNote")
-                    self.scoreModel.notes.insert(note2)
+                    self.scoreModel.addNote(noteToAdd: note2, track: self.trackData)
                 }, label: {Image(systemName: "play").font(.largeTitle)} )
                 Button(action: {
                     self.sequencer.play()

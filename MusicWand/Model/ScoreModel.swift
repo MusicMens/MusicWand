@@ -8,8 +8,11 @@
 
 import Foundation
 import Combine
+import RealmSwift
 
 class ScoreModel: ObservableObject {
+    var allTrack = MusicTracks.allTracks
+    var allNote = MusicTracks.allNotes
     @Published var notes: Set<Note>
     
     init(inputnotes: [note]) {
@@ -30,6 +33,7 @@ class ScoreModel: ObservableObject {
     func moveNote(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
         guard let movingNote = noteAt(col: fromCol, row: fromRow) else {return}
         
+        
         notes.remove(movingNote)
         if let targetNote = noteAt(col: toCol, row: toRow) {
             notes.remove(targetNote)
@@ -38,5 +42,18 @@ class ScoreModel: ObservableObject {
         notes.insert(Note(col: toCol, row: toRow, imgName: movingNote.imgName))
     }
     
+    func addNote(noteToAdd: Note, track: musicTrack){
+        let newNote = note()
+        newNote.col = noteToAdd.col
+        newNote.row = noteToAdd.row
+        self.notes.insert(noteToAdd)
+        let track = musicStore.store.findTrack(track.title)
+        try! musicStore.store.realm.write{
+            track!.song.append(newNote)
+        }
+        self.allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
+        self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
+
+    }
     
 }
