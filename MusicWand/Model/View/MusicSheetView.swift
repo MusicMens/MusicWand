@@ -32,14 +32,16 @@ struct MusicSheetView: View {
                      .onDelete{ indexSet in
                         let index = indexSet.first
                         let title = self.allTrack[index!].title
+                        print("title", title)
                         let track = self.musicStores.findTrack(title)
+                        print("track", track)
                         self.allTrack = self.allTrack.enumerated().filter{!indexSet.contains($0.offset)}.map{$0.element}
+                        print("allTrack", self.allTrack)
                         
                         try! self.musicStores.realm.write{
-                             self.musicStores.realm.delete(track)
+                            self.musicStores.realm.delete(track!)
                             }
 
-                        print(self.allTrack)
 ////                            let realm = try? Realm()
 //                            let index = indexSet.first
 //                            try! self.musicStores.realm.write{
@@ -55,8 +57,7 @@ struct MusicSheetView: View {
                         let track = self.musicStores.makeTrack(self.title)
                         self.musicStores.addTrack(track)
                         print(self.musicStores.realm.objects(musicTrack.self))
-                            self.allTrack.append(track)
-
+                        self.allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
 //                        let alertHC = UIHostingController(rootView: newTrackAlertView())
 //
 //                            alertHC.preferredContentSize = CGSize(width: 300, height: 200)

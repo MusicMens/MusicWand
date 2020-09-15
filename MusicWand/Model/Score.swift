@@ -41,17 +41,16 @@ class musicStore: ObservableObject {
         }
     }
     
-    public func findTrack (_ title : String) -> musicTrack{
+    public func findTrack (_ title : String) -> musicTrack?{
         
         let tracks = musicStore.store.realm.objects(musicTrack.self)
         
         for i in tracks{
             if i.title == title {
-                print (i)
-               
+                return i
             }
         }
-        return tracks[0]
+        return nil
     }
     
     public func findAllTracks () -> Results<musicTrack>{
