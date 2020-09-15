@@ -12,7 +12,7 @@ import RealmSwift
 struct newTrackAlertView: View {
     @State var title = "Untitled"
     @ObservedObject var score = musicStore()
-    @ObservedObject var model = ScoreModel()
+//    @ObservedObject var model = ScoreModel()
     @State var allTracks = MusicTracks.allTracks
 //    @ObservedObject var viewModel = ContentViewCellModel()
     
@@ -39,8 +39,8 @@ struct newTrackAlertView: View {
     }
 }
 
-struct newTrackAlertView_Previews: PreviewProvider {
-    static var previews: some View {
-        newTrackAlertView()
-    }
-}
+//struct newTrackAlertView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        newTrackAlertView()
+//    }
+//}

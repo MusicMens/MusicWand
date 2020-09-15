@@ -13,6 +13,7 @@ struct MusicSheetView: View {
     var musicStores = musicStore.store
 //    @State public var allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
     @State var allTrack = MusicTracks.allTracks
+    @State var allNote = MusicTracks.allNotes
        // @ObservedObject var score = musicStore()
    // @ObservedObject var model = ContentViewModel()
     @State var countUntitled = 0;
@@ -23,7 +24,7 @@ struct MusicSheetView: View {
                 VStack{
                     List{
                         ForEach(allTrack , id: \.self){ score in
-                            NavigationLink(destination: ScoreView(trackData: score)){
+                            NavigationLink(destination: ScoreView(trackData: score, scoreModel: ScoreModel(inputnotes: Array(score.song)))){
                                 ScoreRow(score: score)
                 
                             }
@@ -34,7 +35,7 @@ struct MusicSheetView: View {
                         let title = self.allTrack[index!].title
                         print("title", title)
                         let track = self.musicStores.findTrack(title)
-                        print("track", track)
+                        print("track", track!.song[0].col)
                         self.allTrack = self.allTrack.enumerated().filter{!indexSet.contains($0.offset)}.map{$0.element}
                         print("allTrack", self.allTrack)
                         
@@ -58,6 +59,7 @@ struct MusicSheetView: View {
                         self.musicStores.addTrack(track)
                         print(self.musicStores.realm.objects(musicTrack.self))
                         self.allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
+                        self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
 //                        let alertHC = UIHostingController(rootView: newTrackAlertView())
 //
 //                            alertHC.preferredContentSize = CGSize(width: 300, height: 200)

@@ -24,9 +24,9 @@ class musicTrack: Object {
 
 
 class note :Object {
-    @objc dynamic var col: Int = 0
-    @objc dynamic var row: Int = 0
-    @objc dynamic var imgName: String = ""
+    @objc dynamic var col: Int = 1
+    @objc dynamic var row: Int = 5
+    @objc dynamic var imgName: String = "MusicNote"
 }
 
 class musicStore: ObservableObject {
@@ -59,10 +59,10 @@ class musicStore: ObservableObject {
     }
     
     public func makeTrack (_ title :String ) -> musicTrack {
-        //        let song  = note()
+                let song  = note()
         let newtrack = musicTrack()
         newtrack.title = title
-        //       newtrack.song.append(song)
+               newtrack.song.append(song)
         return newtrack
     }
     
@@ -87,6 +87,7 @@ class musicStore: ObservableObject {
 }
 class MusicTracks {
     public static var allTracks = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
+    public static var allNotes = Array(musicStore.store.realm.objects(note.self).freeze())
 }
 //struct ContentViewCellModel {
 //    var trackID:String

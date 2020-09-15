@@ -11,11 +11,12 @@ import RealmSwift
 
 struct ScoreView: View {
     var trackData : musicTrack
-    @State private var colsRowsData =  note()
+    @State private var colsRowsData =  Note(col:0, row:0 , imgName: "MusicNote")
     @State private var movingNoteLocation = CGPoint(x: 200, y: 200)
     @State private var fromPoint: CGPoint?
     @State private var movingNote: Note?
-    @ObservedObject var scoreModel = ScoreModel()
+    @State var notes = MusicTracks.allNotes
+    @ObservedObject var scoreModel:ScoreModel
     var sequencer = Conductor.shared
     var body: some View {
 
@@ -69,7 +70,10 @@ struct ScoreView: View {
                     }
                     
                 }
-    //            Button(action:{}){Text("new Note")}
+                Button(action:{
+                   let note2 = Note(col: 3 , row: 2 , imgName: "MusicNote")
+                    self.scoreModel.notes.insert(note2)
+                }, label: {Image(systemName: "play").font(.largeTitle)} )
                 Button(action: {
                     self.sequencer.play()
                 }, label: {Image(systemName: "play").font(.largeTitle)} )

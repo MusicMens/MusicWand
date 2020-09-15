@@ -10,20 +10,16 @@ import Foundation
 import Combine
 
 class ScoreModel: ObservableObject {
-    @Published var notes: Set<Note> = []
+    @Published var notes: Set<Note>
     
-    init() {
-        notes.insert(Note(col: 1, row: 5, imgName: "MusicNote"))
-        notes.insert(Note(col: 2, row: 5, imgName: "MusicNote"))
-        notes.insert(Note(col: 3, row: 5, imgName: "MusicNote"))
-        notes.insert(Note(col: 4, row: 5, imgName: "MusicNote"))
-
-
+    init(inputnotes: [note]) {
+        notes = Set<Note>()
+        for note in inputnotes {
+            let newNote = Note(col:note.col, row:note.row, imgName: note.imgName)
+            notes.insert(newNote)
+        }
     }
     
-    init(notes: Set<Note> = []) {
-        self.notes = notes
-    }
     
     func noteAt(col: Int, row: Int) -> Note? {
         notes.filter {
