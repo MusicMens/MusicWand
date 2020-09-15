@@ -11,11 +11,12 @@ import RealmSwift
 
 struct MusicSheetView: View {
     var musicStores = musicStore.store
-    @State var allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
-    
+//    @State public var allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
+    @State var allTrack = MusicTracks.allTracks
        // @ObservedObject var score = musicStore()
    // @ObservedObject var model = ContentViewModel()
     @State var countUntitled = 0;
+    @State var title = ""
     var body: some View {
         return
             NavigationView{
@@ -48,14 +49,20 @@ struct MusicSheetView: View {
                            // print("MusicSheetView\(self.model.cellModels)")
                         }
                     }
+                    TextField("Make a new track", text: $title).textFieldStyle(RoundedBorderTextFieldStyle())
                     Button(action: {
                         print("I added chicken")
-                        let alertHC = UIHostingController(rootView: newTrackAlertView())
+                        let track = self.musicStores.makeTrack(self.title)
+                        self.musicStores.addTrack(track)
+                        print(self.musicStores.realm.objects(musicTrack.self))
+                            self.allTrack.append(track)
 
-                            alertHC.preferredContentSize = CGSize(width: 300, height: 200)
-                            alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
-
-                            UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
+//                        let alertHC = UIHostingController(rootView: newTrackAlertView())
+//
+//                            alertHC.preferredContentSize = CGSize(width: 300, height: 200)
+//                            alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
+//
+//                            UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
 
                         
 //                        self.countUntitled += 1

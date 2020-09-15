@@ -86,7 +86,9 @@ class musicStore: ObservableObject {
         }
     }
 }
-
+class MusicTracks {
+    public static var allTracks = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
+}
 //struct ContentViewCellModel {
 //    var trackID:String
 //    var title: String

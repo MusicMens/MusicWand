@@ -13,6 +13,7 @@ struct newTrackAlertView: View {
     @State var title = "Untitled"
     @ObservedObject var score = musicStore()
     @ObservedObject var model = ScoreModel()
+    @State var allTracks = MusicTracks.allTracks
 //    @ObservedObject var viewModel = ContentViewCellModel()
     
     @State private var onSubmit = false
@@ -25,9 +26,10 @@ struct newTrackAlertView: View {
                     .padding()
 //                NavigationLink(destination: ScoreView(trackData: musicTrack(), scoreModel: ScoreModel()), isActive: self.$onSubmit){EmptyView()}
                 Button("Done") {
-                   
                 let track = self.score.makeTrack(self.title)
                 self.score.addTrack(track)
+                    self.allTracks.append(track)
+
                 self.onSubmit = true
         
                 }
