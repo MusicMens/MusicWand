@@ -13,7 +13,7 @@ struct SettingView: View {
     @State private var activePage:String = ""
     var body: some View {
         VStack {
-            Image("musicN∂ote")
+            Image("MusicNote")
             .resizable()
             .aspectRatio(contentMode: .fill)
             .frame(width: 50, height: 50, alignment: .center)

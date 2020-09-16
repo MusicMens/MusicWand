@@ -12,7 +12,8 @@ import RealmSwift
 struct newTrackAlertView: View {
     @State var title = "Untitled"
     @ObservedObject var score = musicStore()
-    @ObservedObject var model = ScoreModel()
+//    @ObservedObject var model = ScoreModel()
+    @State var allTracks = MusicTracks.allTracks
 //    @ObservedObject var viewModel = ContentViewCellModel()
     
     @State private var onSubmit = false
@@ -23,12 +24,13 @@ struct newTrackAlertView: View {
             
                 TextField("Title" , text: $title).textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
-                //NavigationLink(destination: ScoreView(trackData: ContentViewCellModel, scoreModel: ScoreModel()), isActive: self.$onSubmit){EmptyView()}
+//                NavigationLink(destination: ScoreView(trackData: musicTrack(), scoreModel: ScoreModel()), isActive: self.$onSubmit){EmptyView()}
                 Button("Done") {
-                   
                 let track = self.score.makeTrack(self.title)
                 self.score.addTrack(track)
-                    self.onSubmit = true
+                    self.allTracks.append(track)
+
+                self.onSubmit = true
         
                 }
                
@@ -37,8 +39,8 @@ struct newTrackAlertView: View {
     }
 }
 
-struct newTrackAlertView_Previews: PreviewProvider {
-    static var previews: some View {
-        newTrackAlertView()
-    }
-}
+//struct newTrackAlertView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        newTrackAlertView()
+//    }
+//}

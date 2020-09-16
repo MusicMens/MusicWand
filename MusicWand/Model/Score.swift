@@ -10,10 +10,12 @@ import Foundation
 import RealmSwift
 
 
+
+
 class musicTrack: Object {
     @objc dynamic var trackID = UUID().uuidString
     @objc dynamic var title: String = ""
-    let song = List<note>()
+    var song = List<note>()
     
     override static func primaryKey() -> String? {
         return "trackID"
@@ -22,54 +24,63 @@ class musicTrack: Object {
 
 
 class note :Object {
-    @objc dynamic var col: Int = 0
-    @objc dynamic var row: Int = 0
-    @objc dynamic var imgName: String = ""
+    @objc dynamic var col: Int = 1
+    @objc dynamic var row: Int = 5
+    @objc dynamic var imgName: String = "MusicNote"
 }
 
+struct Note: Hashable {
+    var id = UUID()
+    var col: Int
+    var row: Int
+    var imgName: String
+}
+
+
 class musicStore: ObservableObject {
-    var realm: Realm = try! Realm()
+    
+    static let store = musicStore()
+    let realm = try! Realm()
     
     
     public func addTrack (_ track: musicTrack){
-        try! realm.write {
-            realm.add(track)
+        try!realm.write {
+            musicStore.store.realm.add(track)
         }
     }
     
-    public func findTrack (_ title : String) -> musicTrack{
+    public func findTrack (_ title : String) -> musicTrack?{
         
-        let tracks = realm.objects(musicTrack.self)
+        let tracks = musicStore.store.realm.objects(musicTrack.self)
         
         for i in tracks{
             if i.title == title {
-                print (i)
-               
+                return i
             }
         }
-        return tracks[0]
+        return nil
     }
     
     public func findAllTracks () -> Results<musicTrack>{
-        let tracks = realm.objects(musicTrack.self)
+        let tracks = musicStore.store.realm.objects(musicTrack.self)
         return tracks
     }
     
     public func makeTrack (_ title :String ) -> musicTrack {
-        //        let song  = note()
+                let song  = note()
         let newtrack = musicTrack()
         newtrack.title = title
-        //       newtrack.song.append(song)
+               newtrack.song.append(song)
         return newtrack
     }
     
     public func deleteTrackByName(_ title: String) {
         
-        let tracks = realm.objects(musicTrack.self)
+        let tracks = musicStore.store.realm.objects(musicTrack.self)
         for i in tracks {
-            try! realm.write({
+            try! musicStore.store.realm.write({
                 if i.title == title{
-                    realm.delete(i)
+                    musicStore.store.realm.delete(i)
                     print("I sent it to hell")
                 }
             })
@@ -77,37 +88,55 @@ class musicStore: ObservableObject {
     }
     
     public func deleteAllTrack (){
-        try! realm.write {
-            realm.deleteAll()
+        try! musicStore.store.realm.write {
+            musicStore.store.realm.deleteAll()
         }
     }
 }
-
-struct ContentViewCellModel {
-    let trackID:String
-    let title: String
-    let song : List<note>
+class MusicTracks {
+    public static var allTracks = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
+    public static var allNotes = Array(musicStore.store.realm.objects(note.self).freeze())
 }
-
-struct noteViewModel{
-     let col: Int
-     let row: Int
-     let imgName: String
-}
-
-
-class ContentViewModel: ObservableObject {
-    private var token: NotificationToken?
-    private var myModelResults = try? Realm().objects(musicTrack.self)
-    @Published var cellModels: [ContentViewCellModel] = []
-    
-    init() {
-        token = myModelResults?.observe { [weak self] _ in
-            self?.cellModels = self?.myModelResults?.map { ContentViewCellModel(trackID : $0.trackID, title: $0.title, song: $0.song) } ?? []
-        }
-    }
-    
-    deinit {
-        token?.invalidate()
-    }
-}
+//struct ContentViewCellModel {
+//    var trackID:String
+//    var title: String
+//    var song : List<note>
+//}
+//
+//struct noteViewModel{
+//     var col: Int
+//     var row: Int
+//     var imgName: String
+//}
+//
+//
+//class ContentViewModel: ObservableObject {
+//    private var token: NotificationToken?
+//    private var myModelResults = try? Realm().objects(musicTrack.self)   // what do we do with this?
+//    @Published var cellModels: [ContentViewCellModel] = []
+//    
+//    init() {
+//        token = myModelResults?.observe { [weak self] _ in
+//            self?.cellModels = self?.myModelResults?.map { ContentViewCellModel(trackID : $0.trackID, title: $0.title, song: $0.song) } ?? []
+//        }
+//    }
+//    
+//    deinit {
+//        token?.invalidate()
+//    }
+//}
+//class NoteViewModel: ObservableObject {
+//    private var token: NotificationToken?
+//    private var myModelResults = try? Realm().objects(note.self)    // what do we do with this?
+//    @Published var cellModels: [noteViewModel] = []
+//    
+//    init() {
+//        token = myModelResults?.observe { [weak self] _ in
+//            self?.cellModels = self?.myModelResults?.map { noteViewModel(col: $0.col, row: $0.row, imgName: $0.imgName) } ?? []
+//        }
+//    }
+//    
+//    deinit {
+//        token?.invalidate()
+//    }
+//}

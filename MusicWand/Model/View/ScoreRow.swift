@@ -9,7 +9,7 @@
 import SwiftUI
 import RealmSwift
 struct ScoreRow: View {
-    var score: ContentViewCellModel
+    var score: musicTrack
     
     var body: some View {
         Text(score.title)

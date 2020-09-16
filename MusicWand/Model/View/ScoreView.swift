@@ -10,12 +10,13 @@ import SwiftUI
 import RealmSwift
 
 struct ScoreView: View {
-    var trackData : ContentViewCellModel
-    let colsRowsData =  note()
-    @ObservedObject var scoreModel: ScoreModel
+    var trackData : musicTrack
+    @State private var colsRowsData =  Note(col:0, row:0 , imgName: "MusicNote")
     @State private var movingNoteLocation = CGPoint(x: 200, y: 200)
     @State private var fromPoint: CGPoint?
     @State private var movingNote: Note?
+    @State var notes = MusicTracks.allNotes
+    @ObservedObject var scoreModel:ScoreModel
     var sequencer = Conductor.shared
     var body: some View {
 
@@ -25,7 +26,6 @@ struct ScoreView: View {
                     GeometryReader { geo in
                         ScoreGrid(bounds: geo.frame(in: .local))
                             .stroke()
-                        
                         ForEach(Array(self.scoreModel.notes), id: \.self) { note in
                             Image(note.imgName)
                                 .resizable()
@@ -46,10 +46,7 @@ struct ScoreView: View {
                                         let (toCol, toRow) = xyToColRow(bounds: geo.frame(in: .local), x: toPoint.x, y: toPoint.y)
                                         self.colsRowsData.col = toCol
                                         self.colsRowsData.row = toRow
-                                        let realm = try! Realm()
-                                        let tracks = realm.objects(musicTrack.self)
                                         
-                                        print(tracks)
                                         
                                         
                                         print("from col:(\(fromCol), from row: \(fromRow) to col:\(toCol), to row: \(toRow)")
@@ -73,7 +70,10 @@ struct ScoreView: View {
                     }
                     
                 }
-    //            Button(action:{}){Text("new Note")}
+                Button(action:{
+                   let note2 = Note(col: 3 , row: 2 , imgName: "MusicNote")
+                    self.scoreModel.addNote(noteToAdd: note2, track: self.trackData)
+                }, label: {Image(systemName: "play").font(.largeTitle)} )
                 Button(action: {
                     self.sequencer.play()
                 }, label: {Image(systemName: "play").font(.largeTitle)} )

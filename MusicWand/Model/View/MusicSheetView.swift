@@ -10,38 +10,62 @@ import SwiftUI
 import RealmSwift
 
 struct MusicSheetView: View {
-    @ObservedObject var score = musicStore()
-    @ObservedObject var model = ContentViewModel()
+    var musicStores = musicStore.store
+//    @State public var allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
+    @State var allTrack = MusicTracks.allTracks
+    @State var allNote = MusicTracks.allNotes
+       // @ObservedObject var score = musicStore()
+   // @ObservedObject var model = ContentViewModel()
     @State var countUntitled = 0;
+    @State var title = ""
     var body: some View {
         return
             NavigationView{
                 VStack{
                     List{
-                        ForEach(model.cellModels , id: \.trackID){ score in
-                            NavigationLink(destination: ScoreView(trackData: score, scoreModel: ScoreModel())){
+                        ForEach(allTrack , id: \.self){ score in
+                            NavigationLink(destination: ScoreView(trackData: score, scoreModel: ScoreModel(inputnotes: Array(score.song)))){
                                 ScoreRow(score: score)
                 
                             }
                              
-                        }.onDelete{ indexSet in
-                            let realm = try? Realm()
-                            if let index = indexSet.first, let myModel = realm?.objects(musicTrack.self).filter("trackID = %@", self.model.cellModels[index].trackID).first {
-                                try? realm?.write {
-                                    realm?.delete(myModel)
-                                }
+                        }
+                     .onDelete{ indexSet in
+                        let index = indexSet.first
+                        let title = self.allTrack[index!].title
+                        print("title", title)
+                        let track = self.musicStores.findTrack(title)
+                        print("track", track!.song[0].col)
+                        self.allTrack = self.allTrack.enumerated().filter{!indexSet.contains($0.offset)}.map{$0.element}
+                        print("allTrack", self.allTrack)
+                        
+                        try! self.musicStores.realm.write{
+                            self.musicStores.realm.delete(track!)
                             }
-                            print("MusicSheetView\(self.model.cellModels)")
+
+////                            let realm = try? Realm()
+//                            let index = indexSet.first
+//                            try! self.musicStores.realm.write{
+//                                self.musicStores.realm.delete(self.allTrack[index!])
+//
+//                            }
+                           // print("MusicSheetView\(self.model.cellModels)")
                         }
                     }
+                    TextField("Make a new track", text: $title).textFieldStyle(RoundedBorderTextFieldStyle())
                     Button(action: {
                         print("I added chicken")
-                        let alertHC = UIHostingController(rootView: newTrackAlertView())
-
-                            alertHC.preferredContentSize = CGSize(width: 300, height: 200)
-                            alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
-
-                            UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
+                        let track = self.musicStores.makeTrack(self.title)
+                        self.musicStores.addTrack(track)
+                        print(self.musicStores.realm.objects(musicTrack.self))
+                        self.allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
+                        self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
+//                        let alertHC = UIHostingController(rootView: newTrackAlertView())
+//
+//                            alertHC.preferredContentSize = CGSize(width: 300, height: 200)
+//                            alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
+//
+//                            UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
 
                         
 //                        self.countUntitled += 1
@@ -61,9 +85,9 @@ struct MusicSheetView: View {
 }
 
 
-struct MusicSheetView_Previews: PreviewProvider {
-    static var previews: some View {
-       MusicSheetView()
-        
-    }
-}
+//struct MusicSheetView_Previews: PreviewProvider {
+//    static var previews: some View {
+//       MusicSheetView()
+//
+//    }
+//}
