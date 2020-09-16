@@ -33,7 +33,7 @@ class ScoreModel: ObservableObject {
     
     func moveNote(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int, imgName: String? = nil) {
         guard let movingNote = noteAt(col: fromCol, row: fromRow) else {return}
-        var newNote = Note(id: movingNote.id, col: movingNote.col, row: movingNote.row, imgName: movingNote.imgName)
+        var newNote = Note(id: movingNote.id, col: toCol, row: toRow, imgName: movingNote.imgName)
         // Change local note
         if imgName != nil {
             newNote.imgName = imgName!

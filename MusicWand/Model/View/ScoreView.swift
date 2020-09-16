@@ -72,10 +72,8 @@ struct ScoreView: View {
                 }
                 Button(action:{
                     
-                    let note2 = self.scoreModel.noteAt(col: 1, row: 5)!
-                    let note2Realm = musicStore.store.findNoteByID(note2.id)
-                    musicStore.store.changeNote(note2Realm!, col: 2, row: 4)
-                    self.notes = Array(musicStore.store.realm.objects(note.self).freeze())
+//                    let note2 = self.scoreModel.noteAt(col: 1, row: 5)!
+                    self.scoreModel.moveNote(fromCol: 1, fromRow: 5, toCol: 2, toRow: 5)
                 }, label: {Image(systemName: "play").font(.largeTitle)} )
                 Button(action:{
                     let note2 = Note( id: UUID().uuidString, col: 3 , row: 2 , imgName: "MusicNote")
