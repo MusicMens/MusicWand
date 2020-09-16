@@ -17,7 +17,7 @@ class Conductor {
         let midicallback = AKMIDICallbackInstrument()
         let track = sequencer.newTrack()
         track?.setMIDIOutput(midicallback.midiIn)
-        try? appleSampler.loadSoundFont("UprightPianoKW-20190703", preset: 0, bank: 0)
+        try? appleSampler.loadSoundFont("Sounds/UprightPianoKW-20190703", preset: 0, bank: 0)
         
         generateSequence()
         
