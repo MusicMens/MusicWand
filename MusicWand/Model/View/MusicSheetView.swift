@@ -32,12 +32,9 @@ struct MusicSheetView: View {
                         }
                      .onDelete{ indexSet in
                         let index = indexSet.first
-                        let title = self.allTrack[index!].title
-                        print("title", title)
-                        let track = self.musicStores.findTrack(title)
-                        print("track", track!.song[0].col)
+                        let id = self.allTrack[index!].trackID
+                        let track = self.musicStores.findTrack(id)
                         self.allTrack = self.allTrack.enumerated().filter{!indexSet.contains($0.offset)}.map{$0.element}
-                        print("allTrack", self.allTrack)
                         
                         try! self.musicStores.realm.write{
                             self.musicStores.realm.delete(track!)
@@ -46,10 +43,8 @@ struct MusicSheetView: View {
                     }
                     TextField("Make a new track", text: $title).textFieldStyle(RoundedBorderTextFieldStyle())
                     Button(action: {
-                        print("I added chicken")
                         let track = self.musicStores.makeTrack(self.title)
                         self.musicStores.addTrack(track)
-                        print(self.musicStores.realm.objects(musicTrack.self))
                         self.allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
                         self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
 //                        let alertHC = UIHostingController(rootView: newTrackAlertView())
