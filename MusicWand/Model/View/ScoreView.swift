@@ -36,6 +36,36 @@ struct ScoreView: View {
                 }
             }.padding()
             
+            
+            VStack {
+                
+                HStack {
+                    
+                    Button(action: {
+                        
+                    }) {
+                        Image(systemName:"arrow.left.square.fill")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                    }
+                    Button(action: {}) {
+                        Image(systemName: "arrow.right.square.fill")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                    }.padding()
+                    Button(action: {}) {
+                        Image(systemName:"arrow.up.square.fill")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                    }.padding()
+                    Button(action: {}) {
+                        Image(systemName: "arrow.down.square.fill")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                    }
+                }
+            }
+            
             HStack {
                 VStack {
                     GeometryReader { fullView in
