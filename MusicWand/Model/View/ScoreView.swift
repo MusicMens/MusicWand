@@ -26,7 +26,7 @@ struct ScoreView: View {
                     GeometryReader { geo in
                         ScoreGrid(bounds: geo.frame(in: .local))
                             .stroke()
-                        ForEach(Array(self.scoreModel.notes), id: \.self) { note in
+                        ForEach(Array(self.scoreModel.notes), id: \.id) { note in
                             Image(note.imgName)
                                 .resizable()
     //                            .frame(width: cellWidth(bounds: geo.frame(in: .local)), height: cellHeight(bounds: geo.frame(in: .local)))
@@ -71,7 +71,14 @@ struct ScoreView: View {
                     
                 }
                 Button(action:{
-                   let note2 = Note(col: 3 , row: 2 , imgName: "MusicNote")
+                    
+                    let note2 = self.scoreModel.noteAt(col: 1, row: 5)!
+                    let note2Realm = musicStore.store.findNoteByID(note2.id)
+                    musicStore.store.changeNote(note2Realm!, col: 2, row: 4)
+                    self.notes = Array(musicStore.store.realm.objects(note.self).freeze())
+                }, label: {Image(systemName: "play").font(.largeTitle)} )
+                Button(action:{
+                    let note2 = Note( id: UUID().uuidString, col: 3 , row: 2 , imgName: "MusicNote")
                     self.scoreModel.addNote(noteToAdd: note2, track: self.trackData)
                 }, label: {Image(systemName: "play").font(.largeTitle)} )
                 Button(action: {

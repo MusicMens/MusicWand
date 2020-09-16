@@ -42,14 +42,6 @@ struct MusicSheetView: View {
                         try! self.musicStores.realm.write{
                             self.musicStores.realm.delete(track!)
                             }
-
-////                            let realm = try? Realm()
-//                            let index = indexSet.first
-//                            try! self.musicStores.realm.write{
-//                                self.musicStores.realm.delete(self.allTrack[index!])
-//
-//                            }
-                           // print("MusicSheetView\(self.model.cellModels)")
                         }
                     }
                     TextField("Make a new track", text: $title).textFieldStyle(RoundedBorderTextFieldStyle())

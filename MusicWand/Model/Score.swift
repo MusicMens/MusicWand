@@ -24,13 +24,19 @@ class musicTrack: Object {
 
 
 class note :Object {
+    @objc dynamic var noteID = UUID().uuidString
     @objc dynamic var col: Int = 1
     @objc dynamic var row: Int = 5
     @objc dynamic var imgName: String = "MusicNote"
+    
+    override static func primaryKey() -> String? {
+        return "noteID"
+    }
+
 }
 
 struct Note: Hashable {
-    var id = UUID()
+    var id : String = UUID().uuidString
     var col: Int
     var row: Int
     var imgName: String
@@ -61,10 +67,10 @@ class musicStore: ObservableObject {
         return nil
     }
     
-    public func findAllTracks () -> Results<musicTrack>{
-        let tracks = musicStore.store.realm.objects(musicTrack.self)
-        return tracks
-    }
+//    public func findAllTracks () -> Results<musicTrack>{
+//        let tracks = musicStore.store.realm.objects(musicTrack.self)
+//        return tracks
+//    }
     
     public func makeTrack (_ title :String ) -> musicTrack {
                 let song  = note()
@@ -74,14 +80,13 @@ class musicStore: ObservableObject {
         return newtrack
     }
     
-    public func deleteTrackByName(_ title: String) {
+    public func deleteTrackByID(_ id: String) {
         
         let tracks = musicStore.store.realm.objects(musicTrack.self)
         for i in tracks {
             try! musicStore.store.realm.write({
-                if i.title == title{
+                if i.trackID == id{
                     musicStore.store.realm.delete(i)
-                    print("I sent it to hell")
                 }
             })
         }
@@ -91,6 +96,32 @@ class musicStore: ObservableObject {
         try! musicStore.store.realm.write {
             musicStore.store.realm.deleteAll()
         }
+    }
+    
+    public func findNoteByID(_ id: String) -> note? {
+        let notes = musicStore.store.realm.objects(note.self)
+        for note in notes {
+            if note.noteID == id {
+                return note
+            }
+        }
+        return nil
+    }
+    
+    public func changeNote(_ noteToChange: note, col: Int? = nil, row: Int? = nil, imgName: String? = nil) -> Void {
+        print(noteToChange)
+        try! musicStore.store.realm.write {
+            if(col != nil){
+                noteToChange.col = col!
+            }
+            if(row != nil){
+                noteToChange.row = row!
+            }
+            if(imgName != nil){
+                noteToChange.imgName = imgName!
+            }
+        }
+
     }
 }
 class MusicTracks {
