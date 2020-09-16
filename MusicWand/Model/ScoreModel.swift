@@ -25,10 +25,23 @@ class ScoreModel: ObservableObject {
     
     
     func noteAt(col: Int, row: Int) -> Note? {
-        let note = notes.filter {
-            $0.col == col && $0.row == row
-        }.first
-        return note
+        var rowDiff = 20
+        var closestnote: Note?
+        let noteSet = notes.filter {
+            $0.col == col
+        }
+        if noteSet.count == 1{
+            return noteSet.first
+        } else{
+            for (_ ,note) in noteSet.enumerated(){
+                if abs(row - note.row) < rowDiff{
+                    closestnote = note
+                    rowDiff = abs(row - note.row)
+                }
+            }
+            return closestnote
+            
+        }
     }
     
     func moveNote(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int, imgName: String? = nil) {
@@ -53,7 +66,7 @@ class ScoreModel: ObservableObject {
         newNote.row = noteToAdd.row
         newNote.noteID = noteToAdd.id
         self.notes.insert(noteToAdd)
-        let track = musicStore.store.findTrack(track.title)
+        let track = musicStore.store.findTrack(track.trackID)
         try! musicStore.store.realm.write{
             track!.song.append(newNote)
         }

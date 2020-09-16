@@ -11,7 +11,7 @@ import SwiftUI
 struct NavBar: View {
     var body: some View {
        HStack(spacing: 50) {
-            Image("musicNote")
+            Image("MusicNote")
                 .resizable()
                 .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
                 .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)

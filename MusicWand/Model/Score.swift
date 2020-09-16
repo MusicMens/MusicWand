@@ -67,11 +67,7 @@ class musicStore: ObservableObject {
         return nil
     }
     
-//    public func findAllTracks () -> Results<musicTrack>{
-//        let tracks = musicStore.store.realm.objects(musicTrack.self)
-//        return tracks
-//    }
-    
+
     public func makeTrack (_ title :String ) -> musicTrack {
                 let song  = note()
         let newtrack = musicTrack()
@@ -128,46 +124,3 @@ class MusicTracks {
     public static var allTracks = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
     public static var allNotes = Array(musicStore.store.realm.objects(note.self).freeze())
 }
-//struct ContentViewCellModel {
-//    var trackID:String
-//    var title: String
-//    var song : List<note>
-//}
-//
-//struct noteViewModel{
-//     var col: Int
-//     var row: Int
-//     var imgName: String
-//}
-//
-//
-//class ContentViewModel: ObservableObject {
-//    private var token: NotificationToken?
-//    private var myModelResults = try? Realm().objects(musicTrack.self)   // what do we do with this?
-//    @Published var cellModels: [ContentViewCellModel] = []
-//    
-//    init() {
-//        token = myModelResults?.observe { [weak self] _ in
-//            self?.cellModels = self?.myModelResults?.map { ContentViewCellModel(trackID : $0.trackID, title: $0.title, song: $0.song) } ?? []
-//        }
-//    }
-//    
-//    deinit {
-//        token?.invalidate()
-//    }
-//}
-//class NoteViewModel: ObservableObject {
-//    private var token: NotificationToken?
-//    private var myModelResults = try? Realm().objects(note.self)    // what do we do with this?
-//    @Published var cellModels: [noteViewModel] = []
-//    
-//    init() {
-//        token = myModelResults?.observe { [weak self] _ in
-//            self?.cellModels = self?.myModelResults?.map { noteViewModel(col: $0.col, row: $0.row, imgName: $0.imgName) } ?? []
-//        }
-//    }
-//    
-//    deinit {
-//        token?.invalidate()
-//    }
-//}

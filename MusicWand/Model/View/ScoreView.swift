@@ -24,23 +24,23 @@ struct ScoreView: View {
         
         
         VStack {
-            VStack {
-                TextField("tempo", text: $tempo)
-                    .keyboardType(.numberPad)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .frame(width: 80)
-                Button("Submit") {
-                    self.enteredNumber = self.tempo
-                    self.tempo = ""
-                    // Call to dismiss keyboard?
-                }
-            }.padding()
+        
             
             
-            VStack {
+            VStack(spacing: 10) {
                 
                 HStack {
-                    
+                    VStack {
+                                TextField("tempo", text: $tempo)
+                                    .keyboardType(.numberPad)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                    .frame(width: 80)
+                                Button("Submit") {
+                                    self.enteredNumber = self.tempo
+                                    self.tempo = ""
+                                    // Call to dismiss keyboard?
+                                }
+                            }.padding()
                     Button(action: {
                         
                     }) {
@@ -160,14 +160,14 @@ struct ScoreView: View {
                              .resizable()
                              .frame(width: 30, height: 30)
                      }.padding(25)
-                     Button(action: {}) {
+                    Button(action: {self.sequencer.play()}) {
                          Image(systemName: "playpause.fill")
                              .resizable()
                              .frame(width: 30, height: 30)
                      }.padding(50)
                      Button(action: {}) {
                          Image(systemName:"repeat")
-                             .resizable()
+                            .resizable()
                              .frame(width: 40, height: 40)
                      }.padding()
                      
