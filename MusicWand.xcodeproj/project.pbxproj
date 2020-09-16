@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		42A4D3CBB61CB2C721DD4332 /* Pods_MusicWand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1905636138077EEBBE9D2EA /* Pods_MusicWand.framework */; };
 		7C4B9AC3250755820095371C /* Sequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4B9AC2250755820095371C /* Sequencer.swift */; };
-		7C5278DC2505DE7B007D7397 /* ScoreDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5278DB2505DE7A007D7397 /* ScoreDetail.swift */; };
 		7C6C8369250B3C7E00751ACB /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 7C6C8368250B3C7D00751ACB /* Sounds */; };
-		7C6C836B250B3DC700751ACB /* UprightPianoKW-20190703.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 7C6C836A250B3DC700751ACB /* UprightPianoKW-20190703.sf2 */; };
 		8DCB144524FE0F9100D49707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB144424FE0F9100D49707 /* AppDelegate.swift */; };
 		8DCB144724FE0F9100D49707 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB144624FE0F9100D49707 /* SceneDelegate.swift */; };
 		8DCB144924FE0F9100D49707 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB144824FE0F9100D49707 /* ContentView.swift */; };
@@ -36,9 +34,8 @@
 /* Begin PBXFileReference section */
 		78DCBE418A79C6D85AC82BFA /* Pods-MusicWand.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicWand.debug.xcconfig"; path = "Target Support Files/Pods-MusicWand/Pods-MusicWand.debug.xcconfig"; sourceTree = "<group>"; };
 		7C4B9AC2250755820095371C /* Sequencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequencer.swift; sourceTree = "<group>"; };
-		7C5278DB2505DE7A007D7397 /* ScoreDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreDetail.swift; sourceTree = "<group>"; };
 		7C6C8368250B3C7D00751ACB /* Sounds */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Sounds; path = MusicWand/Sounds; sourceTree = SOURCE_ROOT; };
-		7C6C836A250B3DC700751ACB /* UprightPianoKW-20190703.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UprightPianoKW-20190703.sf2"; sourceTree = "<group>"; };
+		7C6C836D2512060B00751ACB /* UprightPianoKW-20190703.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UprightPianoKW-20190703.sf2"; sourceTree = "<group>"; };
 		8DCB144124FE0F9100D49707 /* MusicWand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicWand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DCB144424FE0F9100D49707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DCB144624FE0F9100D49707 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,7 +85,6 @@
 		8DCB143824FE0F9100D49707 = {
 			isa = PBXGroup;
 			children = (
-				7C6C836A250B3DC700751ACB /* UprightPianoKW-20190703.sf2 */,
 				8DCB144324FE0F9100D49707 /* MusicWand */,
 				8DCB144224FE0F9100D49707 /* Products */,
 				150E0570D8954453426E7070 /* Pods */,
@@ -107,6 +103,7 @@
 		8DCB144324FE0F9100D49707 /* MusicWand */ = {
 			isa = PBXGroup;
 			children = (
+				7C6C836D2512060B00751ACB /* UprightPianoKW-20190703.sf2 */,
 				7C6C8368250B3C7D00751ACB /* Sounds */,
 				8DCB145224FE0F9600D49707 /* Info.plist */,
 				8DCB145A24FE105300D49707 /* Controller */,
@@ -137,7 +134,6 @@
 				8DCB148124FE120D00D49707 /* PianoView.swift */,
 				8DCB148324FE123500D49707 /* NavBar.swift */,
 				BC84701C2509B6A200F335B9 /* newTrackAlert.swift */,
-				7C5278DB2505DE7A007D7397 /* ScoreDetail.swift */,
 				8DCB148524FE132200D49707 /* MusicSheetView.swift */,
 				8DCB148724FE133A00D49707 /* SettingView.swift */,
 				8DCB148924FE28FD00D49707 /* SettingDetailView.swift */,
@@ -235,7 +231,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C6C836B250B3DC700751ACB /* UprightPianoKW-20190703.sf2 in Resources */,
 				7C6C8369250B3C7E00751ACB /* Sounds in Resources */,
 				8DCB145124FE0F9600D49707 /* LaunchScreen.storyboard in Resources */,
 				8DCB144E24FE0F9600D49707 /* Preview Assets.xcassets in Resources */,
@@ -309,7 +304,6 @@
 				8DCB148A24FE28FD00D49707 /* SettingDetailView.swift in Sources */,
 				7C4B9AC3250755820095371C /* Sequencer.swift in Sources */,
 				8DCB148024FE119900D49707 /* SettingsItem.swift in Sources */,
-				7C5278DC2505DE7B007D7397 /* ScoreDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,14 +444,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"MusicWand/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = D385PQA29C;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MusicWand/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethancr0wn.MusicWand;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethancr0wn.MusicWand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -471,14 +465,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"MusicWand/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = D385PQA29C;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MusicWand/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethancr0wn.MusicWand;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethancr0wn.MusicWand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
