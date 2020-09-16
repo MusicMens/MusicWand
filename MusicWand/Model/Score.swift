@@ -29,6 +29,14 @@ class note :Object {
     @objc dynamic var imgName: String = "MusicNote"
 }
 
+struct Note: Hashable {
+    var id = UUID()
+    var col: Int
+    var row: Int
+    var imgName: String
+}
+
+
 class musicStore: ObservableObject {
     
     static let store = musicStore()
