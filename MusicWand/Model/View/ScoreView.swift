@@ -16,74 +16,137 @@ struct ScoreView: View {
     @State private var fromPoint: CGPoint?
     @State private var movingNote: Note?
     @State var notes = MusicTracks.allNotes
+    @State var tempo = ""
+    @State var enteredNumber = ""
     @ObservedObject var scoreModel:ScoreModel
     var sequencer = Conductor.shared
     var body: some View {
-
-        NavigationView {
+        
+        
+        VStack {
             VStack {
-                ZStack {
-                    GeometryReader { geo in
-                        ScoreGrid(bounds: geo.frame(in: .local))
-                            .stroke()
-                        ForEach(Array(self.scoreModel.notes), id: \.id) { note in
-                            Image(note.imgName)
-                                .resizable()
-    //                            .frame(width: cellWidth(bounds: geo.frame(in: .local)), height: cellHeight(bounds: geo.frame(in: .local)))
-                                .frame(width: 30, height: 30)
-                                .position(notePosition(bounds: geo.frame(in: .local), col: note.col, row: note.row))
-                                .gesture(DragGesture().onChanged({ value in
-                                    self.movingNoteLocation = value.location
-                                    if self.fromPoint == nil {
-                                        self.fromPoint = value.location
-                                        let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: value.location.x, y: value.location.y)
-                                        self.movingNote = self.scoreModel.noteAt(col: fromCol, row: fromRow)
+                TextField("tempo", text: $tempo)
+                    .keyboardType(.numberPad)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .frame(width: 80)
+                Button("Submit") {
+                    self.enteredNumber = self.tempo
+                    self.tempo = ""
+                    // Call to dismiss keyboard?
+                }
+            }.padding()
+            
+            HStack {
+                VStack {
+                    GeometryReader { fullView in
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                GeometryReader { geo in
+                                    ScoreGrid(bounds: geo.frame(in: .local))
+                                        .stroke()
+                                    ForEach(Array(self.scoreModel.notes), id: \.id) { note in
+                                        Image(note.imgName)
+                                            .resizable()
+                                            //                            .frame(width: cellWidth(bounds: geo.frame(in: .local)), height: cellHeight(bounds: geo.frame(in: .local)))
+                                            .frame(width: 30, height: 30)
+                                            .position(notePosition(bounds: geo.frame(in: .local), col: note.col, row: note.row))
+                                            .gesture(DragGesture().onChanged({ value in
+                                                self.movingNoteLocation = value.location
+                                                if self.fromPoint == nil {
+                                                    self.fromPoint = value.location
+                                                    let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: value.location.x, y: value.location.y)
+                                                    self.movingNote = self.scoreModel.noteAt(col: fromCol, row: fromRow)
+                                                }
+                                            }).onEnded({ value in
+                                                let toPoint: CGPoint = value.location
+                                                if let fromPoint = self.fromPoint {
+                                                    let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: fromPoint.x, y: fromPoint.y)
+                                                    let (toCol, toRow) = xyToColRow(bounds: geo.frame(in: .local), x: toPoint.x, y: toPoint.y)
+                                                    self.colsRowsData.col = toCol
+                                                    self.colsRowsData.row = toRow
+                                                    
+                                                    
+                                                    
+                                                    print("from col:(\(fromCol), from row: \(fromRow) to col:\(toCol), to row: \(toRow)")
+                                                    self.moveNote(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+                                                }
+                                                
+                                                self.fromPoint = nil
+                                                self.movingNote = nil
+                                            }))
+                                        
                                     }
-                                }).onEnded({ value in
-                                    let toPoint: CGPoint = value.location
-                                    if let fromPoint = self.fromPoint {
-                                        let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: fromPoint.x, y: fromPoint.y)
-                                        let (toCol, toRow) = xyToColRow(bounds: geo.frame(in: .local), x: toPoint.x, y: toPoint.y)
-                                        self.colsRowsData.col = toCol
-                                        self.colsRowsData.row = toRow
-                                        
-                                        
-                                        
-                                        print("from col:(\(fromCol), from row: \(fromRow) to col:\(toCol), to row: \(toRow)")
-                                        self.moveNote(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
+                                    if self.movingNote != nil {
+                                        Image(self.movingNote!.imgName)
+                                            .resizable()
+                                            //                           .frame(width: cellWidth(bounds: geo.frame(in: .local)), height: cellHeight(bounds: geo.frame(in: .local)))
+                                            .frame(width: 30, height: 30)
+                                            .position(self.movingNoteLocation)
                                     }
                                     
-                                    self.fromPoint = nil
-                                    self.movingNote = nil
-                                }))
-                            
+                                    
+                                }.frame(width: 410)
+                                ForEach(0..<55)  { index in
+                                    Text("-")
+                                        .foregroundColor(Color.purple)
+                                    Text("-")
+                                        .foregroundColor(Color.purple)
+                                    
+                                }
+                            }
                         }
-                        if self.movingNote != nil {
-                            Image(self.movingNote!.imgName)
-                                .resizable()
-    //                           .frame(width: cellWidth(bounds: geo.frame(in: .local)), height: cellHeight(bounds: geo.frame(in: .local)))
-                                .frame(width: 30, height: 30)
-                                .position(self.movingNoteLocation)
-                        }
-                        
-                        
                     }
                     
                 }
-                Button(action:{
-                    
-//                    let note2 = self.scoreModel.noteAt(col: 1, row: 5)!
-                    self.scoreModel.moveNote(fromCol: 1, fromRow: 5, toCol: 2, toRow: 5)
-                }, label: {Image(systemName: "play").font(.largeTitle)} )
-                Button(action:{
-                    let note2 = Note( id: UUID().uuidString, col: 3 , row: 2 , imgName: "MusicNote")
-                    self.scoreModel.addNote(noteToAdd: note2, track: self.trackData)
-                }, label: {Image(systemName: "play").font(.largeTitle)} )
-                Button(action: {
-                    self.sequencer.play()
-                }, label: {Image(systemName: "play").font(.largeTitle)} )
+                
             }
+            
+            
+            
+           HStack {
+                 Button(action: {
+                     //self.scoreModel.addNewNote()
+                 }) {
+                     Text("New note")
+                         .font(.headline)
+                     
+                     
+                 }.padding(10)
+                 Button(action: {
+                     //self.scoreModel.clearAllNote()
+                 }) {
+                     Text("Clear all")
+                         .font(.headline)
+                     
+                 }.padding(10)
+             }
+             
+             
+             VStack {
+                 HStack {
+                     
+                     Button(action: {}) {
+                         Image(systemName:"backward.end.fill")
+                             .resizable()
+                             .frame(width: 30, height: 30)
+                     }.padding(25)
+                     Button(action: {}) {
+                         Image(systemName: "playpause.fill")
+                             .resizable()
+                             .frame(width: 30, height: 30)
+                     }.padding(50)
+                     Button(action: {}) {
+                         Image(systemName:"repeat")
+                             .resizable()
+                             .frame(width: 40, height: 40)
+                     }.padding()
+                     
+                 }
+             }
+            Spacer()
+
         }.navigationBarTitle(self.trackData.title)
+        
     }
     
     func moveNote(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
