@@ -49,7 +49,7 @@ struct ScoreView: View {
                                         
                                         
                                         
-                                        print("from col:(\(fromCol), from row: \(fromRow) to col:\(toCol), to row: \(toRow)")
+                                        print("from col:(\(fromCol), row: \(fromRow) to col:\(toCol), row: \(toRow)")
                                         self.moveNote(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
                                     }
                                     
