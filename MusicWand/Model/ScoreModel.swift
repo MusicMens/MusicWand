@@ -59,10 +59,20 @@ class ScoreModel: ObservableObject {
         self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
         self.allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
     }
-        
-    func addNote(noteToAdd: Note, track: musicTrack){
+    func lastCol() -> Int{
+        var lastCol = 0
+        for item in notes {
+            if item.col > lastCol {
+                lastCol = item.col
+            }
+        }
+        return lastCol + 1
+    }
+    
+    func addNote(track: musicTrack){
+        let noteToAdd = Note(col: lastCol(), row: 5, imgName: "MusicNote")
         let newNote = note()
-        newNote.col = noteToAdd.col
+        newNote.col = lastCol()
         newNote.row = noteToAdd.row
         newNote.noteID = noteToAdd.id
         self.notes.insert(noteToAdd)
@@ -75,4 +85,12 @@ class ScoreModel: ObservableObject {
 
     }
     
+    func clearNotes(){
+        for note in notes{
+            musicStore.store.deleteNoteByID(note.id)
+            notes.remove(note)
+        }
+        self.allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
+        self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
+    }
 }

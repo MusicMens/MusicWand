@@ -10,7 +10,8 @@ class Conductor {
     var pos = 0.0
     var pitchBendUpSemitones = 2
     var pitchBendDownSemitones = 2
-
+    var isPlaying = false
+    var loopEnabled = false
     var synthSemitoneOffset = 0
     init() {
         AKSettings.playbackWhileMuted = true
@@ -61,14 +62,23 @@ class Conductor {
         sequencer.setTempo(tempoDouble)
     }
     
-    func play() {
-        sequencer.rewind()
-        sequencer.play()
+    func playPause() {
+        if !self.isPlaying{
+            sequencer.play()
+            self.isPlaying = true
+        }
+        else {
+            sequencer.stop()
+            self.isPlaying = false
+        }
     }
     func toggleLoop(){
         sequencer.toggleLoop()
+        self.loopEnabled = !self.loopEnabled
     }
-    
+    func rewind(){
+        sequencer.rewind()
+    }
     func stop() {
         sequencer.stop()
     }

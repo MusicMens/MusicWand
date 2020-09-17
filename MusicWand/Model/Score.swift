@@ -121,7 +121,17 @@ class musicStore: ObservableObject {
         }
         return nil
     }
-    
+    public func deleteNoteByID(_ id: String) {
+        
+        let notes = musicStore.store.realm.objects(note.self)
+        for i in notes {
+            if i.noteID == id{
+            try! musicStore.store.realm.write({
+                    musicStore.store.realm.delete(i)
+                })
+            }
+        }
+    }
     public func changeNote(_ noteToChange: note, col: Int? = nil, row: Int? = nil, imgName: String? = nil) -> Void {
         print(noteToChange)
         try! musicStore.store.realm.write {

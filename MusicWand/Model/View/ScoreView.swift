@@ -16,7 +16,7 @@ struct ScoreView: View {
     @State private var fromPoint: CGPoint?
     @State private var movingNote: Note?
     @State var notes = MusicTracks.allNotes
-    @State var tempo = ""
+    @State var tempo: Int = 100
     @State var enteredNumber = ""
     @ObservedObject var scoreModel:ScoreModel
     var sequencer = Conductor.shared
@@ -30,22 +30,22 @@ struct ScoreView: View {
                     Text("T\ne\nm\np\no")
                     VStack {
                         
-                        TextField("\(self.enteredNumber)", text: $tempo)
+                        TextField("\(self.enteredNumber)",value: $tempo,formatter: NumberFormatter() )
                             .keyboardType(.numberPad)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(width: 65, height: 43)
                         
                         Button("submit") {
-                            self.enteredNumber = self.tempo
-                            self.tempo = ""
-                             self.hideKeyboard()
-                            }.padding(3)
+                            self.enteredNumber = String(self.tempo)
+                            self.sequencer.setTempo(self.tempo)
+                            self.hideKeyboard()
+                        }.padding(3)
                             
-                        .foregroundColor(.white)
+                            .foregroundColor(.white)
                             .background(Color.blue)
-                        .cornerRadius(5)
+                            .cornerRadius(5)
                     }.padding()
-                        
+                    
                     Button(action: {
                         
                     }) {
@@ -70,14 +70,13 @@ struct ScoreView: View {
                     }
                 }.padding(Edge.Set(rawValue: 100),140)
             }
-            
             HStack {
                 VStack {
                     GeometryReader { fullView in
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 GeometryReader { geo in
-                                    ScoreGrid( bounds: geo.frame(in: .local), cols: 23)
+                                    ScoreGrid( bounds: geo.frame(in: .local), cols: self.scoreModel.lastCol() )
                                         .stroke()
                                     ForEach(Array(self.scoreModel.notes), id: \.id) { note in
                                         Image(note.imgName)
@@ -123,9 +122,7 @@ struct ScoreView: View {
                                 }
                                 .frame(width: 410, height: 350)
                                 ForEach(0..<55)  { index in
-                                    Text("-")
-                                        .foregroundColor(Color.white)
-                                    Text("-")
+                                    Text("----")
                                         .foregroundColor(Color.white)
                                     
                                 }
@@ -141,43 +138,42 @@ struct ScoreView: View {
             
             HStack(spacing: 65) {
                 Button(action: {
-                    //self.scoreModel.addNewNote()
-                }) {
-                    Text("New note")
-                        .font(.headline)
-                    
-                    
+                    self.scoreModel.addNote(track: self.trackData)                }) {
+                        Text("New note")
+                            .font(.headline)
+                        
+                        
                 }.padding(6)
-                .foregroundColor(.white)
+                    .foregroundColor(.white)
                     .background(Color.blue)
-                .cornerRadius(5)
+                    .cornerRadius(5)
                 Button(action: {
-                    //self.scoreModel.clearAllNote()
+                    self.scoreModel.clearNotes()
                 }) {
                     Text("Clear all")
                         .font(.headline)
                     
                 }.padding(6)
-                .foregroundColor(.white)
-                                   .background(Color.blue)
-                               .cornerRadius(5)
+                    .foregroundColor(.white)
+                    .background(Color.blue)
+                    .cornerRadius(5)
             }
             
             
             VStack {
                 HStack {
                     
-                    Button(action: {}) {
+                    Button(action: {self.sequencer.rewind()}) {
                         Image(systemName:"backward.end.fill")
                             .resizable()
                             .frame(width: 30, height: 30)
                     }.padding(25)
-                    Button(action: {self.sequencer.play()}) {
+                    Button(action: {self.sequencer.playPause()}) {
                         Image(systemName: "playpause.fill")
                             .resizable()
                             .frame(width: 30, height: 30)
                     }.padding(50)
-                    Button(action: {}) {
+                    Button(action: {self.sequencer.toggleLoop()}) {
                         Image(systemName:"repeat")
                             .resizable()
                             .frame(width: 40, height: 40)
@@ -186,7 +182,6 @@ struct ScoreView: View {
                 }
             }
             Spacer()
-            
         }.navigationBarTitle(self.trackData.title)
         
         
@@ -194,12 +189,12 @@ struct ScoreView: View {
         
     }
     
- 
-           func hideKeyboard() {
-               UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-           }
-   
-   
+    
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    
+    
     
     func moveNote(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
         scoreModel.moveNote(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
