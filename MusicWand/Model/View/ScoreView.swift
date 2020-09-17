@@ -167,17 +167,17 @@ struct ScoreView: View {
             VStack {
                 HStack {
                     
-                    Button(action: {}) {
+                    Button(action: {self.sequencer.rewind()}) {
                         Image(systemName:"backward.end.fill")
                             .resizable()
                             .frame(width: 30, height: 30)
                     }.padding(25)
-                    Button(action: {self.sequencer.play()}) {
+                    Button(action: {self.sequencer.playPause()}) {
                         Image(systemName: "playpause.fill")
                             .resizable()
                             .frame(width: 30, height: 30)
                     }.padding(50)
-                    Button(action: {}) {
+                    Button(action: {self.sequencer.toggleLoop()}) {
                         Image(systemName:"repeat")
                             .resizable()
                             .frame(width: 40, height: 40)
@@ -186,7 +186,6 @@ struct ScoreView: View {
                 }
             }
             Spacer()
-            
         }.navigationBarTitle(self.trackData.title)
         
         
