@@ -149,7 +149,7 @@ class PianoConductor {
 
 }
 
-extension Conductor {
+extension PianoConductor {
     private func loadCompressed(noteNumber: MIDINoteNumber,
                                 folderName: String,
                                 fileEnding: String,

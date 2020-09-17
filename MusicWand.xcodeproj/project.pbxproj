@@ -43,7 +43,6 @@
 		7C25621F2513025B00DB7ECC /* PianoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PianoViewController.swift; sourceTree = "<group>"; };
 		7C4B9AC2250755820095371C /* Sequencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequencer.swift; sourceTree = "<group>"; };
 		7C6C8368250B3C7D00751ACB /* Sounds */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Sounds; path = MusicWand/Sounds; sourceTree = SOURCE_ROOT; };
-		7C6C836D2512060B00751ACB /* UprightPianoKW-20190703.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UprightPianoKW-20190703.sf2"; sourceTree = "<group>"; };
 		8DCB144124FE0F9100D49707 /* MusicWand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicWand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DCB144424FE0F9100D49707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DCB144624FE0F9100D49707 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,7 +110,6 @@
 		8DCB144324FE0F9100D49707 /* MusicWand */ = {
 			isa = PBXGroup;
 			children = (
-				7C6C836D2512060B00751ACB /* UprightPianoKW-20190703.sf2 */,
 				7C6C8368250B3C7D00751ACB /* Sounds */,
 				8DCB145224FE0F9600D49707 /* Info.plist */,
 				8DCB145A24FE105300D49707 /* Controller */,
@@ -460,14 +458,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"MusicWand/Preview Content\"";
-				DEVELOPMENT_TEAM = D385PQA29C;
+				DEVELOPMENT_TEAM = NRX9TBQYUM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MusicWand/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethancr0wn.MusicWand2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethancr0wn.MusicWand;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -481,14 +479,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"MusicWand/Preview Content\"";
-				DEVELOPMENT_TEAM = D385PQA29C;
+				DEVELOPMENT_TEAM = NRX9TBQYUM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MusicWand/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ethancr0wn.MusicWand2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ethancr0wn.MusicWand;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

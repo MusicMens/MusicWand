@@ -69,11 +69,29 @@ class musicStore: ObservableObject {
     
 
     public func makeTrack (_ title :String ) -> musicTrack {
-                let song  = note()
+                let song  = makeToiletSong()
         let newtrack = musicTrack()
         newtrack.title = title
-               newtrack.song.append(song)
+        for oneNote in song {
+            newtrack.song.append(oneNote)
+
+        }
         return newtrack
+    }
+    struct coords {
+        var col: Int
+        var row: Int
+    }
+    private func makeToiletSong() -> [note] {
+        let notes: [coords] = [ coords(col: 1, row: 6),coords(col: 2, row: 6),coords(col: 3, row: 6),coords(col: 4, row: 6),coords(col: 5, row: 9),coords(col: 6, row: 9),coords(col: 7, row: 8),coords(col: 8, row: 9),coords(col: 9, row: 8),coords(col: 10, row: 6),coords(col: 11, row: 6),coords(col: 12, row: 6),coords(col: 13, row: 8),coords(col: 14, row: 9),coords(col: 14, row: 10),coords(col: 15, row: 6),coords(col: 16, row: 0),coords(col: 0, row: 6),coords(col: 17, row: 6),coords(col: 18, row: 6),coords(col: 19, row: 8),coords(col: 20, row: 8), coords(col: 21, row: 9)]
+        var result : [note] = []
+        for oneNote in notes{
+            let newNote = note()
+            newNote.col = oneNote.col
+            newNote.row = oneNote.row
+            result.append(newNote)
+        }
+        return result
     }
     
     public func deleteTrackByID(_ id: String) {
