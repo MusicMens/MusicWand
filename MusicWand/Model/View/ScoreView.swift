@@ -28,7 +28,7 @@ struct ScoreView: View {
                 
                 HStack {
                     VStack {
-                        TextField("tempo", text: $tempo)
+                        TextField("\(self.enteredNumber)", text: $tempo)
                             .keyboardType(.numberPad)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(width: 65)
@@ -115,7 +115,7 @@ struct ScoreView: View {
                                     }
                                     
                                     
-                                }.frame(width: 410, height: 550)
+                                }.frame(width: 410, height: 350)
                                 ForEach(0..<55)  { index in
                                     Text("-")
                                         .foregroundColor(Color.purple)
