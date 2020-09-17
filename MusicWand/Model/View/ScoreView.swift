@@ -116,13 +116,13 @@ struct ScoreView: View {
                                     
                                     
                                 }.frame(width: 410)
-                                ForEach(0..<55)  { index in
-                                    Text("-")
-                                        .foregroundColor(Color.purple)
-                                    Text("-")
-                                        .foregroundColor(Color.purple)
-                                    
-                                }
+//                                ForEach(0..<55)  { index in
+//                                    Text("-")
+//                                        .foregroundColor(Color.purple)
+//                                    Text("-")
+//                                        .foregroundColor(Color.purple)
+//                                    
+//                                }
                             }
                         }
                     }
