@@ -89,20 +89,6 @@ class PianoConductor {
         midi.openInput(name: midi.inputNames[byIndex])
     }
 
-    func loadSamples(byIndex: Int) {
-        if byIndex < 0 || byIndex > 3 { return }
-
-        let info = ProcessInfo.processInfo
-        let begin = info.systemUptime
-
-        let sfzFiles = [ "TX Brass.sfz", "TX LoTine81z.sfz", "TX Metalimba.sfz", "TX Pluck Bass.sfz" ]
-        sampler.loadSfzWithEmbeddedSpacesInSampleNames(folderPath: Bundle.main.resourcePath! + "/Sounds/",
-                                                       sfzFileName: sfzFiles[byIndex])
-
-        let elapsedTime = info.systemUptime - begin
-        AKLog("Time to load samples \(elapsedTime) seconds")
-    }
-
     func playNote(note: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel) {
         AKLog("playNote \(note) \(velocity)")
         sampler.play(noteNumber: offsetNote(note, semitones: synthSemitoneOffset), velocity: velocity)
@@ -149,65 +135,3 @@ class PianoConductor {
 
 }
 
-extension PianoConductor {
-    private func loadCompressed(noteNumber: MIDINoteNumber,
-                                folderName: String,
-                                fileEnding: String,
-                                minimumNoteNumber: Int32 = -1,
-                                maximumNoteNumber: Int32 = -1,
-                                minimumVelocity: Int32 = -1,
-                                maximumVelocity: Int32 = -1) {
-        let folderURL = FileManagerUtils.shared.getDocsUrl(folderName)
-        let fileName = folderName + fileEnding
-        let fileURL = folderURL.appendingPathComponent(fileName)
-        let sd = AKSampleDescriptor(noteNumber: Int32(noteNumber),
-                                    noteFrequency: Float(AKPolyphonicNode.tuningTable.frequency(forNoteNumber: noteNumber)),
-                                    minimumNoteNumber: minimumNoteNumber,
-                                    maximumNoteNumber: maximumNoteNumber,
-                                    minimumVelocity: minimumVelocity,
-                                    maximumVelocity: maximumVelocity,
-                                    isLooping: true, // test looping based on fractional start/end values
-                                    loopStartPoint: 0.2,
-                                    loopEndPoint: 0.3,
-                                    startPoint: 0.0,
-                                    endPoint: 0.0)
-        sampler.loadCompressedSampleFile(from: AKSampleFileDescriptor(sampleDescriptor: sd, path: fileURL.path))
-    }
-
-    func loadAndMapCompressedSampleFiles() {
-        // Download http://audiokit.io/downloads/TX_LoTine81z.zip
-        // These are Wavpack-compressed versions of the similarly-named samples in ROMPlayer.
-        // Uncompress and put into your app's Documents folder.
-        let folderName = "TX LoTine81z"
-
-        loadCompressed(noteNumber: 48, folderName: folderName, fileEnding: "_ms2_048_c2.wv", minimumNoteNumber: 0, maximumNoteNumber: 51, minimumVelocity: 0, maximumVelocity: 43)
-        loadCompressed(noteNumber: 48, folderName: folderName, fileEnding: "_ms1_048_c2.wv", minimumNoteNumber: 0, maximumNoteNumber: 51, minimumVelocity: 44, maximumVelocity: 86)
-        loadCompressed(noteNumber: 48, folderName: folderName, fileEnding: "_ms0_048_c2.wv", minimumNoteNumber: 0, maximumNoteNumber: 51, minimumVelocity: 87, maximumVelocity: 127)
-
-        loadCompressed(noteNumber: 54, folderName: folderName, fileEnding: "_ms2_054_f#2.wv", minimumNoteNumber: 52, maximumNoteNumber: 57, minimumVelocity: 0, maximumVelocity: 43)
-        loadCompressed(noteNumber: 54, folderName: folderName, fileEnding: "_ms1_054_f#2.wv", minimumNoteNumber: 52, maximumNoteNumber: 57, minimumVelocity: 44, maximumVelocity: 86)
-        loadCompressed(noteNumber: 54, folderName: folderName, fileEnding: "_ms0_054_f#2.wv", minimumNoteNumber: 52, maximumNoteNumber: 57, minimumVelocity: 87, maximumVelocity: 127)
-
-        loadCompressed(noteNumber: 60, folderName: folderName, fileEnding: "_ms2_060_c3.wv", minimumNoteNumber: 58, maximumNoteNumber: 63, minimumVelocity: 0, maximumVelocity: 43)
-        loadCompressed(noteNumber: 60, folderName: folderName, fileEnding: "_ms1_060_c3.wv", minimumNoteNumber: 58, maximumNoteNumber: 63, minimumVelocity: 44, maximumVelocity: 86)
-        loadCompressed(noteNumber: 60, folderName: folderName, fileEnding: "_ms0_060_c3.wv", minimumNoteNumber: 58, maximumNoteNumber: 63, minimumVelocity: 87, maximumVelocity: 127)
-
-        loadCompressed(noteNumber: 66, folderName: folderName, fileEnding: "_ms2_066_f#3.wv", minimumNoteNumber: 64, maximumNoteNumber: 69, minimumVelocity: 0, maximumVelocity: 43)
-        loadCompressed(noteNumber: 66, folderName: folderName, fileEnding: "_ms1_066_f#3.wv", minimumNoteNumber: 64, maximumNoteNumber: 69, minimumVelocity: 44, maximumVelocity: 86)
-        loadCompressed(noteNumber: 66, folderName: folderName, fileEnding: "_ms0_066_f#3.wv", minimumNoteNumber: 64, maximumNoteNumber: 69, minimumVelocity: 87, maximumVelocity: 127)
-
-        loadCompressed(noteNumber: 72, folderName: folderName, fileEnding: "_ms2_072_c4.wv", minimumNoteNumber: 70, maximumNoteNumber: 75, minimumVelocity: 0, maximumVelocity: 43)
-        loadCompressed(noteNumber: 72, folderName: folderName, fileEnding: "_ms1_072_c4.wv", minimumNoteNumber: 70, maximumNoteNumber: 75, minimumVelocity: 44, maximumVelocity: 86)
-        loadCompressed(noteNumber: 72, folderName: folderName, fileEnding: "_ms0_072_c4.wv", minimumNoteNumber: 70, maximumNoteNumber: 75, minimumVelocity: 87, maximumVelocity: 127)
-
-        loadCompressed(noteNumber: 78, folderName: folderName, fileEnding: "_ms2_078_f#4.wv", minimumNoteNumber: 76, maximumNoteNumber: 81, minimumVelocity: 0, maximumVelocity: 43)
-        loadCompressed(noteNumber: 78, folderName: folderName, fileEnding: "_ms1_078_f#4.wv", minimumNoteNumber: 76, maximumNoteNumber: 81, minimumVelocity: 44, maximumVelocity: 86)
-        loadCompressed(noteNumber: 78, folderName: folderName, fileEnding: "_ms0_078_f#4.wv", minimumNoteNumber: 76, maximumNoteNumber: 81, minimumVelocity: 87, maximumVelocity: 127)
-
-        loadCompressed(noteNumber: 84, folderName: folderName, fileEnding: "_ms2_084_c5.wv", minimumNoteNumber: 82, maximumNoteNumber: 127, minimumVelocity: 0, maximumVelocity: 43)
-        loadCompressed(noteNumber: 84, folderName: folderName, fileEnding: "_ms1_084_c5.wv", minimumNoteNumber: 82, maximumNoteNumber: 127, minimumVelocity: 44, maximumVelocity: 86)
-        loadCompressed(noteNumber: 84, folderName: folderName, fileEnding: "_ms0_084_c5.wv", minimumNoteNumber: 82, maximumNoteNumber: 127, minimumVelocity: 87, maximumVelocity: 127)
-
-        sampler.buildKeyMap()
-    }
-}
