@@ -212,8 +212,8 @@ struct ScoreView: View {
 }
 
 func xyToColRow(bounds: CGRect, x: CGFloat, y: CGFloat) -> (Int, Int) {
-    let col: Int = Int((x - originX(bounds: bounds)) / cellWidth(bounds: bounds))
-    let row: Int = Int((y - originY(bounds: bounds)) / cellHeight(bounds: bounds))
+    let col: Int = Int(round((x - originX(bounds: bounds)) / cellWidth(bounds: bounds)))
+    let row: Int = Int(round((y - originY(bounds: bounds)) / cellHeight(bounds: bounds)))
     return (col, row)
 }
 
@@ -238,7 +238,7 @@ func cellHeight(bounds: CGRect) -> CGFloat {
 
 func notePosition(bounds: CGRect, col: Int, row: Int) -> CGPoint {
     let x = originX(bounds: bounds) + CGFloat(col) * cellWidth(bounds: bounds)
-    let y = originY(bounds: bounds) + CGFloat(row) * cellHeight(bounds: bounds)
+    let y = originY(bounds: bounds) + CGFloat(row) * cellHeight(bounds: bounds) - (bounds.size.height * 0.03)
     return CGPoint(x: x, y: y)
 }
 

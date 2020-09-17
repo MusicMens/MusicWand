@@ -82,7 +82,7 @@ class Conductor {
         sequencer.tracks[0].add(noteNumber: 76, velocity: 127, position: AKDuration(beats: 0), duration: AKDuration(beats: 0.5))
         sequencer.tracks[0].add(noteNumber: 76, velocity: 127, position: AKDuration(beats: 0.6), duration: AKDuration(beats: 0.5))
         sequencer.tracks[0].add(noteNumber: 75, velocity: 127, position: AKDuration(beats: 1.2), duration: AKDuration(beats: 0.5))
-        sequencer.tracks[0].add(noteNumber: 76, velocity: 127, position: AKDuration(beats: 1.8), duration: AKDuration(beats: 0.5))
+        sequencer.tracks[0].add(noteNumber: 75, velocity: 127, position: AKDuration(beats: 1.8), duration: AKDuration(beats: 0.5))
         sequencer.tracks[0].add(noteNumber: 71, velocity: 127, position: AKDuration(beats: 2.4), duration: AKDuration(beats: 0.5))
         sequencer.tracks[0].add(noteNumber: 72, velocity: 127, position: AKDuration(beats: 3.0), duration: AKDuration(beats: 1))
         
@@ -98,7 +98,7 @@ class Conductor {
         sequencer.tracks[0].add(noteNumber: 76, velocity: 127, position: AKDuration(beats: 8.8), duration: AKDuration(beats: 0.5))
         sequencer.tracks[0].add(noteNumber: 76, velocity: 127, position: AKDuration(beats: 9.4), duration: AKDuration(beats: 0.5))
         sequencer.tracks[0].add(noteNumber: 75, velocity: 127, position: AKDuration(beats: 10.0), duration: AKDuration(beats: 0.5))
-        sequencer.tracks[0].add(noteNumber: 76, velocity: 127, position: AKDuration(beats: 10.6), duration: AKDuration(beats: 0.5))
+        sequencer.tracks[0].add(noteNumber: 75, velocity: 127, position: AKDuration(beats: 10.6), duration: AKDuration(beats: 0.5))
         
         sequencer.tracks[0].add(noteNumber: 72, velocity: 127, position: AKDuration(beats: 11.2), duration: AKDuration(beats: 0.5))
         sequencer.tracks[0].add(noteNumber: 72, velocity: 127, position: AKDuration(beats: 11.8), duration: AKDuration(beats: 0.5))
