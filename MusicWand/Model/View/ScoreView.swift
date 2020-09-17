@@ -235,7 +235,7 @@ func cellHeight(bounds: CGRect) -> CGFloat {
 
 func notePosition(bounds: CGRect, col: Int, row: Int) -> CGPoint {
     let x = originX(bounds: bounds) + CGFloat(col) * cellWidth(bounds: bounds)
-    let y = originY(bounds: bounds) + CGFloat(row) * cellHeight(bounds: bounds) - 15
+    let y = originY(bounds: bounds) + CGFloat(row) * cellHeight(bounds: bounds) - (bounds.size.height * 0.03)
     return CGPoint(x: x, y: y)
 }
 

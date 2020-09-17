@@ -83,7 +83,7 @@ class musicStore: ObservableObject {
         var row: Int
     }
     private func makeToiletSong() -> [note] {
-        let notes: [coords] = [ coords(col: 1, row: 6),coords(col: 2, row: 6),coords(col: 3, row: 6),coords(col: 4, row: 6),coords(col: 5, row: 9),coords(col: 6, row: 9),coords(col: 7, row: 8),coords(col: 8, row: 9),coords(col: 9, row: 8),coords(col: 10, row: 6),coords(col: 11, row: 6),coords(col: 12, row: 6),coords(col: 13, row: 8),coords(col: 14, row: 9),coords(col: 14, row: 10),coords(col: 15, row: 6),coords(col: 16, row: 0),coords(col: 0, row: 6),coords(col: 17, row: 6),coords(col: 18, row: 6),coords(col: 19, row: 8),coords(col: 20, row: 8), coords(col: 21, row: 9)]
+        let notes: [coords] = [ coords(col: 1, row: 6),coords(col: 2, row: 6),coords(col: 3, row: 6),coords(col: 4, row: 6),coords(col: 5, row: 9),coords(col: 6, row: 9),coords(col: 7, row: 8),coords(col: 8, row: 9),coords(col: 9, row: 8),coords(col: 10, row: 6),coords(col: 11, row: 6),coords(col: 12, row: 6),coords(col: 13, row: 8),coords(col: 14, row: 9),coords(col: 14, row: 10),coords(col: 15, row: 6),coords(col: 16, row: 6),coords(col: 17, row: 6),coords(col: 18, row: 6),coords(col: 19, row: 8),coords(col: 20, row: 8), coords(col: 21, row: 9)]
         var result : [note] = []
         for oneNote in notes{
             let newNote = note()
