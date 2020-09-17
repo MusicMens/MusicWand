@@ -58,7 +58,7 @@ struct MusicSheetView: View {
 //                        self.countUntitled += 1
 //                        let track = self.score.makeTrack("Untitled\(self.countUntitled)")
 //                        self.score.addTrack(track)
-                    },label: {Image(systemName: "goforward.plus").font(.largeTitle)})
+                    },label: {Image(systemName: "plus.circle.fill").font(.largeTitle)})
                     Spacer(minLength: 45)
                 }
             }
