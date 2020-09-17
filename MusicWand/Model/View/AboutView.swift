@@ -11,11 +11,34 @@ import SwiftUI
 struct AboutView: View {
     var body: some View {
         ScrollView{
-            VStack(alignment: .leading, spacing: 15){
-                Text("Music Wand app")
+            VStack(alignment: .leading){
+                Text("Music Wand app team")
                     .font(.largeTitle)
-                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
-                    .font(.body)
+                HStack {
+                    Text("Austin")
+                    Image("austin").resizable().frame(width: 50, height: 50)
+                    Image("austin-1").resizable().frame(width: 50, height: 50)
+                    
+                }.padding()
+                HStack {
+                    Text("Mattia")
+                    Image("mattia").resizable().frame(width: 50, height: 50)
+                    Image("mattia-1").resizable().frame(width: 50, height: 50)
+                    
+                }.padding()
+                HStack {
+                    Text("Jesus")
+                    Image("jesus").resizable().frame(width: 50, height: 50)
+                    Image("jesus-1").resizable().frame(width: 50, height: 50)
+                    
+                }.padding()
+                HStack {
+                    Text("Scott")
+                    Image("scott").resizable().frame(width: 50, height: 50)
+                    Image("scott-1").resizable().frame(width: 50, height: 50)
+                    
+                    }.padding()
+                .font(.body)
             }.padding()
         }
     }
