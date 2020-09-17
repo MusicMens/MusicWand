@@ -1,28 +1,21 @@
 //
 //  PianoView.swift
-//  MusicWand
+//  HowToSuffer
 //
-//  Created by ethancr0wn on 2020/09/01.
-//  Copyright © 2020 ethancr0wn. All rights reserved.
+//  Created by Code Chrysalis on 2020/09/16.
+//  Copyright © 2020 MusicMens. All rights reserved.
 //
 
 import SwiftUI
 
-struct PianoView: View {
-    var body: some View {
-       VStack{
+struct PianoView: UIViewControllerRepresentable {
+    
+    func makeUIViewController(context: Context) -> PianoViewController {
+        let pianoViewController = PianoViewController()
         
-         NavBar()
-        
-             Spacer()
-            
-             
-         }
+        return pianoViewController
     }
-}
-
-struct PianoView_Previews: PreviewProvider {
-    static var previews: some View {
-        PianoView()
+    
+    func updateUIViewController(_ uiViewController: PianoViewController, context: Context) {
     }
 }
