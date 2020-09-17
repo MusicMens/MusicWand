@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		42A4D3CBB61CB2C721DD4332 /* Pods_MusicWand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1905636138077EEBBE9D2EA /* Pods_MusicWand.framework */; };
-		7C25621A251301E000DB7ECC /* Conductor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C256219251301E000DB7ECC /* Conductor.swift */; };
 		7C2562202513025B00DB7ECC /* PianoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C25621F2513025B00DB7ECC /* PianoViewController.swift */; };
 		7C4B9AC3250755820095371C /* Sequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4B9AC2250755820095371C /* Sequencer.swift */; };
 		7C6C8369250B3C7E00751ACB /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 7C6C8368250B3C7D00751ACB /* Sounds */; };
@@ -35,7 +34,6 @@
 
 /* Begin PBXFileReference section */
 		78DCBE418A79C6D85AC82BFA /* Pods-MusicWand.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicWand.debug.xcconfig"; path = "Target Support Files/Pods-MusicWand/Pods-MusicWand.debug.xcconfig"; sourceTree = "<group>"; };
-		7C256219251301E000DB7ECC /* Conductor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conductor.swift; sourceTree = "<group>"; };
 		7C25621F2513025B00DB7ECC /* PianoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PianoViewController.swift; sourceTree = "<group>"; };
 		7C4B9AC2250755820095371C /* Sequencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequencer.swift; sourceTree = "<group>"; };
 		7C6C8368250B3C7D00751ACB /* Sounds */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Sounds; path = MusicWand/Sounds; sourceTree = SOURCE_ROOT; };
@@ -161,7 +159,6 @@
 		8DCB145A24FE105300D49707 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7C256219251301E000DB7ECC /* Conductor.swift */,
 				7C25621F2513025B00DB7ECC /* PianoViewController.swift */,
 			);
 			path = Controller;
@@ -305,7 +302,6 @@
 				8DCB148424FE123500D49707 /* NavBar.swift in Sources */,
 				8DCB148224FE120D00D49707 /* PianoView.swift in Sources */,
 				BC84701D2509B6A200F335B9 /* newTrackAlert.swift in Sources */,
-				7C25621A251301E000DB7ECC /* Conductor.swift in Sources */,
 				BC5F7D4A2504A984007FC290 /* ScoreRow.swift in Sources */,
 				8DCB148A24FE28FD00D49707 /* SettingDetailView.swift in Sources */,
 				7C4B9AC3250755820095371C /* Sequencer.swift in Sources */,
