@@ -59,10 +59,10 @@ struct MusicSheetView: View {
 //                        let track = self.score.makeTrack("Untitled\(self.countUntitled)")
 //                        self.score.addTrack(track)
                     },label: {Image(systemName: "plus.circle.fill").resizable().frame(width: 55, height: 55)})
-                    Spacer(minLength: 45)
-                }
+                    .padding(20)
+                }.navigationBarTitle(Text("Scores"))
             }
-            .navigationBarTitle(Text("Scores"))
+            
 
     }
 
