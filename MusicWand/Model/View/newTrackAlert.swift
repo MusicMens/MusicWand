@@ -76,39 +76,3 @@ extension View {
         AlertWrapper(isPresented: isPresented, alert: alert, content: self)
     }
 }
-
-//struct newTrackAlertView: View {
-//    @State var title = "Untitled"
-//    @ObservedObject var score = musicStore()
-////    @ObservedObject var model = ScoreModel()
-//    @State var allTracks = MusicTracks.allTracks
-////    @ObservedObject var viewModel = ContentViewCellModel()
-//
-//    @State private var onSubmit = false
-//    var body: some View {
-//        NavigationView{
-//            VStack{
-//                Text("Track Name").font(.headline).padding()
-//
-//                TextField("Title" , text: $title).textFieldStyle(RoundedBorderTextFieldStyle())
-//                    .padding()
-////                NavigationLink(destination: ScoreView(trackData: musicTrack(), scoreModel: ScoreModel()), isActive: self.$onSubmit){EmptyView()}
-//                Button("Done") {
-//                let track = self.score.makeTrack(self.title)
-//                self.score.addTrack(track)
-//                    self.allTracks.append(track)
-//
-//                self.onSubmit = true
-//
-//                }
-//
-//         }
-//        }
-//    }
-//}
-//
-////struct newTrackAlertView_Previews: PreviewProvider {
-////    static var previews: some View {
-////        newTrackAlertView()
-////    }
-////}
