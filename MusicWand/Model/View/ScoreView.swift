@@ -72,7 +72,7 @@ struct ScoreView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 GeometryReader { geo in
-                                    ScoreGrid(bounds: geo.frame(in: .local))
+                                    ScoreGrid( bounds: geo.frame(in: .local), cols: 23)
                                         .stroke()
                                     ForEach(Array(self.scoreModel.notes), id: \.id) { note in
                                         Image(note.imgName)
@@ -116,13 +116,13 @@ struct ScoreView: View {
                                     
                                     
                                 }.frame(width: 410)
-//                                ForEach(0..<55)  { index in
-//                                    Text("-")
-//                                        .foregroundColor(Color.purple)
-//                                    Text("-")
-//                                        .foregroundColor(Color.purple)
-//                                    
-//                                }
+                                ForEach(0..<55)  { index in
+                                    Text("-")
+                                        .foregroundColor(Color.white)
+                                    Text("-")
+                                        .foregroundColor(Color.white)
+                                    
+                                }
                             }
                         }
                     }
@@ -205,8 +205,8 @@ func originY(bounds: CGRect) -> CGFloat {
 }
 
 func cellWidth(bounds: CGRect) -> CGFloat {
-    let cols: Int = 4
-    return (bounds.size.width * 0.9) / CGFloat(cols + 1)
+    
+    return bounds.size.width * 0.15
 }
 func cellHeight(bounds: CGRect) -> CGFloat {
     let rows: Int = 19
