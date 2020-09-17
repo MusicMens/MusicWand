@@ -115,7 +115,8 @@ struct ScoreView: View {
                                     }
                                     
                                     
-                                }.frame(width: 410, height: 550)
+                                }
+                                .frame(width: 410, height: 350)
                                 ForEach(0..<55)  { index in
                                     Text("-")
                                         .foregroundColor(Color.white)
