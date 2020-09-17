@@ -12,7 +12,7 @@ import AudioKitUI
 
 class PianoViewController: UIViewController {
 
-    let conductor = PianoConductor.shared
+    let conductor = Conductor.shared
     var isPlaying = false
     var currentSound = 0
 
@@ -28,7 +28,6 @@ class PianoViewController: UIViewController {
 
         conductor.midi.addListener(self)
         setupUI()
-        conductor.loadSamples(byIndex: currentSound)
     }
 
     func setupUI() {

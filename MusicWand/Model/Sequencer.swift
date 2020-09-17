@@ -2,17 +2,33 @@ import AudioKit
 class Conductor {
     
     static let shared = Conductor()
+    let midi = AKMIDI()
     var sampler: AKSampler
     var appleSampler: AKAppleSampler
     var sequencer: AKAppleSequencer
     var mixer: AKMixer
     var pos = 0.0
+    var pitchBendUpSemitones = 2
+    var pitchBendDownSemitones = 2
+
+    var synthSemitoneOffset = 0
     init() {
         AKSettings.playbackWhileMuted = true
         sampler = AKSampler()
         appleSampler = AKAppleSampler()
         sequencer = AKAppleSequencer()
         mixer=AKMixer(appleSampler)
+        
+        // MIDI Configure
+        midi.createVirtualPorts()
+        midi.openInput(name: "Session 1")
+        midi.openOutput()
+
+        // Session settings
+        //AKAudioFile.cleanTempDirectory()
+        AKSettings.bufferLength = .medium
+        AKSettings.enableLogging = true
+
         
         let midicallback = AKMIDICallbackInstrument()
         let track = sequencer.newTrack()
@@ -116,6 +132,66 @@ class Conductor {
         }
     
     
-    
+    func addMIDIListener(_ listener: AKMIDIListener) {
+        midi.addListener(listener)
+    }
+
+    func getMIDIInputNames() -> [String] {
+        return midi.inputNames
+    }
+
+    func openMIDIInput(byName: String) {
+        midi.closeAllInputs()
+        midi.openInput(name: byName)
+    }
+
+    func openMIDIInput(byIndex: Int) {
+        midi.closeAllInputs()
+        midi.openInput(name: midi.inputNames[byIndex])
+    }
+
+    func playNote(note: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel) {
+        AKLog("playNote \(note) \(velocity)")
+        sampler.play(noteNumber: offsetNote(note, semitones: synthSemitoneOffset), velocity: velocity)
+    }
+
+    func stopNote(note: MIDINoteNumber, channel: MIDIChannel) {
+        AKLog("stopNote \(note)")
+        sampler.stop(noteNumber: offsetNote(note, semitones: synthSemitoneOffset))
+    }
+
+    func allNotesOff() {
+        sampler.stopAllVoices()
+    }
+
+    func afterTouch(_ pressure: MIDIByte) {
+    }
+
+    func controller(_ controller: MIDIByte, value: MIDIByte) {
+        switch controller {
+        case AKMIDIControl.modulationWheel.rawValue:
+            if sampler.filterEnable {
+                sampler.filterCutoff = 1 + 19 * Double(value) / 127.0
+            } else {
+                sampler.vibratoDepth = 0.5 * Double(value) / 127.0
+            }
+
+        case AKMIDIControl.damperOnOff.rawValue:
+            sampler.sustainPedal(pedalDown: value != 0)
+
+        default:
+            break
+        }
+    }
+
+    func pitchBend(_ pitchWheelValue: MIDIWord) {
+        let pwValue = Double(pitchWheelValue)
+        let scale = (pwValue - 8_192.0) / 8_192.0
+        if scale >= 0.0 {
+            sampler.pitchBend = scale * self.pitchBendUpSemitones
+        } else {
+            sampler.pitchBend = scale * self.pitchBendDownSemitones
+        }
+    }
 }
 
