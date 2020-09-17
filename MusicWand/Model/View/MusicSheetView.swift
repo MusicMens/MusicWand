@@ -43,7 +43,7 @@ struct MusicSheetView: View {
                         self.showsAlert = true
                     },label: {Image(systemName: "plus.circle.fill").resizable().frame(width: 55, height: 55)})
                     .padding(20)
-                }.alert(isPresented: $showsAlert, TextAlert(title: "Title", action: {
+                }.alert(isPresented: $showsAlert, TextAlert(title: "Set New Track Title", action: {
                     let trackTitle = ($0 ?? "")
                     if trackTitle != "" {
                     let track = self.musicStores.makeTrack(trackTitle)
