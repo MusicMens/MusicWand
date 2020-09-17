@@ -82,22 +82,6 @@ extension PianoViewController: AKMIDIListener {
         }
     }
 
-    // MIDI Controller input
-    func receivedMIDIController(_ controller: MIDIByte, value: MIDIByte, channel: MIDIChannel) {
-        AKLog("Channel: \(channel + 1) controller: \(controller) value: \(value)")
-        conductor.controller(controller, value: value)
-    }
-
-    // MIDI Pitch Wheel
-    func receivedMIDIPitchWheel(_ pitchWheelValue: MIDIWord, channel: MIDIChannel) {
-        conductor.pitchBend(pitchWheelValue)
-    }
-
-    // After touch
-    func receivedMIDIAfterTouch(_ pressure: MIDIByte, channel: MIDIChannel) {
-        conductor.afterTouch(pressure)
-    }
-
     func receivedMIDISystemCommand(_ data: [MIDIByte]) {
         // do nothing: silence superclass's log chatter
     }
