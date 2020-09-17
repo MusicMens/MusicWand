@@ -31,8 +31,8 @@ struct ScoreView: View {
                         TextField("tempo", text: $tempo)
                             .keyboardType(.numberPad)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(width: 80)
-                        Button("___") {
+                            .frame(width: 65)
+                        Button("submit") {
                             self.enteredNumber = self.tempo
                             self.tempo = ""
                              self.hideKeyboard()
@@ -63,7 +63,7 @@ struct ScoreView: View {
                             .resizable()
                             .frame(width: 35, height: 35)
                     }
-                }
+                }.padding(Edge.Set(rawValue: 100),140)
             }
             
             HStack {
@@ -115,7 +115,7 @@ struct ScoreView: View {
                                     }
                                     
                                     
-                                }.frame(width: 410)
+                                }.frame(width: 410, height: 550)
                                 ForEach(0..<55)  { index in
                                     Text("-")
                                         .foregroundColor(Color.purple)
