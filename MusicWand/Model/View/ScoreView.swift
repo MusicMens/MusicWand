@@ -27,11 +27,14 @@ struct ScoreView: View {
             VStack(spacing: 10) {
                 
                 HStack {
+                    Text("T\ne\nm\np\no")
                     VStack {
+                        
                         TextField("\(self.enteredNumber)", text: $tempo)
                             .keyboardType(.numberPad)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(width: 65, height: 30)
+                            .frame(width: 65, height: 43)
+                        
                         Button("submit") {
                             self.enteredNumber = self.tempo
                             self.tempo = ""

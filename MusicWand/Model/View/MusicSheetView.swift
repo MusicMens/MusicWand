@@ -61,8 +61,9 @@ struct MusicSheetView: View {
 //                        self.score.addTrack(track)
                         self.showsAlert = true
                     },label: {Image(systemName: "plus.circle.fill").resizable().frame(width: 55, height: 55)})
-                    Spacer(minLength: 45)
-                }.alert(isPresented: $showsAlert, TextAlert(title: "Title", action: {
+                    .padding(20)
+                }.navigationBarTitle(Text("Scores"))
+              .alert(isPresented: $showsAlert, TextAlert(title: "Title", action: {
                     let trackTitle = ($0 ?? "")
                     if trackTitle != "" {
                     let track = self.musicStores.makeTrack(trackTitle)
@@ -73,7 +74,7 @@ struct MusicSheetView: View {
                     self.showsAlert = false
                 }))
             }
-            .navigationBarTitle(Text("Scores"))
+            
 
     }
 
