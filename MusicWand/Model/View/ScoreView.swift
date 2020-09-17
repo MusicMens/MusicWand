@@ -31,16 +31,18 @@ struct ScoreView: View {
                         TextField("\(self.enteredNumber)", text: $tempo)
                             .keyboardType(.numberPad)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(width: 65)
+                            .frame(width: 65, height: 30)
                         Button("submit") {
                             self.enteredNumber = self.tempo
                             self.tempo = ""
                              self.hideKeyboard()
-                        }
+                            }.padding(3)
+                            
+                        .foregroundColor(.white)
+                            .background(Color.blue)
+                        .cornerRadius(5)
                     }.padding()
-                        .onTapGesture {
-                            //
-                    }
+                        
                     Button(action: {
                         
                     }) {
@@ -134,7 +136,7 @@ struct ScoreView: View {
             
             
             
-            HStack {
+            HStack(spacing: 65) {
                 Button(action: {
                     //self.scoreModel.addNewNote()
                 }) {
@@ -142,14 +144,20 @@ struct ScoreView: View {
                         .font(.headline)
                     
                     
-                }.padding(10)
+                }.padding(6)
+                .foregroundColor(.white)
+                    .background(Color.blue)
+                .cornerRadius(5)
                 Button(action: {
                     //self.scoreModel.clearAllNote()
                 }) {
                     Text("Clear all")
                         .font(.headline)
                     
-                }.padding(10)
+                }.padding(6)
+                .foregroundColor(.white)
+                                   .background(Color.blue)
+                               .cornerRadius(5)
             }
             
             
