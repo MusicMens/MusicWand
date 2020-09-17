@@ -11,11 +11,8 @@ import RealmSwift
 
 struct MusicSheetView: View {
     var musicStores = musicStore.store
-//    @State public var allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
     @State var allTrack = MusicTracks.allTracks
     @State var allNote = MusicTracks.allNotes
-       // @ObservedObject var score = musicStore()
-   // @ObservedObject var model = ContentViewModel()
     @State var showsAlert = false
     @State var countUntitled = 0;
     @State var title = ""
@@ -42,28 +39,11 @@ struct MusicSheetView: View {
                             }
                         }
                     }
-//                    TextField("Make a new track", text: $title).textFieldStyle(RoundedBorderTextFieldStyle())
                     Button(action: {
-//                        let track = self.musicStores.makeTrack(self.title)
-//                        self.musicStores.addTrack(track)
-//                        self.allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
-//                        self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
-//                        let alertHC = UIHostingController(rootView: newTrackAlertView())
-//
-//                            alertHC.preferredContentSize = CGSize(width: 300, height: 200)
-//                            alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
-//
-//                            UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
-
-                        
-//                        self.countUntitled += 1
-//                        let track = self.score.makeTrack("Untitled\(self.countUntitled)")
-//                        self.score.addTrack(track)
                         self.showsAlert = true
                     },label: {Image(systemName: "plus.circle.fill").resizable().frame(width: 55, height: 55)})
                     .padding(20)
-                }.navigationBarTitle(Text("Scores"))
-              .alert(isPresented: $showsAlert, TextAlert(title: "Title", action: {
+                }.alert(isPresented: $showsAlert, TextAlert(title: "Title", action: {
                     let trackTitle = ($0 ?? "")
                     if trackTitle != "" {
                     let track = self.musicStores.makeTrack(trackTitle)
@@ -72,7 +52,7 @@ struct MusicSheetView: View {
                         self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
                     }
                     self.showsAlert = false
-                }))
+                })).navigationBarTitle(Text("Scores"))
             }
             
 
