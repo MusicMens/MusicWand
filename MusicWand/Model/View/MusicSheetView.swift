@@ -16,6 +16,7 @@ struct MusicSheetView: View {
     @State var allNote = MusicTracks.allNotes
        // @ObservedObject var score = musicStore()
    // @ObservedObject var model = ContentViewModel()
+    @State var showsAlert = false
     @State var countUntitled = 0;
     @State var title = ""
     var body: some View {
@@ -41,12 +42,12 @@ struct MusicSheetView: View {
                             }
                         }
                     }
-                    TextField("Make a new track", text: $title).textFieldStyle(RoundedBorderTextFieldStyle())
+//                    TextField("Make a new track", text: $title).textFieldStyle(RoundedBorderTextFieldStyle())
                     Button(action: {
-                        let track = self.musicStores.makeTrack(self.title)
-                        self.musicStores.addTrack(track)
-                        self.allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
-                        self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
+//                        let track = self.musicStores.makeTrack(self.title)
+//                        self.musicStores.addTrack(track)
+//                        self.allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
+//                        self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
 //                        let alertHC = UIHostingController(rootView: newTrackAlertView())
 //
 //                            alertHC.preferredContentSize = CGSize(width: 300, height: 200)
@@ -58,9 +59,20 @@ struct MusicSheetView: View {
 //                        self.countUntitled += 1
 //                        let track = self.score.makeTrack("Untitled\(self.countUntitled)")
 //                        self.score.addTrack(track)
+                        self.showsAlert = true
                     },label: {Image(systemName: "plus.circle.fill").resizable().frame(width: 55, height: 55)})
                     .padding(20)
                 }.navigationBarTitle(Text("Scores"))
+              .alert(isPresented: $showsAlert, TextAlert(title: "Title", action: {
+                    let trackTitle = ($0 ?? "")
+                    if trackTitle != "" {
+                    let track = self.musicStores.makeTrack(trackTitle)
+                        self.musicStores.addTrack(track)
+                        self.allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
+                        self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
+                    }
+                    self.showsAlert = false
+                }))
             }
             
 
