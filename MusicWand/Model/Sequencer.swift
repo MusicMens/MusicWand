@@ -86,7 +86,10 @@ class Conductor {
     func stop() {
         sequencer.stop()
     }
-    
+    func play(){
+        sequencer.rewind()
+        sequencer.play()
+    }
     func clearSequence(){
         sequencer.tracks[0].clear()
     }
