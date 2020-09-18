@@ -19,6 +19,8 @@ struct ScoreView: View {
     @State var notes = MusicTracks.allNotes
     @State var tempo: Int = 100
     @State var enteredNumber = ""
+    @State var repeatButtonPressed = false
+    @State var playPauseButtonPressed = false
     @ObservedObject var scoreModel:ScoreModel
     var sequencer = Conductor.shared
     var body: some View {
@@ -28,15 +30,14 @@ struct ScoreView: View {
             VStack(spacing: 10) {
                 
                 HStack {
-                    Text("T\ne\nm\np\no")
                     VStack {
                         
                         TextField("\(self.enteredNumber)",value: $tempo,formatter: NumberFormatter() )
                             .keyboardType(.numberPad)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(width: 65, height: 43)
+                            .frame(width: 80, height: 43)
                         
-                        Button("submit") {
+                        Button("set tempo") {
                             self.enteredNumber = String(self.tempo)
                             self.sequencer.setTempo(self.tempo)
                             self.hideKeyboard()
@@ -137,14 +138,24 @@ struct ScoreView: View {
             
             
             
-            HStack(spacing: 65) {
+            HStack(spacing: 18) {
                 Button(action: {
-                    self.scoreModel.addNote(track: self.trackData)                }) {
+                    self.scoreModel.addNote(track: self.trackData)}) {
                         Text("New note")
                             .font(.headline)
                         
                         
-                }.padding(6)
+                }.padding(5)
+                    .foregroundColor(.white)
+                    .background(Color.blue)
+                    .cornerRadius(5)
+                Button(action: {
+                   // self.scoreModel.deleteNotes()
+                }) {
+                    Text("delete note")
+                        .font(.headline)
+                    
+                }.padding(5)
                     .foregroundColor(.white)
                     .background(Color.blue)
                     .cornerRadius(5)
@@ -154,7 +165,7 @@ struct ScoreView: View {
                     Text("Clear all")
                         .font(.headline)
                     
-                }.padding(6)
+                }.padding(5)
                     .foregroundColor(.white)
                     .background(Color.blue)
                     .cornerRadius(5)
@@ -246,11 +257,13 @@ struct ScoreView: View {
                                 .resizable()
                                 .frame(width: 30, height: 30)
                     }.padding(50)
-                    Button(action: {self.sequencer.toggleLoop()}) {
-                        Image(systemName:"repeat")
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                    }.padding()
+  Button(action: {
+                        self.sequencer.toggleLoop()
+                        self.repeatButtonPressed.toggle()
+                        
+                    }, label: {
+                        SpecialButton(active: repeatButtonPressed)
+                    }).padding()
                     
                 }
             }

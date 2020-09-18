@@ -11,6 +11,8 @@
 		7C2562202513025B00DB7ECC /* PianoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C25621F2513025B00DB7ECC /* PianoViewController.swift */; };
 		7C4B9AC3250755820095371C /* Sequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4B9AC2250755820095371C /* Sequencer.swift */; };
 		7C6C8369250B3C7E00751ACB /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 7C6C8368250B3C7D00751ACB /* Sounds */; };
+		8D03826B25147D4B0019DF2C /* SpecialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D03826A25147D4B0019DF2C /* SpecialButton.swift */; };
+		8D03826D25148B2E0019DF2C /* PlayPauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D03826C25148B2E0019DF2C /* PlayPauseButton.swift */; };
 		8DCB144524FE0F9100D49707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB144424FE0F9100D49707 /* AppDelegate.swift */; };
 		8DCB144724FE0F9100D49707 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB144624FE0F9100D49707 /* SceneDelegate.swift */; };
 		8DCB144924FE0F9100D49707 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB144824FE0F9100D49707 /* ContentView.swift */; };
@@ -37,6 +39,8 @@
 		7C25621F2513025B00DB7ECC /* PianoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PianoViewController.swift; sourceTree = "<group>"; };
 		7C4B9AC2250755820095371C /* Sequencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequencer.swift; sourceTree = "<group>"; };
 		7C6C8368250B3C7D00751ACB /* Sounds */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Sounds; path = MusicWand/Sounds; sourceTree = SOURCE_ROOT; };
+		8D03826A25147D4B0019DF2C /* SpecialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialButton.swift; sourceTree = "<group>"; };
+		8D03826C25148B2E0019DF2C /* PlayPauseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayPauseButton.swift; sourceTree = "<group>"; };
 		8DCB144124FE0F9100D49707 /* MusicWand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicWand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DCB144424FE0F9100D49707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DCB144624FE0F9100D49707 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +156,8 @@
 				8DEA0E762507098B00A8DBE7 /* ScoreGrid.swift */,
 				8DEA0E7A25076D1800A8DBE7 /* ScoreModel.swift */,
 				7C4B9AC2250755820095371C /* Sequencer.swift */,
+				8D03826A25147D4B0019DF2C /* SpecialButton.swift */,
+				8D03826C25148B2E0019DF2C /* PlayPauseButton.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -294,7 +300,9 @@
 				8DCB148C24FE608D00D49707 /* AboutView.swift in Sources */,
 				8DCB148824FE133A00D49707 /* SettingView.swift in Sources */,
 				8DCB144924FE0F9100D49707 /* ContentView.swift in Sources */,
+				8D03826B25147D4B0019DF2C /* SpecialButton.swift in Sources */,
 				8DCB148624FE132200D49707 /* MusicSheetView.swift in Sources */,
+				8D03826D25148B2E0019DF2C /* PlayPauseButton.swift in Sources */,
 				7C2562202513025B00DB7ECC /* PianoViewController.swift in Sources */,
 				BC5F7D4E2504AA5A007FC290 /* Score.swift in Sources */,
 				8DEA0E752507094900A8DBE7 /* ScoreView.swift in Sources */,
