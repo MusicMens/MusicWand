@@ -18,6 +18,7 @@ struct ScoreView: View {
     @State var notes = MusicTracks.allNotes
     @State var tempo: Int = 100
     @State var enteredNumber = ""
+    @State var repeatButtonPressed = false
     @ObservedObject var scoreModel:ScoreModel
     var sequencer = Conductor.shared
     var body: some View {
@@ -138,7 +139,7 @@ struct ScoreView: View {
             
             HStack(spacing: 65) {
                 Button(action: {
-                    self.scoreModel.addNote(track: self.trackData)                }) {
+                    self.scoreModel.addNote(track: self.trackData)}) {
                         Text("New note")
                             .font(.headline)
                         
@@ -173,11 +174,13 @@ struct ScoreView: View {
                             .resizable()
                             .frame(width: 30, height: 30)
                     }.padding(50)
-                    Button(action: {self.sequencer.toggleLoop()}) {
-                        Image(systemName:"repeat")
-                            .resizable()
-                            .frame(width: 40, height: 40)
-                    }.padding()
+                    Button(action: {
+                        self.sequencer.toggleLoop()
+                        self.repeatButtonPressed.toggle()
+                        
+                    }, label: {
+                        SpecialButton(active: repeatButtonPressed)
+                    }).padding()
                     
                 }
             }
