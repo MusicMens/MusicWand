@@ -17,8 +17,8 @@ struct ScoreView: View {
     @State private var fromPoint: CGPoint?
     @State private var movingNote: Note?
     @State var notes = MusicTracks.allNotes
-    @State var tempo: Int = 100
-    @State var enteredNumber = ""
+    @State var tempo = ""
+    @State var enteredNumber = "100"
     @State var repeatButtonPressed = false
     @State var playPauseButtonPressed = false
     @ObservedObject var scoreModel:ScoreModel
@@ -32,14 +32,15 @@ struct ScoreView: View {
                 HStack {
                     VStack {
                         
-                        TextField("\(self.enteredNumber)",value: $tempo,formatter: NumberFormatter() )
+                        TextField("\(self.enteredNumber)",text: $tempo)
                             .keyboardType(.numberPad)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(width: 80, height: 43)
                         
                         Button("set tempo") {
-                            self.enteredNumber = String(self.tempo)
-                            self.sequencer.setTempo(self.tempo)
+                            print(self.tempo, self.enteredNumber)
+                            self.enteredNumber = self.tempo
+                            self.sequencer.setTempo(Int(self.enteredNumber)!)
                             self.hideKeyboard()
                         }.padding(3)
                             
@@ -187,7 +188,7 @@ struct ScoreView: View {
                         for note in self.scoreModel.notes.sorted(by: {$0.col < $1.col}) {
                             if note.col > col {
                                 print("increasing position")
-                                pos = pos + 0.6
+                                pos = pos + Double(0.6 * (note.col - col))
                                 col = note.col
                             }
                             print("adding note")
@@ -294,7 +295,13 @@ struct ScoreView: View {
 
 func xyToColRow(bounds: CGRect, x: CGFloat, y: CGFloat) -> (Int, Int) {
     let col: Int = Int(round((x - originX(bounds: bounds)) / cellWidth(bounds: bounds)))
-    let row: Int = Int(round((y - originY(bounds: bounds)) / cellHeight(bounds: bounds)))
+    var row: Int = Int(round((y - originY(bounds: bounds)) / cellHeight(bounds: bounds)))
+    if row < 0 {
+        row = 0
+    }
+    if row > 18 {
+        row = 18
+    }
     return (col, row)
 }
 
