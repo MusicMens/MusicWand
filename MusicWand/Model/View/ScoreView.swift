@@ -8,6 +8,7 @@
 
 import SwiftUI
 import RealmSwift
+import AudioKit
 
 struct ScoreView: View {
     var trackData : musicTrack
@@ -168,10 +169,82 @@ struct ScoreView: View {
                             .resizable()
                             .frame(width: 30, height: 30)
                     }.padding(25)
-                    Button(action: {self.sequencer.playPause()}) {
-                        Image(systemName: "playpause.fill")
-                            .resizable()
-                            .frame(width: 30, height: 30)
+                    Button(action: {
+                        self.sequencer.clearSequence()
+                        var pos = 0.0
+                        var col = 0
+                        for note in self.scoreModel.notes.sorted(by: {$0.col < $1.col}) {
+                            if note.col > col {
+                                print("increasing position")
+                                pos = pos + 0.6
+                                col = note.col
+                            }
+                            print("adding note")
+                            var midiNoteNumber: Int = 0
+                            if note.row == 0 {
+                                 midiNoteNumber = 98
+                            }
+                            if note.row == 1 {
+                                 midiNoteNumber = 96
+                            }
+                            if note.row == 2 {
+                                 midiNoteNumber = 95
+                            }
+                            if note.row == 3 {
+                                 midiNoteNumber = 93
+                            }
+                            if note.row == 4 {
+                                 midiNoteNumber = 91
+                            }
+                            if note.row == 5 {
+                                 midiNoteNumber = 89
+                            }
+                            if note.row == 6 {
+                                 midiNoteNumber = 88
+                            }
+                            if note.row == 7 {
+                                 midiNoteNumber = 86
+                            }
+                            if note.row == 8 {
+                                 midiNoteNumber = 84
+                            }
+                            if note.row == 9 {
+                                 midiNoteNumber = 83
+                            }
+                            if note.row == 10 {
+                                 midiNoteNumber = 81
+                            }
+                            if note.row == 11 {
+                                 midiNoteNumber = 79
+                            }
+                            if note.row == 12 {
+                                 midiNoteNumber = 77
+                            }
+                            if note.row == 13 {
+                                 midiNoteNumber = 76
+                            }
+                            if note.row == 14 {
+                                 midiNoteNumber = 74
+                            }
+                            if note.row == 15 {
+                                 midiNoteNumber = 72
+                            }
+                            if note.row == 16 {
+                                 midiNoteNumber = 71
+                            }
+                            if note.row == 17 {
+                                 midiNoteNumber = 69
+                            }
+                            if note.row == 18 {
+                                 midiNoteNumber = 67
+                            }
+                            self.sequencer.sequencer.tracks[0].add(noteNumber: MIDINoteNumber(midiNoteNumber), velocity: 127, position: AKDuration(beats:pos), duration: AKDuration(beats: 0.5))
+
+                        }
+                        self.sequencer.play()}) {
+                            Image(systemName: "playpause.fill")
+                                .resizable()
+                                .frame(width: 30, height: 30)
                     }.padding(50)
                     Button(action: {self.sequencer.toggleLoop()}) {
                         Image(systemName:"repeat")
@@ -236,7 +309,6 @@ func notePosition(bounds: CGRect, col: Int, row: Int) -> CGPoint {
     let y = originY(bounds: bounds) + CGFloat(row) * cellHeight(bounds: bounds) - (bounds.size.height * 0.03)
     return CGPoint(x: x, y: y)
 }
-
 
 #if canImport(UIKit)
 extension View {
