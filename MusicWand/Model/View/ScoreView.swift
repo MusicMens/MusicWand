@@ -19,6 +19,7 @@ struct ScoreView: View {
     @State var tempo: Int = 100
     @State var enteredNumber = ""
     @State var repeatButtonPressed = false
+    @State var playPauseButtonPressed = false
     @ObservedObject var scoreModel:ScoreModel
     var sequencer = Conductor.shared
     var body: some View {
@@ -178,11 +179,12 @@ struct ScoreView: View {
                             .resizable()
                             .frame(width: 30, height: 30)
                     }.padding(25)
-                    Button(action: {self.sequencer.playPause()}) {
-                        Image(systemName: "playpause.fill")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                    }.padding(50)
+                    Button(action: {
+                        self.sequencer.playPause()
+                        self.playPauseButtonPressed.toggle()
+                    }, label: {
+                        PlayPauseButton(active: playPauseButtonPressed)
+                    }).padding(50)
                     Button(action: {
                         self.sequencer.toggleLoop()
                         self.repeatButtonPressed.toggle()
