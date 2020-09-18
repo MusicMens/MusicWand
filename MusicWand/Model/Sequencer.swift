@@ -63,6 +63,7 @@ class Conductor {
     
     func setTempo(_ tempo: Int){
         let tempoDouble = Double(tempo)
+        print(tempoDouble)
         sequencer.setTempo(tempoDouble)
     }
     

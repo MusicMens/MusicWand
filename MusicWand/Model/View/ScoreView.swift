@@ -37,6 +37,7 @@ struct ScoreView: View {
                             .frame(width: 65, height: 43)
                         
                         Button("submit") {
+                            self.tempo = Int(self.enteredNumber) ?? 100
                             self.enteredNumber = String(self.tempo)
                             self.sequencer.setTempo(self.tempo)
                             self.hideKeyboard()
@@ -176,7 +177,7 @@ struct ScoreView: View {
                         for note in self.scoreModel.notes.sorted(by: {$0.col < $1.col}) {
                             if note.col > col {
                                 print("increasing position")
-                                pos = pos + 0.6
+                                pos = pos + Double(0.6 * (note.col - col))
                                 col = note.col
                             }
                             print("adding note")
