@@ -37,7 +37,7 @@ class PianoViewController: UIViewController {
         stackView.alignment = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
-        let keyboardView = AKKeyboardView()
+        let keyboardView = AKKeyboardView(width:0, height:0, firstOctave: 4, octaveCount: 1, polyphonic: true)
         keyboardView.delegate = self
         
         stackView.addArrangedSubview(keyboardView)
