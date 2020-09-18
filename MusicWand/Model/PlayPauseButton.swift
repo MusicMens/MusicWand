@@ -10,23 +10,24 @@ import SwiftUI
 
 struct PlayPauseButton: View {
     var active = false
-       var body: some View {
-          
-           HStack {
-               if active {
-                   Image(systemName:"pause.fill")
-                   .resizable()
-                   .frame(width: 30, height: 30)
-                   .foregroundColor(Color.purple)
-               }else {
-                   Image(systemName:"play.fill")
-                   .resizable()
-                   .frame(width: 30, height: 30)
-                    
-               }
-           }
-           
-       }
+    var body: some View {
+        
+        HStack {
+            if active {
+                Image(systemName:"pause.fill")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(Color.purple)
+            }else {
+                Image(systemName:"play.fill")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(Color.blue)
+                
+            }
+        }
+        
+    }
 }
 
 struct PlayPauseButton_Previews: PreviewProvider {

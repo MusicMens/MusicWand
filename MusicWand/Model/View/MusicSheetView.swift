@@ -16,6 +16,7 @@ struct MusicSheetView: View {
     @State var showsAlert = false
     @State var countUntitled = 0;
     @State var title = ""
+    @State var playPauseButton = false
     var body: some View {
         return
             NavigationView{
@@ -23,6 +24,12 @@ struct MusicSheetView: View {
                     List{
                         ForEach(allTrack , id: \.self){ score in
                             NavigationLink(destination: ScoreView(trackData: score, scoreModel: ScoreModel(inputnotes: Array(score.song)))){
+                                Button( action: {
+                                    self.playPauseButton.toggle()
+                                      }, label: {
+                                        PlayPauseButton(active: self.playPauseButton)
+                                                   }).buttonStyle(PlainButtonStyle()) .padding()
+                                //Image(systemName: "play.circle").resizable().frame(width: 35, height: 35).padding()
                                 ScoreRow(score: score)
                 
                             }
