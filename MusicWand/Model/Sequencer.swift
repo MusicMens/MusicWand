@@ -91,6 +91,7 @@ class Conductor {
         sequencer.rewind()
         sequencer.play()
     }
+
     func clearSequence(){
         sequencer.tracks[0].clear()
     }
