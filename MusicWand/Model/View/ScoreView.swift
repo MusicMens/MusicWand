@@ -45,7 +45,7 @@ struct ScoreView: View {
                         }.padding(3)
                             
                             .foregroundColor(.white)
-                            .background(Color.blue)
+                            .background(Color.purple)
                             .cornerRadius(5)
                     }.padding()
                     
@@ -54,22 +54,22 @@ struct ScoreView: View {
                     }) {
                         Image(systemName:"arrow.left.square.fill")
                             .resizable()
-                            .frame(width: 35, height: 35)
+                            .frame(width: 35, height: 35).foregroundColor(Color.purple)
                     }
                     Button(action: {}) {
                         Image(systemName: "arrow.right.square.fill")
                             .resizable()
-                            .frame(width: 35, height: 35)
+                            .frame(width: 35, height: 35).foregroundColor(Color.purple)
                     }.padding()
                     Button(action: {}) {
                         Image(systemName:"arrow.up.square.fill")
                             .resizable()
-                            .frame(width: 35, height: 35)
+                            .frame(width: 35, height: 35).foregroundColor(Color.purple)
                     }.padding()
                     Button(action: {}) {
                         Image(systemName: "arrow.down.square.fill")
                             .resizable()
-                            .frame(width: 35, height: 35)
+                            .frame(width: 35, height: 35).foregroundColor(Color.purple)
                     }
                 }.padding(Edge.Set(rawValue: 100),140)
             }
@@ -148,7 +148,7 @@ struct ScoreView: View {
                         
                 }.padding(5)
                     .foregroundColor(.white)
-                    .background(Color.blue)
+                    .background(Color.purple)
                     .cornerRadius(5)
                 Button(action: {
                    // self.scoreModel.deleteNotes()
@@ -158,7 +158,7 @@ struct ScoreView: View {
                     
                 }.padding(5)
                     .foregroundColor(.white)
-                    .background(Color.blue)
+                    .background(Color.purple)
                     .cornerRadius(5)
                 Button(action: {
                     self.scoreModel.clearNotes()
@@ -168,7 +168,7 @@ struct ScoreView: View {
                     
                 }.padding(5)
                     .foregroundColor(.white)
-                    .background(Color.blue)
+                    .background(Color.purple)
                     .cornerRadius(5)
             }
             
@@ -179,14 +179,14 @@ struct ScoreView: View {
                     Button(action: {self.sequencer.rewind()}) {
                         Image(systemName:"backward.end.fill")
                             .resizable()
-                            .frame(width: 30, height: 30)
+                            .frame(width: 30, height: 30).foregroundColor(Color.purple)
                     }.padding(25)
                     Button(action: {
                         self.sequencer.playPause()}) {
                             Image(systemName: "playpause.fill")
                                 .resizable()
                                 .frame(width: 30, height: 30)
-                    }.padding(50)
+                    }.padding(50).foregroundColor(Color.purple)
   Button(action: {
                         self.sequencer.toggleLoop()
                         self.repeatButtonPressed.toggle()
@@ -341,6 +341,7 @@ func makeSequence(notes: Set<Note> ){
     }
 
 }
+
 
 //struct ScoreView_Previews: PreviewProvider {
 //    static var previews: some View {
