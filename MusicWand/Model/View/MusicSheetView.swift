@@ -19,10 +19,10 @@ struct MusicSheetView: View {
     @State var playPauseButton = false
     init() {
         //Use this if NavigationBarTitle is with Large Font
-     //   UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "Chalkduster", size: 15)!]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor : UIColor.purple]
 
         //Use this if NavigationBarTitle is with displayMode = .inline
-        UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Chalkduster", size: 45)!, .foregroundColor : UIColor.purple]
+       // UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Chalkduster", size: 45)!, .foregroundColor : UIColor.purple]
     }
     var body: some View {
         return
@@ -67,15 +67,9 @@ struct MusicSheetView: View {
                         self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
                     }
                     self.showsAlert = false
-                })).navigationBarTitle(Text("Scores"), displayMode: .inline)
+                    })).navigationBarTitle(Text("Scores"))
         }
-        
-        
     }
-    
-    func deleteRow(at indexSet: IndexSet){
-    }
-    
 }
 
 
