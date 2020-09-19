@@ -100,3 +100,6 @@ class ScoreModel: ObservableObject {
         self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
     }
 }
+func highlightNotes(seconds: Double, tempo: Double){
+    
+}

@@ -51,6 +51,8 @@ class Conductor {
             let type = status?.type
             if type == .noteOn {
                 print("note on: \(note), vel: \(vel)")
+                print(self.sequencer.currentPosition.beats, self.sequencer.tempo)
+                print((self.sequencer.currentPosition.beats / self.sequencer.tempo) * 60)
                 try? self.appleSampler.play(noteNumber: note, velocity: vel, channel: 0)}
             if type == .noteOff {
                 try? self.appleSampler.stop(noteNumber: note, channel: 0)

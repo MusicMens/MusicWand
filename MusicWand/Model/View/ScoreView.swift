@@ -81,6 +81,7 @@ struct ScoreView: View {
                                 GeometryReader { geo in
                                     ScoreGrid( bounds: geo.frame(in: .local), cols: self.scoreModel.lastCol() )
                                         .stroke()
+                                    Image("TrebleClef").resizable().frame(width: geo.frame(in: .local).width * 0.13, height: geo.frame(in: .local).height * 0.28) .position(notePosition(bounds: geo.frame(in: .local), col:0, row: 11))
                                     ForEach(Array(self.scoreModel.notes), id: \.id) { note in
                                         Image(note.imgName)
                                             .resizable()
