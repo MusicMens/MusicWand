@@ -21,65 +21,82 @@ struct AboutView: View {
                         .frame(width: 400.0)
                     HStack(alignment: .center, spacing: 23.0){
                         VStack {
-                            Text("Austin").font(.system(size: 25)).fontWeight(.bold).foregroundColor(Color.white)
-                                .onTapGesture {
-                                    let url = URL.init(string: "https://github.com/austingmhuang")
-                                    guard let gitURL = url, UIApplication.shared.canOpenURL(gitURL) else { return }
+                            HStack{
+                                Image("githubLogo")
+                                    .resizable()
+                                    .frame(width: 27, height: 27)
+                                    .onTapGesture {
+                                        let url = URL.init(string: "https://github.com/austingmhuang")
+                                        guard let gitURL = url, UIApplication.shared.canOpenURL(gitURL) else { return }
+                                        UIApplication.shared.open(gitURL)
+                                    }
+                                Text("Austin").font(.system(size: 25)).fontWeight(.bold).foregroundColor(Color.white)
+                                    .onTapGesture {
+                                        let url = URL.init(string: "https://github.com/austingmhuang")
+                                        guard let gitURL = url, UIApplication.shared.canOpenURL(gitURL) else { return }
                                     UIApplication.shared.open(gitURL)
                                 }
-                            Image("austin")  .resizable().padding(0.0).frame(width: 130, height: 130).cornerRadius(10).shadow(radius: 10)
-                                .onTapGesture {
-                                    let url = URL.init(string: "https://github.com/austingmhuang")
-                                    guard let gitURL = url, UIApplication.shared.canOpenURL(gitURL) else { return }
-                                    UIApplication.shared.open(gitURL)
-                                }
-                              
+                            }
+                            Image("austin")  .resizable().padding(0.0).frame(width: 140, height: 140).cornerRadius(10).shadow(radius: 10)
                         }.padding()
                         VStack {
-                            Text("Mattia").font(.system(size: 25)).fontWeight(.bold).foregroundColor(Color.white)
-                                .onTapGesture {
-                                let url = URL.init(string: "https://github.com/matt185")
-                                guard let gitURL = url, UIApplication.shared.canOpenURL(gitURL) else { return }
-                                UIApplication.shared.open(gitURL)
-                            }
-                            Image("mattia").resizable().frame(width: 130, height: 130).cornerRadius(10).shadow(radius: 10)
-                            .onTapGesture {
-                                let url = URL.init(string: "https://github.com/matt185")
-                                guard let gitURL = url, UIApplication.shared.canOpenURL(gitURL) else { return }
-                                UIApplication.shared.open(gitURL)
-                            }
-
+                            HStack{
+                                Image("githubLogo")
+                                    .resizable()
+                                    .frame(width: 27, height: 27)
+                                    
+                                Text("Mattia").font(.system(size: 25)).fontWeight(.bold).foregroundColor(Color.white)
+                                    .onTapGesture {
+                                        let url = URL.init(string: "https://github.com/matt185")
+                                        guard let gitURL = url, UIApplication.shared.canOpenURL(gitURL) else { return }
+                                        UIApplication.shared.open(gitURL)
+                                    }
+                                }
+                            Image("mattia").resizable().frame(width: 140, height: 140).cornerRadius(10).shadow(radius: 10)
                         }.padding()
                         
-                    }
+}
                     HStack{
+                        
                         VStack {
-                            Text("Jesus") .font(.system(size: 25)).fontWeight(.bold).foregroundColor(Color.white)
-                            .onTapGesture {
-                                let url = URL.init(string: "https://github.com/minierparedes")
-                                guard let gitURL = url, UIApplication.shared.canOpenURL(gitURL) else { return }
-                                UIApplication.shared.open(gitURL)
+                            HStack{
+                                Image("githubLogo")
+                                .resizable()
+                                .frame(width: 27, height: 27)
+                                .onTapGesture {
+                                    let url = URL.init(string: "https://github.com/minierparedes")
+                                    guard let gitURL = url, UIApplication.shared.canOpenURL(gitURL) else { return }
+                                    UIApplication.shared.open(gitURL)
+                                }
+                                Text("Jesus") .font(.system(size: 25)).fontWeight(.bold).foregroundColor(Color.white)
+                                .onTapGesture {
+                                    let url = URL.init(string: "https://github.com/minierparedes")
+                                    guard let gitURL = url, UIApplication.shared.canOpenURL(gitURL) else { return }
+                                    UIApplication.shared.open(gitURL)
+                                }
                             }
-                            Image("jesus").resizable().frame(width: 130, height: 130).cornerRadius(10).shadow(radius: 10)
-                            .onTapGesture {
-                                let url = URL.init(string: "https://github.com/minierparedes")
-                                guard let gitURL = url, UIApplication.shared.canOpenURL(gitURL) else { return }
-                                UIApplication.shared.open(gitURL)
-                            }
+                            Image("jesus").resizable().frame(width: 140, height: 140).cornerRadius(10).shadow(radius: 10)
+                            
                         }.padding()
                         VStack {
-                            Text("Scott").font(.system(size: 25)).fontWeight(.bold).foregroundColor(Color.white)
-                            .onTapGesture {
-                                let url = URL.init(string: "https://github.com/scottjohnson623")
-                                guard let gitURL = url, UIApplication.shared.canOpenURL(gitURL) else { return }
-                                UIApplication.shared.open(gitURL)
+                            HStack{
+                               Image("githubLogo")
+                                .resizable()
+                                .frame(width: 27, height: 27)
+                                .onTapGesture {
+                                    let url = URL.init(string: "https://github.com/scottjohnson623")
+                                    guard let gitURL = url, UIApplication.shared.canOpenURL(gitURL) else { return }
+                                    UIApplication.shared.open(gitURL)
+                                }
+                                Text("Scott").font(.system(size: 25)).fontWeight(.bold).foregroundColor(Color.white)
+                                .onTapGesture {
+                                    let url = URL.init(string: "https://github.com/scottjohnson623")
+                                    guard let gitURL = url, UIApplication.shared.canOpenURL(gitURL) else { return }
+                                    UIApplication.shared.open(gitURL)
+                                }
                             }
-                            Image("scott").resizable().frame(width: 130, height: 130).cornerRadius(10).shadow(radius: 10)
-                            .onTapGesture {
-                                let url = URL.init(string: "https://github.com/scottjohnson623")
-                                guard let gitURL = url, UIApplication.shared.canOpenURL(gitURL) else { return }
-                                UIApplication.shared.open(gitURL)
-                            }
+                            
+                            Image("scott").resizable().frame(width: 140, height: 140).cornerRadius(10).shadow(radius: 10)
                         }.padding()
                         
                     }

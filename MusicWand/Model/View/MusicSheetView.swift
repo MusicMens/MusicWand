@@ -158,3 +158,4 @@ func makeSequence(_ notes: [note] ){
 //
 //    }
 //}
+
