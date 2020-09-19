@@ -22,7 +22,7 @@ struct PlayPauseButton: View {
                 Image(systemName:"play.fill")
                     .resizable()
                     .frame(width: 30, height: 30)
-                    .foregroundColor(Color.blue)
+                    .foregroundColor(Color.purple)
                 
             }
         }

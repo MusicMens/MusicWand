@@ -17,6 +17,13 @@ struct MusicSheetView: View {
     @State var countUntitled = 0;
     @State var title = ""
     @State var playPauseButton = false
+    init() {
+        //Use this if NavigationBarTitle is with Large Font
+     //   UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "Chalkduster", size: 15)!]
+
+        //Use this if NavigationBarTitle is with displayMode = .inline
+        UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Chalkduster", size: 45)!, .foregroundColor : UIColor.purple]
+    }
     var body: some View {
         return
             NavigationView{
@@ -49,7 +56,7 @@ struct MusicSheetView: View {
                     }
                     Button(action: {
                         self.showsAlert = true
-                    },label: {Image(systemName: "plus.circle.fill").resizable().frame(width: 55, height: 55)})
+                    },label: {Image(systemName: "plus.circle.fill").resizable().frame(width: 55, height: 55).foregroundColor(Color.purple)})
                         .padding(20)
                 }.alert(isPresented: $showsAlert, TextAlert(title: "Set New Track Title", action: {
                     let trackTitle = ($0 ?? "")
@@ -60,7 +67,7 @@ struct MusicSheetView: View {
                         self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
                     }
                     self.showsAlert = false
-                })).navigationBarTitle(Text("Scores"))
+                })).navigationBarTitle(Text("Scores"), displayMode: .inline)
         }
         
         
