@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-struct SpecialButton: View {
+struct RepeatButton: View {
     var active = false
     var body: some View {
        
         HStack {
             if active {
-                Image(systemName:"repeat.1")
+                Image(systemName:"repeat")
                 .resizable()
                 .frame(width: 40, height: 40)
                 .foregroundColor(Color.purple)
@@ -31,6 +31,6 @@ struct SpecialButton: View {
 
 struct SpecialButton_Previews: PreviewProvider {
     static var previews: some View {
-        SpecialButton()
+        RepeatButton()
     }
 }
