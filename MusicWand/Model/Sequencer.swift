@@ -17,6 +17,7 @@ class Conductor {
     var pitchBendDownSemitones = 2
     var loopEnabled = false
     var synthSemitoneOffset = 0
+    var paused = false
     init() {
         AKSettings.playbackWhileMuted = true
         appleSampler = AKAppleSampler()
@@ -69,12 +70,22 @@ class Conductor {
     }
     
     func playPause() {
-        
-        if !sequencer.isPlaying{
+        print(sequencer.isPlaying, self.paused)
+        if sequencer.isPlaying == false && paused == false{
+            print("1st")
+            self.paused = false
+            sequencer.rewind()
             sequencer.play()
+        } else if sequencer.isPlaying == false && paused == true{
+            print("2nd")
+            self.paused = false
+            sequencer.play()
+
         }
-        else {
+        else if sequencer.isPlaying == true {
+            print("3rd")
             sequencer.stop()
+            self.paused = true
         }
     }
     func toggleLoop(){
