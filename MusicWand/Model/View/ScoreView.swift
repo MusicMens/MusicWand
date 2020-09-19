@@ -24,9 +24,9 @@ struct ScoreView: View {
     @ObservedObject var scoreModel:ScoreModel
     var sequencer = Conductor.shared
     var body: some View {
-        
-        
-        VStack {
+        makeSequence(notes: self.scoreModel.notes)
+
+        return VStack {
             VStack(spacing: 10) {
                 
                 HStack {
@@ -45,7 +45,7 @@ struct ScoreView: View {
                         }.padding(3)
                             
                             .foregroundColor(.white)
-                            .background(Color.blue)
+                            .background(Color.purple)
                             .cornerRadius(5)
                     }.padding()
                     
@@ -54,22 +54,22 @@ struct ScoreView: View {
                     }) {
                         Image(systemName:"arrow.left.square.fill")
                             .resizable()
-                            .frame(width: 35, height: 35)
+                            .frame(width: 35, height: 35).foregroundColor(Color.purple)
                     }
                     Button(action: {}) {
                         Image(systemName: "arrow.right.square.fill")
                             .resizable()
-                            .frame(width: 35, height: 35)
+                            .frame(width: 35, height: 35).foregroundColor(Color.purple)
                     }.padding()
                     Button(action: {}) {
                         Image(systemName:"arrow.up.square.fill")
                             .resizable()
-                            .frame(width: 35, height: 35)
+                            .frame(width: 35, height: 35).foregroundColor(Color.purple)
                     }.padding()
                     Button(action: {}) {
                         Image(systemName: "arrow.down.square.fill")
                             .resizable()
-                            .frame(width: 35, height: 35)
+                            .frame(width: 35, height: 35).foregroundColor(Color.purple)
                     }
                 }.padding(Edge.Set(rawValue: 100),140)
             }
@@ -148,7 +148,7 @@ struct ScoreView: View {
                         
                 }.padding(5)
                     .foregroundColor(.white)
-                    .background(Color.blue)
+                    .background(Color.purple)
                     .cornerRadius(5)
                 Button(action: {
                    // self.scoreModel.deleteNotes()
@@ -158,7 +158,7 @@ struct ScoreView: View {
                     
                 }.padding(5)
                     .foregroundColor(.white)
-                    .background(Color.blue)
+                    .background(Color.purple)
                     .cornerRadius(5)
                 Button(action: {
                     self.scoreModel.clearNotes()
@@ -168,7 +168,7 @@ struct ScoreView: View {
                     
                 }.padding(5)
                     .foregroundColor(.white)
-                    .background(Color.blue)
+                    .background(Color.purple)
                     .cornerRadius(5)
             }
             
@@ -179,91 +179,20 @@ struct ScoreView: View {
                     Button(action: {self.sequencer.rewind()}) {
                         Image(systemName:"backward.end.fill")
                             .resizable()
-                            .frame(width: 30, height: 30)
+                            .frame(width: 30, height: 30).foregroundColor(Color.purple)
                     }.padding(25)
                     Button(action: {
-                        self.sequencer.clearSequence()
-                        var pos = 0.0
-                        var col = 0
-                        for note in self.scoreModel.notes.sorted(by: {$0.col < $1.col}) {
-                            if note.col > col {
-                                print("increasing position")
-                                pos = pos + Double(0.6 * (note.col - col))
-                                col = note.col
-                            }
-                            print("adding note")
-                            var midiNoteNumber: Int = 0
-                            if note.row == 0 {
-                                 midiNoteNumber = 98
-                            }
-                            if note.row == 1 {
-                                 midiNoteNumber = 96
-                            }
-                            if note.row == 2 {
-                                 midiNoteNumber = 95
-                            }
-                            if note.row == 3 {
-                                 midiNoteNumber = 93
-                            }
-                            if note.row == 4 {
-                                 midiNoteNumber = 91
-                            }
-                            if note.row == 5 {
-                                 midiNoteNumber = 89
-                            }
-                            if note.row == 6 {
-                                 midiNoteNumber = 88
-                            }
-                            if note.row == 7 {
-                                 midiNoteNumber = 86
-                            }
-                            if note.row == 8 {
-                                 midiNoteNumber = 84
-                            }
-                            if note.row == 9 {
-                                 midiNoteNumber = 83
-                            }
-                            if note.row == 10 {
-                                 midiNoteNumber = 81
-                            }
-                            if note.row == 11 {
-                                 midiNoteNumber = 79
-                            }
-                            if note.row == 12 {
-                                 midiNoteNumber = 77
-                            }
-                            if note.row == 13 {
-                                 midiNoteNumber = 76
-                            }
-                            if note.row == 14 {
-                                 midiNoteNumber = 74
-                            }
-                            if note.row == 15 {
-                                 midiNoteNumber = 72
-                            }
-                            if note.row == 16 {
-                                 midiNoteNumber = 71
-                            }
-                            if note.row == 17 {
-                                 midiNoteNumber = 69
-                            }
-                            if note.row == 18 {
-                                 midiNoteNumber = 67
-                            }
-                            self.sequencer.sequencer.tracks[0].add(noteNumber: MIDINoteNumber(midiNoteNumber), velocity: 127, position: AKDuration(beats:pos), duration: AKDuration(beats: 0.5))
-
-                        }
-                        self.sequencer.play()}) {
+                        self.sequencer.playPause()}) {
                             Image(systemName: "playpause.fill")
                                 .resizable()
                                 .frame(width: 30, height: 30)
-                    }.padding(50)
+                    }.padding(50).foregroundColor(Color.purple)
   Button(action: {
                         self.sequencer.toggleLoop()
                         self.repeatButtonPressed.toggle()
                         
                     }, label: {
-                        SpecialButton(active: repeatButtonPressed)
+                        RepeatButton(active: repeatButtonPressed)
                     }).padding()
                     
                 }
@@ -338,6 +267,80 @@ extension View {
 }
 #endif
 
+func makeSequence(notes: Set<Note> ){
+    Conductor.shared.clearSequence()
+    var pos = 0.0
+    var col = 0
+    for note in notes.sorted(by: {$0.col < $1.col}) {
+        if note.col > col {
+            print("increasing position")
+            pos = pos + Double(0.6 * (note.col - col))
+            col = note.col
+        }
+        print("adding note")
+        var midiNoteNumber: Int = 0
+        if note.row == 0 {
+             midiNoteNumber = 98
+        }
+        if note.row == 1 {
+             midiNoteNumber = 96
+        }
+        if note.row == 2 {
+             midiNoteNumber = 95
+        }
+        if note.row == 3 {
+             midiNoteNumber = 93
+        }
+        if note.row == 4 {
+             midiNoteNumber = 91
+        }
+        if note.row == 5 {
+             midiNoteNumber = 89
+        }
+        if note.row == 6 {
+             midiNoteNumber = 88
+        }
+        if note.row == 7 {
+             midiNoteNumber = 86
+        }
+        if note.row == 8 {
+             midiNoteNumber = 84
+        }
+        if note.row == 9 {
+             midiNoteNumber = 83
+        }
+        if note.row == 10 {
+             midiNoteNumber = 81
+        }
+        if note.row == 11 {
+             midiNoteNumber = 79
+        }
+        if note.row == 12 {
+             midiNoteNumber = 77
+        }
+        if note.row == 13 {
+             midiNoteNumber = 76
+        }
+        if note.row == 14 {
+             midiNoteNumber = 74
+        }
+        if note.row == 15 {
+             midiNoteNumber = 72
+        }
+        if note.row == 16 {
+             midiNoteNumber = 71
+        }
+        if note.row == 17 {
+             midiNoteNumber = 69
+        }
+        if note.row == 18 {
+             midiNoteNumber = 67
+        }
+        Conductor.shared.sequencer.tracks[0].add(noteNumber: MIDINoteNumber(midiNoteNumber), velocity: 127, position: AKDuration(beats:pos), duration: AKDuration(beats: 0.5))
+
+    }
+
+}
 
 
 //struct ScoreView_Previews: PreviewProvider {
