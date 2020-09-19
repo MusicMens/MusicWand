@@ -88,30 +88,8 @@ struct ScoreView: View {
                                             //                            .frame(width: cellWidth(bounds: geo.frame(in: .local)), height: cellHeight(bounds: geo.frame(in: .local)))
                                             .frame(width: 30, height: 30)
                                             .position(notePosition(bounds: geo.frame(in: .local), col: note.col, row: note.row))
-                                            .gesture(DragGesture().onChanged({ value in
-                                                self.movingNoteLocation = value.location
-                                                if self.fromPoint == nil {
-                                                    self.fromPoint = value.location
-                                                    let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: value.location.x, y: value.location.y)
-                                                    self.movingNote = self.scoreModel.noteAt(col: fromCol, row: fromRow)
-                                                }
-                                            }).onEnded({ value in
-                                                let toPoint: CGPoint = value.location
-                                                if let fromPoint = self.fromPoint {
-                                                    let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: fromPoint.x, y: fromPoint.y)
-                                                    let (toCol, toRow) = xyToColRow(bounds: geo.frame(in: .local), x: toPoint.x, y: toPoint.y)
-                                                    self.colsRowsData.col = toCol
-                                                    self.colsRowsData.row = toRow
-                                                    
-                                                    
-                                                    
-                                                    print("from col:(\(fromCol), from row: \(fromRow) to col:\(toCol), to row: \(toRow)")
-                                                    self.moveNote(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
-                                                }
-                                                
-                                                self.fromPoint = nil
-                                                self.movingNote = nil
-                                            }))
+
+
                                         
                                     }
                                     if self.movingNote != nil {
@@ -224,13 +202,16 @@ struct ScoreView: View {
 }
 
 func xyToColRow(bounds: CGRect, x: CGFloat, y: CGFloat) -> (Int, Int) {
-    let col: Int = Int(round((x - originX(bounds: bounds)) / cellWidth(bounds: bounds)))
+    var col: Int = Int(round((x - originX(bounds: bounds)) / cellWidth(bounds: bounds)))
     var row: Int = Int(round((y - originY(bounds: bounds)) / cellHeight(bounds: bounds)))
     if row < 0 {
         row = 0
     }
     if row > 18 {
         row = 18
+    }
+    if col < 1 {
+        col = 1
     }
     return (col, row)
 }
