@@ -39,6 +39,7 @@ class PianoViewController: UIViewController {
 
         let keyboardView = AKKeyboardView(width:0, height:0, firstOctave: 4, octaveCount: 1, polyphonic: true)
         keyboardView.delegate = self
+        keyboardView.keyOnColor = UIColor.purple
         
         stackView.addArrangedSubview(keyboardView)
 
