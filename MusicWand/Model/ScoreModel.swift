@@ -44,6 +44,12 @@ class ScoreModel: ObservableObject {
         }
     }
     
+    func noteAtCol(col: Int) -> Set<Note>{
+        return notes.filter {
+            $0.col == col
+        }
+    }
+    
     func moveNote(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int, imgName: String? = nil) {
         guard let movingNote = noteAt(col: fromCol, row: fromRow) else {return}
         var newNote = Note(id: movingNote.id, col: toCol, row: toRow, imgName: movingNote.imgName)
