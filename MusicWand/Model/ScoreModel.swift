@@ -23,9 +23,6 @@ class ScoreModel: ObservableObject {
         }
     }
     
-    func highlightNote(row: Int, col: Int) {
-        
-    }
     func noteAt(col: Int, row: Int) -> Note? {
         var rowDiff = 20
         var closestnote: Note?

@@ -35,7 +35,7 @@ struct MusicSheetView: View {
                             NavigationLink(destination: ScoreView(trackData: score, scoreModel: ScoreModel(inputnotes: Array(score.song)))){
                                 Button( action: {
                                     makeSequence(Array(score.song))
-                                    self.sequencer.play()
+                                    self.sequencer.playPause()
 //                                    self.playPauseButton.toggle()
                                 }, label: {
                                     PlayPauseButton(active: self.playPauseButton)

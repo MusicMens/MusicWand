@@ -70,22 +70,11 @@ class Conductor {
     }
     
     func playPause() {
-        print(sequencer.isPlaying, self.paused)
-        if sequencer.isPlaying == false && paused == false{
-            print("1st")
-            self.paused = false
+        if !sequencer.isPlaying {
             sequencer.rewind()
             sequencer.play()
-        } else if sequencer.isPlaying == false && paused == true{
-            print("2nd")
-            self.paused = false
-            sequencer.play()
-
-        }
-        else if sequencer.isPlaying == true {
-            print("3rd")
+        } else{
             sequencer.stop()
-            self.paused = true
         }
     }
     func toggleLoop(){
