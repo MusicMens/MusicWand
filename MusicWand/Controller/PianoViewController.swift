@@ -36,7 +36,7 @@ class PianoViewController: UIViewController {
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         let keyboardView = AKKeyboardView(width:0, height:0, firstOctave: 4, octaveCount: 1, polyphonic: true)
         keyboardView.delegate = self
         keyboardView.keyOnColor = UIColor.purple
