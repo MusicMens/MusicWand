@@ -43,31 +43,31 @@ struct ScoreView: View {
                             .cornerRadius(5)
                     }.padding()
                     
-                    Button(action: { self.scoreModel.moveNoteByID(id: self.selectedNote!.id, toCol: self.selectedNote!.col - 1, toRow: self.selectedNote!.row)
-                        self.selectedNote! = self.scoreModel.noteByID(id: self.selectedNote!.id)!
+                    Button(action: { if self.selectedNote != nil {self.scoreModel.moveNoteByID(id: self.selectedNote!.id, toCol: self.selectedNote!.col - 1, toRow: self.selectedNote!.row)
+                        self.selectedNote! = self.scoreModel.noteByID(id: self.selectedNote!.id)!}
                         
                     }) {
                         Image(systemName:"arrow.left.square.fill")
                             .resizable()
                             .frame(width: 35, height: 35).foregroundColor(Color.purple)
                     }
-                    Button(action: { self.scoreModel.moveNoteByID(id: self.selectedNote!.id, toCol: self.selectedNote!.col + 1, toRow: self.selectedNote!.row)
-                        self.selectedNote! = self.scoreModel.noteByID(id: self.selectedNote!.id)!
+                    Button(action: { if self.selectedNote != nil {self.scoreModel.moveNoteByID(id: self.selectedNote!.id, toCol: self.selectedNote!.col + 1, toRow: self.selectedNote!.row)
+                        self.selectedNote! = self.scoreModel.noteByID(id: self.selectedNote!.id)!}
                     }) {
                         Image(systemName: "arrow.right.square.fill")
                             .resizable()
                             .frame(width: 35, height: 35).foregroundColor(Color.purple)
                     }.padding()
-                    Button(action: {self.scoreModel.moveNoteByID(id: self.selectedNote!.id, toCol: self.selectedNote!.col, toRow: self.selectedNote!.row - 1)
-                        self.selectedNote! = self.scoreModel.noteByID(id: self.selectedNote!.id)!
+                    Button(action: {if self.selectedNote != nil {self.scoreModel.moveNoteByID(id: self.selectedNote!.id, toCol: self.selectedNote!.col, toRow: self.selectedNote!.row - 1)
+                        self.selectedNote! = self.scoreModel.noteByID(id: self.selectedNote!.id)!}
                     }) {
                         Image(systemName:"arrow.up.square.fill")
                             .resizable()
                             .frame(width: 35, height: 35).foregroundColor(Color.purple)
                     }.padding()
                     Button(action: {
-                        self.scoreModel.moveNoteByID(id: self.selectedNote!.id, toCol: self.selectedNote!.col, toRow: self.selectedNote!.row + 1)
-                        self.selectedNote! = self.scoreModel.noteByID(id: self.selectedNote!.id)!
+                        if self.selectedNote != nil {  self.scoreModel.moveNoteByID(id: self.selectedNote!.id, toCol: self.selectedNote!.col, toRow: self.selectedNote!.row + 1)
+                            self.selectedNote! = self.scoreModel.noteByID(id: self.selectedNote!.id)!}
                         
                     }) {
                         Image(systemName: "arrow.down.square.fill")
