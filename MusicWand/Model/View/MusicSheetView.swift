@@ -72,7 +72,7 @@ struct MusicSheetView: View {
                     self.showsAlert = false
                     })).navigationBarTitle(Text("Scores"))
             
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
