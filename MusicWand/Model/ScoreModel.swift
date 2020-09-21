@@ -51,18 +51,44 @@ class ScoreModel: ObservableObject {
     
     func moveNote(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int, imgName: String? = nil) {
         guard let movingNote = noteAt(col: fromCol, row: fromRow) else {return}
+        var highlightedNote = false
         var newNote = Note(id: movingNote.id, col: toCol, row: toRow, imgName: movingNote.imgName)
         // Change local note
         if imgName != nil {
             newNote.imgName = imgName!
         }
+        if movingNote.imgName.last == "H" {
+            highlightedNote = true
+            newNote.imgName = String(movingNote.imgName.dropLast())
+
+        }
         notes.remove(movingNote)
-        notes.insert(newNote)
         // Change db note
         let noteToAdd = musicStore.store.findNoteByID(newNote.id)
         musicStore.store.changeNote(noteToAdd!, col: newNote.col, row: newNote.row, imgName: newNote.imgName)
         self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
         self.allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
+        if highlightedNote == true{
+            newNote.imgName += "H"
+        }
+        notes.insert(newNote)
+
+    }
+    func highlightNote(note: Note){
+        print ("highlight" , note.imgName)
+        let noteToChange = Note(id: note.id, col: note.col, row: note.row, imgName: note.imgName + "H")
+        notes.remove(note)
+        notes.insert(noteToChange)
+    }
+    
+    func unhighlightNote(note:Note){
+        print("Unhighlight", note.imgName)
+        let noteString = String(note.imgName.dropLast())
+        print(noteString)
+        let noteToChange = Note(id: note.id, col: note.col, row: note.row, imgName: noteString )
+        notes.remove(note)
+        notes.insert(noteToChange)
+
     }
     func lastCol() -> Int{
         var lastCol = 0

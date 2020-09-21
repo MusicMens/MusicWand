@@ -9,16 +9,15 @@
 import SwiftUI
 
 struct PlayPauseButton: View {
-    var active = false
+    var active: Bool
     var body: some View {
-        
         HStack {
             if active {
-                Image(systemName:"pause.fill")
+                Image(systemName:"stop.fill")
                     .resizable()
                     .frame(width: 30, height: 30)
                     .foregroundColor(Color.purple)
-            }else {
+            } else {
                 Image(systemName:"play.fill")
                     .resizable()
                     .frame(width: 30, height: 30)
@@ -30,8 +29,8 @@ struct PlayPauseButton: View {
     }
 }
 
-struct PlayPauseButton_Previews: PreviewProvider {
-    static var previews: some View {
-        PlayPauseButton()
-    }
-}
+//struct PlayPauseButton_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PlayPauseButton()
+//    }
+//}

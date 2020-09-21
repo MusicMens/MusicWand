@@ -51,7 +51,6 @@ class Conductor {
             let status = AKMIDIStatus(byte: status)
             let type = status?.type
             if type == .noteOn {
-                print("note on: \(note), vel: \(vel)")
                 print(self.sequencer.currentPosition.beats, self.sequencer.tempo)
                 print((self.sequencer.currentPosition.beats / self.sequencer.tempo) * 60)
                 try? self.appleSampler.play(noteNumber: note, velocity: vel, channel: 0)}
@@ -64,7 +63,6 @@ class Conductor {
     }
     
     func setTempo(_ tempo: Int){
-        print(sequencer.tempo)
         let tempoDouble = Double(tempo)
         sequencer.setTempo(tempoDouble)
     }
@@ -86,6 +84,7 @@ class Conductor {
     }
     func stop() {
         sequencer.stop()
+        sequencer.rewind()
     }
     func play(){
         sequencer.rewind()
