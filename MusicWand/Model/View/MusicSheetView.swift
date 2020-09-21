@@ -83,11 +83,9 @@ func makeSequence(_ notes: [note] ){
     var col = 0
     for noteToPlay in notes.sorted(by: {$0.col < $1.col}) {
         if noteToPlay.col > col {
-            print("increasing position")
             pos = pos + 0.6 * Double((noteToPlay.col - col))
             col = noteToPlay.col
         }
-        print("adding note")
         var midiNoteNumber: Int = 0
         if noteToPlay.row == 0 {
              midiNoteNumber = 98

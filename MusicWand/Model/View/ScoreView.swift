@@ -15,11 +15,12 @@ struct ScoreView: View {
     @State var repeatButtonPressed = false
     @State var playPauseButtonPressed = false
     @ObservedObject var scoreModel:ScoreModel
+    @State var selectedNote: Note? = nil
     var sequencer = Conductor.shared
     var body: some View {
         
         makeSequence(notes: self.scoreModel.notes)
-
+        
         return VStack {
             VStack(spacing: 10) {
                 
@@ -36,30 +37,36 @@ struct ScoreView: View {
                             self.enteredNumber = self.tempo
                             self.sequencer.setTempo(Int(self.enteredNumber)!)
                             self.hideKeyboard()
-                            }.padding(3)
+                        }.padding(3)
                             .foregroundColor(.white)
                             .background(Color.purple)
                             .cornerRadius(5)
                     }.padding()
                     
-                    Button(action: {
+                    Button(action: { self.scoreModel.moveNote(fromCol: self.selectedNote!.col, fromRow: self.selectedNote!.row, toCol: self.selectedNote!.col - 1, toRow: self.selectedNote!.row    )
+                        self.selectedNote!.col -= 1
                         
                     }) {
                         Image(systemName:"arrow.left.square.fill")
                             .resizable()
                             .frame(width: 35, height: 35)
                     }
-                    Button(action: {}) {
-                        Image(systemName: "arrow.right.square.fill")
-                            .resizable()
-                            .frame(width: 35, height: 35)
+                    Button(action: { self.scoreModel.moveNote(fromCol: self.selectedNote!.col, fromRow: self.selectedNote!.row, toCol: self.selectedNote!.col + 1, toRow: self.selectedNote!.row    )
+                        self.selectedNote!.col += 1}) {
+                            Image(systemName: "arrow.right.square.fill")
+                                .resizable()
+                                .frame(width: 35, height: 35)
                     }.padding()
-                    Button(action: {}) {
-                        Image(systemName:"arrow.up.square.fill")
-                            .resizable()
-                            .frame(width: 35, height: 35)
+                    Button(action: {self.scoreModel.moveNote(fromCol: self.selectedNote!.col, fromRow: self.selectedNote!.row, toCol: self.selectedNote!.col, toRow: self.selectedNote!.row - 1   )
+                        self.selectedNote!.row -= 1 }) {
+                            Image(systemName:"arrow.up.square.fill")
+                                .resizable()
+                                .frame(width: 35, height: 35)
                     }.padding()
-                    Button(action: {}) {
+                    Button(action: {
+                        self.scoreModel.moveNote(fromCol: self.selectedNote!.col, fromRow: self.selectedNote!.row, toCol: self.selectedNote!.col, toRow: self.selectedNote!.row + 1   )
+                        self.selectedNote!.row += 1
+                    }) {
                         Image(systemName: "arrow.down.square.fill")
                             .resizable()
                             .frame(width: 35, height: 35)
@@ -74,7 +81,7 @@ struct ScoreView: View {
                                 GeometryReader { geo in
                                     ScoreGrid( bounds: geo.frame(in: .local), cols: self.scoreModel.lastCol() )
                                         .stroke()
-                                     Image("TrebleClef").resizable().frame(width: geo.frame(in: .local).width * 0.13, height: geo.frame(in: .local).height * 0.28) .position(notePosition(bounds: geo.frame(in: .local), col:0, row: 11))
+                                    Image("TrebleClef").resizable().frame(width: geo.frame(in: .local).width * 0.13, height: geo.frame(in: .local).height * 0.28) .position(notePosition(bounds: geo.frame(in: .local), col:0, row: 11))
                                     ForEach(Array(self.scoreModel.notes), id: \.id) { note in
                                         Image(note.imgName)
                                             .resizable()
@@ -104,7 +111,31 @@ struct ScoreView: View {
                                                 
                                                 self.fromPoint = nil
                                                 self.movingNote = nil
-                                            }))
+                                            })).gesture(TapGesture().onEnded({
+                                                if self.selectedNote == nil {
+                                                    print("selected note is nil")
+                                                    self.scoreModel.highlightNote(note: note)
+                                                    self.selectedNote = note
+                                                    self.selectedNote?.imgName += "H"
+                                                }
+                                                else if self.selectedNote?.id == note.id {
+                                                    print("selected note is equal to clicked note")
+                                                    self.scoreModel.unhighlightNote(note: note)
+                                                    self.selectedNote = nil
+                                                }
+                                                else {
+                                                    print("else statement")
+                                                    self.scoreModel.unhighlightNote(note: self.selectedNote!)
+                                                    self.scoreModel.highlightNote(note: note)
+                                                    self.selectedNote = note
+                                                    self.selectedNote?.imgName += "H"
+                                                }
+                                                
+                                                
+                                                }
+                                                
+                                                
+                                            ))
                                         
                                     }
                                     if self.movingNote != nil {
@@ -145,7 +176,7 @@ struct ScoreView: View {
                     .background(Color.purple)
                     .cornerRadius(5)
                 Button(action: {
-                   // self.scoreModel.deleteNotes()
+                    // self.scoreModel.deleteNotes()
                 }) {
                     Text("delete note")
                         .font(.headline)
@@ -176,12 +207,10 @@ struct ScoreView: View {
                             .frame(width: 30, height: 30)
                     }.padding(25)
                     Button(action: {
-                        self.sequencer.playPause()}) {
-                            Image(systemName: "playpause.fill")
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                    }.padding(50)
-  Button(action: {
+                        self.playPauseButtonPressed.toggle()
+                        self.sequencer.playPause()}, label: {
+                            PlayPauseButton(active: self.playPauseButtonPressed)}).padding(50)
+                    Button(action: {
                         self.sequencer.toggleLoop()
                         self.repeatButtonPressed.toggle()
                         
@@ -217,13 +246,16 @@ struct ScoreView: View {
 }
 
 func xyToColRow(bounds: CGRect, x: CGFloat, y: CGFloat) -> (Int, Int) {
-    let col: Int = Int(round((x - originX(bounds: bounds)) / cellWidth(bounds: bounds)))
+    var col: Int = Int(round((x - originX(bounds: bounds)) / cellWidth(bounds: bounds)))
     var row: Int = Int(round((y - originY(bounds: bounds)) / cellHeight(bounds: bounds)))
     if row < 0 {
         row = 0
     }
     if row > 18 {
         row = 18
+    }
+    if col < 1{
+        col = 1
     }
     return (col, row)
 }
@@ -262,77 +294,75 @@ extension View {
 #endif
 
 func makeSequence(notes: Set<Note> ){
-Conductor.shared.clearSequence()
-var pos = 0.0
-var col = 0
-for note in notes.sorted(by: {$0.col < $1.col}) {
-    if note.col > col {
-        print("increasing position")
-        pos = pos + Double(0.6 * (note.col - col))
-        col = note.col
+    Conductor.shared.clearSequence()
+    var pos = 0.0
+    var col = 0
+    for note in notes.sorted(by: {$0.col < $1.col}) {
+        if note.col > col {
+            pos = pos + Double(0.6 * (note.col - col))
+            col = note.col
+        }
+        var midiNoteNumber: Int = 0
+        if note.row == 0 {
+            midiNoteNumber = 98
+        }
+        if note.row == 1 {
+            midiNoteNumber = 96
+        }
+        if note.row == 2 {
+            midiNoteNumber = 95
+        }
+        if note.row == 3 {
+            midiNoteNumber = 93
+        }
+        if note.row == 4 {
+            midiNoteNumber = 91
+        }
+        if note.row == 5 {
+            midiNoteNumber = 89
+        }
+        if note.row == 6 {
+            midiNoteNumber = 88
+        }
+        if note.row == 7 {
+            midiNoteNumber = 86
+        }
+        if note.row == 8 {
+            midiNoteNumber = 84
+        }
+        if note.row == 9 {
+            midiNoteNumber = 83
+        }
+        if note.row == 10 {
+            midiNoteNumber = 81
+        }
+        if note.row == 11 {
+            midiNoteNumber = 79
+        }
+        if note.row == 12 {
+            midiNoteNumber = 77
+        }
+        if note.row == 13 {
+            midiNoteNumber = 76
+        }
+        if note.row == 14 {
+            midiNoteNumber = 74
+        }
+        if note.row == 15 {
+            midiNoteNumber = 72
+        }
+        if note.row == 16 {
+            midiNoteNumber = 71
+        }
+        if note.row == 17 {
+            midiNoteNumber = 69
+        }
+        if note.row == 18 {
+            midiNoteNumber = 67
+        }
+        Conductor.shared.sequencer.tracks[0].add(noteNumber: MIDINoteNumber(midiNoteNumber), velocity: 127, position: AKDuration(beats:pos), duration: AKDuration(beats: 0.5))
+        
     }
-    print("adding note")
-    var midiNoteNumber: Int = 0
-    if note.row == 0 {
-        midiNoteNumber = 98
-    }
-    if note.row == 1 {
-        midiNoteNumber = 96
-    }
-    if note.row == 2 {
-        midiNoteNumber = 95
-    }
-    if note.row == 3 {
-        midiNoteNumber = 93
-    }
-    if note.row == 4 {
-        midiNoteNumber = 91
-    }
-    if note.row == 5 {
-        midiNoteNumber = 89
-    }
-    if note.row == 6 {
-        midiNoteNumber = 88
-    }
-    if note.row == 7 {
-        midiNoteNumber = 86
-    }
-    if note.row == 8 {
-        midiNoteNumber = 84
-    }
-    if note.row == 9 {
-        midiNoteNumber = 83
-    }
-    if note.row == 10 {
-        midiNoteNumber = 81
-    }
-    if note.row == 11 {
-        midiNoteNumber = 79
-    }
-    if note.row == 12 {
-        midiNoteNumber = 77
-    }
-    if note.row == 13 {
-        midiNoteNumber = 76
-    }
-    if note.row == 14 {
-        midiNoteNumber = 74
-    }
-    if note.row == 15 {
-        midiNoteNumber = 72
-    }
-    if note.row == 16 {
-        midiNoteNumber = 71
-    }
-    if note.row == 17 {
-        midiNoteNumber = 69
-    }
-    if note.row == 18 {
-        midiNoteNumber = 67
-    }
-    Conductor.shared.sequencer.tracks[0].add(noteNumber: MIDINoteNumber(midiNoteNumber), velocity: 127, position: AKDuration(beats:pos), duration: AKDuration(beats: 0.5))
-    
-}
 }
 
 //struct ScoreView_Previews: PreviewProvider {
