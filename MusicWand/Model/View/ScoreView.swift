@@ -11,7 +11,7 @@ struct ScoreView: View {
     @State private var movingNote: Note?
     @State var notes = MusicTracks.allNotes
     @State var tempo = ""
-    @State var enteredNumber = "100"
+    @State var enteredNumber = "120"
     @State var repeatButtonPressed = false
     @State var playPauseButtonPressed = false
     @ObservedObject var scoreModel:ScoreModel
@@ -179,11 +179,13 @@ struct ScoreView: View {
                     .background(Color.purple)
                     .cornerRadius(5)
                 Button(action: {
-                    // self.scoreModel.deleteNotes()
-                }) {
-                    Text("delete note")
-                        .font(.headline)
-                    
+                    if self.selectedNote != nil{
+                        self.scoreModel.deleteNote(deleteNote: self.selectedNote!)
+                        self.selectedNote = nil
+                    }                }) {
+                        Text("delete note")
+                            .font(.headline)
+                        
                 }.padding(5)
                     .foregroundColor(.white)
                     .background(Color.purple)

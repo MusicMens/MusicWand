@@ -157,7 +157,15 @@ class ScoreModel: ObservableObject {
         self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
 
     }
-    
+    func deleteNote(deleteNote: Note){
+
+         self.notes.remove(deleteNote)
+        musicStore.store.deleteNoteByID(deleteNote.id)
+         self.allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
+         self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
+
+     }
+     
     func clearNotes(){
         for note in notes{
             musicStore.store.deleteNoteByID(note.id)
