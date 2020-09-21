@@ -56,6 +56,7 @@ struct AlertWrapper<Content: View>: UIViewControllerRepresentable {
             }
             context.coordinator.alertController = UIAlertController(alert: alert)
             uiViewController.present(context.coordinator.alertController!, animated: true)
+            
         }
         if !isPresented && uiViewController.presentedViewController == context.coordinator.alertController {
             uiViewController.dismiss(animated: true)
@@ -69,11 +70,13 @@ public struct TextAlert {
     public var accept: String = "OK"
     public var cancel: String = "Cancel"
     public var action: (String?) -> ()
+    
 }
 
 extension View {
     public func alert(isPresented: Binding<Bool>, _ alert: TextAlert) -> some View {
         AlertWrapper(isPresented: isPresented, alert: alert, content: self)
+        
     }
 }
 
