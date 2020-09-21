@@ -19,13 +19,13 @@ struct MusicSheetView: View {
     @State var title = ""
     @State var playPauseButton = false
     let sequencer = Conductor.shared
-    init() {
-        //Use this if NavigationBarTitle is with Large Font
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor : UIColor.purple]
-
-        //Use this if NavigationBarTitle is with displayMode = .inline
-       // UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Chalkduster", size: 45)!, .foregroundColor : UIColor.purple]
-    }
+//    init() {
+//        //Use this if NavigationBarTitle is with Large Font
+//        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor : UIColor.purple]
+//
+//        //Use this if NavigationBarTitle is with displayMode = .inline
+//       // UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Chalkduster", size: 45)!, .foregroundColor : UIColor.purple]
+//    }
     var body: some View {
         return
             NavigationView{
@@ -71,6 +71,7 @@ struct MusicSheetView: View {
                     }
                     self.showsAlert = false
                     })).navigationBarTitle(Text("Scores"))
+            
         }
     }
 }

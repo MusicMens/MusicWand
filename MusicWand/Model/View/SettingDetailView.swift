@@ -20,7 +20,11 @@ struct SettingDetailView: View {
          switch activePage {
          case "AboutView": return AnyView(AboutView())
          default:
-         return AnyView(Text("Work in progress"))
+            return AnyView(Image("ComingSoon").foregroundColor(Color.myPurple).frame(width: 80, height: 43)
+//            Text("Coming Soon").font(.custom("Chalkduster", size: 46))
+//         .foregroundColor(.myPurple)
+//         .multilineTextAlignment(.center)
+            )
       }
     }
 }
