@@ -18,12 +18,10 @@ struct SettingDetailView: View {
     }
     func containedView() -> AnyView {
          switch activePage {
-         case "AboutView": return AnyView(AboutView())
+            case "AboutView": return AnyView(AboutView())
+            case "OurTeamView": return AnyView(OurTeamView())
          default:
             return AnyView(Image("ComingSoon").foregroundColor(Color.myPurple).frame(width: 80, height: 43)
-//            Text("Coming Soon").font(.custom("Chalkduster", size: 46))
-//         .foregroundColor(.myPurple)
-//         .multilineTextAlignment(.center)
             )
       }
     }
