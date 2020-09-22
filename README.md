@@ -1,6 +1,13 @@
-# MusicWandPog
-The AWESOME version of MusicWand
+# MusicWand
 
-#Make sure to do the FOLLOWING:
+## Try our App on the App Store!
 
-#Pod Install
+## Project Description
+
+## How to run this project
+
+Clone the repository
+run
+```
+pod install
+```
