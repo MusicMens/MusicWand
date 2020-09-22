@@ -2,7 +2,7 @@
 
 ## Try our App on the App Store!
 
-## Project Description
+## What is Music Wand?
 MusicWand is a simple, easy-to-use music composition app. Just create a new score and start adding in notes! Hear your song played back to you when you press play!
 
 ## How to run this project
