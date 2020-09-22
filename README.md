@@ -6,8 +6,7 @@
 
 ## How to run this project
 
-Clone the repository
-run
+Clone the repository and run
 ```
 pod install
 ```
