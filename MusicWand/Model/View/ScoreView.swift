@@ -93,6 +93,7 @@ struct ScoreView: View {
                                             .position(notePosition(bounds: geo.frame(in: .local), col: note.col, row: note.row))
                                             .gesture(DragGesture().onChanged({ value in
                                                 self.movingNoteLocation = value.location
+                                                
                                                 if self.fromPoint == nil {
                                                     self.fromPoint = value.location
                                                     let (fromCol, fromRow) = xyToColRow(bounds: geo.frame(in: .local), x: value.location.x, y: value.location.y)
@@ -105,8 +106,10 @@ struct ScoreView: View {
                                                     let (toCol, toRow) = xyToColRow(bounds: geo.frame(in: .local), x: toPoint.x, y: toPoint.y)
                                                     self.colsRowsData.col = toCol
                                                     self.colsRowsData.row = toRow
-                                                    
-                                                    
+                                                    if self.selectedNote != nil{
+                                                    self.scoreModel.unhighlightNote(note: self.selectedNote!)
+                                                    self.selectedNote = nil
+                                                    }
                                                     
                                                     self.moveNote(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
                                                 }
