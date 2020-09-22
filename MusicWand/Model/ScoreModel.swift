@@ -142,7 +142,7 @@ class ScoreModel: ObservableObject {
         return lastCol + 1
     }
     
-    func addNote(track: musicTrack){
+    func addNote(track: musicTrack) -> Note {
         let noteToAdd = Note(col: lastCol(), row: 5, imgName: "MusicNote")
         let newNote = note()
         newNote.col = lastCol()
@@ -155,9 +155,17 @@ class ScoreModel: ObservableObject {
         }
         self.allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
         self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
-
+        return noteToAdd
     }
-    
+    func deleteNote(deleteNote: Note){
+
+         self.notes.remove(deleteNote)
+        musicStore.store.deleteNoteByID(deleteNote.id)
+         self.allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
+         self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
+
+     }
+     
     func clearNotes(){
         for note in notes{
             musicStore.store.deleteNoteByID(note.id)
@@ -166,7 +174,19 @@ class ScoreModel: ObservableObject {
         self.allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
         self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
     }
-}
-func highlightNotes(seconds: Double, tempo: Double){
-    
+    func highlightNotes(col: Int){
+        let notes: Set<Note> = noteAtCol(col: col)
+        for note in notes{
+            highlightNote(note: note)
+        }
+        
+    }
+    func unhighlightNotes(col:Int){
+        let notes: Set<Note> = noteAtCol(col: col)
+        for note in notes{
+            unhighlightNote(note: note)
+        }
+
+    }
+
 }

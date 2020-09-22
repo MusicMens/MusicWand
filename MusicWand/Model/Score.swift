@@ -126,6 +126,7 @@ class musicStore: ObservableObject {
         let notes = musicStore.store.realm.objects(note.self)
         for i in notes {
             if i.noteID == id{
+                print("found note")
             try! musicStore.store.realm.write({
                     musicStore.store.realm.delete(i)
                 })

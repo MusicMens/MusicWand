@@ -11,7 +11,7 @@ struct ScoreView: View {
     @State private var movingNote: Note?
     @State var notes = MusicTracks.allNotes
     @State var tempo = ""
-    @State var enteredNumber = "100"
+    @State var enteredNumber = "120"
     @State var repeatButtonPressed = false
     @State var playPauseButtonPressed = false
     @ObservedObject var scoreModel:ScoreModel
@@ -108,7 +108,6 @@ struct ScoreView: View {
                                                     
                                                     
                                                     
-                                                    print("from col:(\(fromCol), from row: \(fromRow) to col:\(toCol), to row: \(toRow)")
                                                     self.moveNote(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
                                                 }
                                                 
@@ -116,18 +115,15 @@ struct ScoreView: View {
                                                 self.movingNote = nil
                                             })).gesture(TapGesture().onEnded({
                                                 if self.selectedNote == nil {
-                                                    print("selected note is nil")
                                                     self.scoreModel.highlightNote(note: note)
                                                     self.selectedNote = note
                                                     self.selectedNote?.imgName += "H"
                                                 }
                                                 else if self.selectedNote?.id == note.id {
-                                                    print("selected note is equal to clicked note")
                                                     self.scoreModel.unhighlightNote(note: note)
                                                     self.selectedNote = nil
                                                 }
                                                 else {
-                                                    print("else statement")
                                                     self.scoreModel.unhighlightNote(note: self.selectedNote!)
                                                     self.scoreModel.highlightNote(note: note)
                                                     self.selectedNote = note
@@ -169,7 +165,13 @@ struct ScoreView: View {
             
             HStack(spacing: 18) {
                 Button(action: {
-                    self.scoreModel.addNote(track: self.trackData)}) {
+                    if self.selectedNote != nil {
+                        self.scoreModel.unhighlightNote(note: self.selectedNote!)
+                    }
+                    self.selectedNote = self.scoreModel.addNote(track: self.trackData)
+                    self.scoreModel.highlightNote(note: self.selectedNote!)
+                    self.selectedNote?.imgName += "H"
+                }) {
                         Text("New note")
                             .font(.headline)
                         
@@ -179,17 +181,20 @@ struct ScoreView: View {
                     .background(Color.purple)
                     .cornerRadius(5)
                 Button(action: {
-                    // self.scoreModel.deleteNotes()
-                }) {
-                    Text("delete note")
-                        .font(.headline)
-                    
+                    if self.selectedNote != nil{
+                        self.scoreModel.deleteNote(deleteNote: self.selectedNote!)
+                        self.selectedNote = nil
+                    }                }) {
+                        Text("delete note")
+                            .font(.headline)
+                        
                 }.padding(5)
                     .foregroundColor(.white)
                     .background(Color.purple)
                     .cornerRadius(5)
                 Button(action: {
                     self.scoreModel.clearNotes()
+                    self.selectedNote = nil
                 }) {
                     Text("Clear all")
                         .font(.headline)
@@ -242,9 +247,7 @@ struct ScoreView: View {
         scoreModel.moveNote(fromCol: fromCol, fromRow: fromRow, toCol: toCol, toRow: toRow)
     }
     
-    func createNote() {
-        
-    }
+
     
 }
 

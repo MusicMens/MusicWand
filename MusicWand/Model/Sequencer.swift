@@ -1,12 +1,11 @@
 import AudioKit
-
+import SwiftUI
 func offsetNote(_ note: MIDINoteNumber, semitones: Int) -> MIDINoteNumber {
     let nn = Int(note)
     return (MIDINoteNumber)(semitones + nn)
 }
 
 class Conductor {
-    
     static let shared = Conductor()
     let midi = AKMIDI()
     var appleSampler: AKAppleSampler
@@ -19,11 +18,12 @@ class Conductor {
     var synthSemitoneOffset = 0
     var paused = false
     init() {
+
         AKSettings.playbackWhileMuted = true
         appleSampler = AKAppleSampler()
         sequencer = AKAppleSequencer()
         mixer=AKMixer(appleSampler)
-        
+    
         // MIDI Configure
         midi.createVirtualPorts()
         midi.openInput(name: "Session 1")
@@ -51,8 +51,8 @@ class Conductor {
             let status = AKMIDIStatus(byte: status)
             let type = status?.type
             if type == .noteOn {
-                print(self.sequencer.currentPosition.beats, self.sequencer.tempo)
-                print((self.sequencer.currentPosition.beats / self.sequencer.tempo) * 60)
+//                self.scoreModel.highlightNotes(col: Int(round(self.sequencer.currentPosition.beats / 0.6)))
+                    print(Int(round(self.sequencer.currentPosition.beats / 0.6)))
                 try? self.appleSampler.play(noteNumber: note, velocity: vel, channel: 0)}
             if type == .noteOff {
                 try? self.appleSampler.stop(noteNumber: note, channel: 0)
