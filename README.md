@@ -26,3 +26,7 @@ pod install
 ## About our team :fire: :fire:
 
 We undertook this project with little to no prior experience with Swift and iOS Development. Three of us had to learn Swift on the spot! Within less than a month, we were able to successfully use SwiftUI, UIKit, and AudioKit to create this wonderful app. We hope you enjoy using it as much as we enjoyed writing it. 
+
+## How to contribute :raised_hand: :raised_hand:
+
+Raise an issue on Github! We know there are some bugs and some features that would be really well-liked. We might continue to improve the project over time, you never know!
