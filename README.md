@@ -27,10 +27,10 @@ Open MusicWand.xcworkspace. Build and Run
 
 We undertook this project with little to no prior experience with Swift and iOS Development. Three of us had to learn Swift on the spot! Within less than a month, we were able to successfully use SwiftUI, UIKit, and AudioKit to create this wonderful app. We hope you enjoy using it as much as we enjoyed writing it. 
 
-https://github.com/austingmhuang \
-http://github.com/minierparedes/ \
-https://github.com/scottjohnson623 \
-https://github.com/matt185
+[@austingmhuang] (https://github.com/austingmhuang) \
+[@minierparedes] (http://github.com/minierparedes/) \
+[@scottjohnson623] (https://github.com/scottjohnson623) \
+[@matt185] (https://github.com/matt185)
 
 ## How to contribute :raised_hand: :raised_hand:
 
