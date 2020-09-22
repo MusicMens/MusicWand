@@ -2,8 +2,11 @@
 
 ## :loudspeaker: :loudspeaker: Try our App on the App Store!
 
-## What is Music Wand?
+## What is Music Wand? :musical_score: :mage:
 MusicWand is a simple, easy-to-use music composition app. Just create a new score and start adding in notes! Hear your song played back to you when you press play!
+
+## Awesome Features :musical_keyboard: :musical_score:
+A cool keyboard! Only one octave for now, but it works like a charm! Use this to do some quick improvisation before you write it down! :notes: 
 
 ## How to run this project
 
