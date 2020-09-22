@@ -88,7 +88,6 @@ struct ScoreView: View {
                                     ForEach(Array(self.scoreModel.notes), id: \.id) { note in
                                         Image(note.imgName)
                                             .resizable()
-                                            //                            .frame(width: cellWidth(bounds: geo.frame(in: .local)), height: cellHeight(bounds: geo.frame(in: .local)))
                                             .frame(width: 30, height: 30)
                                             .position(notePosition(bounds: geo.frame(in: .local), col: note.col, row: note.row))
                                             .gesture(DragGesture().onChanged({ value in
@@ -140,7 +139,6 @@ struct ScoreView: View {
                                     if self.movingNote != nil {
                                         Image(self.movingNote!.imgName)
                                             .resizable()
-                                            //                           .frame(width: cellWidth(bounds: geo.frame(in: .local)), height: cellHeight(bounds: geo.frame(in: .local)))
                                             .frame(width: 30, height: 30)
                                             .position(self.movingNoteLocation)
                                     }
@@ -370,9 +368,3 @@ func makeSequence(notes: Set<Note> ){
         
     }
 }
-
-//struct ScoreView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ScoreView(scoreModel: ScoreModel())
-//    }
-//}

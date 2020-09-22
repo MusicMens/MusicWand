@@ -29,8 +29,3 @@ struct PlayPauseButton: View {
     }
 }
 
-//struct PlayPauseButton_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PlayPauseButton()
-//    }
-//}
