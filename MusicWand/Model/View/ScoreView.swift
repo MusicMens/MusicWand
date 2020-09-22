@@ -194,6 +194,7 @@ struct ScoreView: View {
                     .cornerRadius(5)
                 Button(action: {
                     self.scoreModel.clearNotes()
+                    self.selectedNote = nil
                 }) {
                     Text("Clear all")
                         .font(.headline)

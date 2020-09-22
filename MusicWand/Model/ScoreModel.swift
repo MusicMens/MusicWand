@@ -174,7 +174,19 @@ class ScoreModel: ObservableObject {
         self.allTrack = Array(musicStore.store.realm.objects(musicTrack.self).freeze())
         self.allNote = Array(musicStore.store.realm.objects(note.self).freeze())
     }
-}
-func highlightNotes(seconds: Double, tempo: Double){
-    
+    func highlightNotes(col: Int){
+        let notes: Set<Note> = noteAtCol(col: col)
+        for note in notes{
+            highlightNote(note: note)
+        }
+        
+    }
+    func unhighlightNotes(col:Int){
+        let notes: Set<Note> = noteAtCol(col: col)
+        for note in notes{
+            unhighlightNote(note: note)
+        }
+
+    }
+
 }
