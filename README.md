@@ -11,6 +11,7 @@ Great drag & drop functionality!
 <Insert gif of dragging notes around>
 
 Simple selection of notes & Easy to use controls
+![alt text](https://github.com/MusicMens/MusicWandPog/main_screen.png "Logo Title Text 1")
 
 A cool keyboard! Only one octave for now, but it works like a charm! Use this to do some quick improvisation before you write it down! :notes: 
 <Insert Screenshot or Gif of Keyboard Here>
