@@ -34,9 +34,9 @@ struct ScoreView: View {
                         
                         Button("set tempo") {
                             print(self.tempo, self.enteredNumber)
-                            self.enteredNumber = self.tempo
+                            if self.tempo != "" {self.enteredNumber = self.tempo
                             self.sequencer.setTempo(Int(self.enteredNumber)!)
-                            self.hideKeyboard()
+                                self.hideKeyboard()}
                         }.padding(3)
                             .foregroundColor(.white)
                             .background(Color.purple)
