@@ -4,14 +4,13 @@
 
 ## What is Music Wand? :musical_score: :mage: :writing_hand:
 MusicWand is a simple, easy-to-use music composition app. Just create a new score and start adding in notes! Hear your song played back to you when you press play! \
-![Main Screen View](https://github.com/MusicMens/MusicWandPog/blob/master/Demo/Main%20Screen.gif)
 
 ## Awesome Features :musical_keyboard: :musical_score:
 Great drag & drop functionality!
 
 Simple selection of notes & Easy to use controls
 
-![Main Screen View](https://github.com/MusicMens/MusicWandPog/blob/master/Demo/drag_and_drop.gif)
+![Main Screen View](https://github.com/MusicMens/MusicWandPog/blob/master/Demo/Main%20Screen.gif)![Main Screen View](https://github.com/MusicMens/MusicWandPog/blob/master/Demo/drag_and_drop.gif)
 
 A cool keyboard! Only one octave for now, but it works like a charm! Use this to do some quick improvisation before you write it down! :notes: 
 ![Main Screen View](https://github.com/MusicMens/MusicWandPog/blob/master/Demo/piano_keyboard.gif)
