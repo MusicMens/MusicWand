@@ -32,11 +32,6 @@ struct ScoreGrid: Shape {
             }
         
     }
-//        for col in 0..<cols {
-//            if col > 0 {
-//            path.move(to: CGPoint(x:origX + CGFloat(col) * cellwidth, y: origY + 5 * cellheight))
-//            path.addLine(to: CGPoint(x: origX + CGFloat(col) * cellwidth, y: origY + 13 * cellheight))
-//            }}
         return path
     }
 }
