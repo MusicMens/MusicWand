@@ -19,13 +19,6 @@ struct MusicSheetView: View {
     @State var title = ""
     @State var playPauseButton = false
     let sequencer = Conductor.shared
-//    init() {
-//        //Use this if NavigationBarTitle is with Large Font
-//        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor : UIColor.purple]
-//
-//        //Use this if NavigationBarTitle is with displayMode = .inline
-//       // UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Chalkduster", size: 45)!, .foregroundColor : UIColor.purple]
-//    }
     var body: some View {
         return
             NavigationView{
@@ -36,7 +29,7 @@ struct MusicSheetView: View {
                                 Button( action: {
                                     makeSequence(Array(score.song))
                                     self.sequencer.playPause()
-//                                    self.playPauseButton.toggle()
+
                                 }, label: {
                                     PlayPauseButton(active: self.playPauseButton)
                                 }).buttonStyle(PlainButtonStyle()) .padding()
@@ -150,11 +143,4 @@ func makeSequence(_ notes: [note] ){
     }
 
 }
-
-//struct MusicSheetView_Previews: PreviewProvider {
-//    static var previews: some View {
-//       MusicSheetView()
-//
-//    }
-//}
 
