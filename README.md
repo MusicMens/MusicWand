@@ -14,8 +14,7 @@ Simple selection of notes & Easy to use controls
 ![Main Screen View](https://github.com/MusicMens/MusicWandPog/blob/master/Demo/drag_and_drop.gif)
 
 A cool keyboard! Only one octave for now, but it works like a charm! Use this to do some quick improvisation before you write it down! :notes: 
-<Insert Screenshot or Gif of Keyboard Here>
-
+![Main Screen View](https://github.com/MusicMens/MusicWandPog/blob/master/Demo/piano_keyboard.gif)
 
 ## :point_right: How to run this project :point_left:
 
