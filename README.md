@@ -8,9 +8,10 @@ MusicWand is a simple, easy-to-use music composition app. Just create a new scor
 
 ## Awesome Features :musical_keyboard: :musical_score:
 Great drag & drop functionality!
-<Insert gif of dragging notes around>
 
 Simple selection of notes & Easy to use controls
+
+![Main Screen View](https://github.com/MusicMens/MusicWandPog/blob/master/Demo/Main%20Screen.gif)
 
 A cool keyboard! Only one octave for now, but it works like a charm! Use this to do some quick improvisation before you write it down! :notes: 
 <Insert Screenshot or Gif of Keyboard Here>
